@@ -25,4 +25,6 @@ hs_err_pid*
 .classpath
 .settings
 
+*/META-INF/*
+
 test.java
