@@ -36,7 +36,7 @@ public class Utilisateur_S extends HttpServlet {
 		
 if (request.getParameter("id") != null && request.getParameter("action").equalsIgnoreCase("edit")) {
 			
-			request.setAttribute("showConducteur", utilisateurDao.findById(Integer.parseInt(request.getParameter("id"))));
+			request.setAttribute("showUtilisateur", utilisateurDao.findById(Integer.parseInt(request.getParameter("id"))));
 		}
 		if (request.getParameter("id") != null && request.getParameter("action").equalsIgnoreCase("delete")) {
 			

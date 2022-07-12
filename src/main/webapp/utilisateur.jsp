@@ -17,33 +17,18 @@
       <th scope="col">#</th>
       <th scope="col">Prénom</th>
       <th scope="col">Nom</th>
-      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-<c:forEach items="${ listeUtilisateurs}" var ="element">
+<c:forEach items="${ listeUtilisateurs}" var ="utilisateur">
     <tr>
-       <th scope="row"><c:out value="${element.id_utilisateur }"></c:out> </th>
-      <td><c:out value="${element.prenom }"></c:out> </td>
-      <td>${element.nom } </td>
-      
-      <td> <a href="utilisateur?id=${element.id_utilisateur }&action=edit">
-      	<img alt="" src="images/edit.webp" style="width:40px;">
-      </a>
-      
-      
-<%--      <img alt="" src="images/supp.webp" width="40px;" data-bs-toggle="modal" data-bs-target="#vtc_${element.id_utilisateur }">  
- --%>    
-     </td>
-    </tr>
-    
-    <!-- Button trigger modal -->
-<%-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vtc_${element.id_conducteur }">
-  Launch demo modal
-</button> --%>
+       <th scope="row"><c:out value="${utilisateur.id_utilisateur }"></c:out> </th>
+      <td><c:out value="${utilisateur.prenom }"></c:out> </td>
+      <td><c:out value="${utilisateur.nom }"></c:out> </td>
+    </tr> 
 
 <!-- Modal -->
-<div class="modal fade" id="vtc_${element.id_utilisateur }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="vtc_${utilisateur.id_utilisateur }" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -51,11 +36,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      Voulez vous supprimer ${element.nom } - ${element.prenom }
+      Voulez vous supprimer ${utilisateur.nom } - ${utilisateur.prenom }
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="conducteur?id=${element.id_utilisateur }&action=delete">
+        <a href="utilisateur?id=${utilisateur.id_utilisateur }&action=delete">
         <button type="button" class="btn btn-primary">
         Save changes</button>
         </a>
