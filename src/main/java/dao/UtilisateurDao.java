@@ -64,7 +64,11 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 				System.out.println("Update non fait");
 				e.printStackTrace();
 			}
-			return findById(id);
+			utilisateur.setNom(nom);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setEmail(email);
+			utilisateur.setMot_de_passe(mdp);
+			return utilisateur;
 		}
 		else {System.out.println("Update non fait id non présent dans la base");}
 		return null;
