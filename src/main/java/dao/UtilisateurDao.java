@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import connection.Database;
 import model.Utilisateur;
 
 public class UtilisateurDao implements IDAO<Utilisateur>{
