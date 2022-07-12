@@ -64,24 +64,32 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 				System.out.println("Update non fait");
 				e.printStackTrace();
 			}
-			return findById(id);
+			utilisateur.setNom(nom);
+			utilisateur.setPrenom(prenom);
+			utilisateur.setEmail(email);
+			utilisateur.setMot_de_passe(mdp);
+			return utilisateur;
 		}
 		else {System.out.println("Update non fait id non présent dans la base");}
 		return null;
 	}
 	
 	@Override
-	public boolean remove(Utilisateur object) {
-		findByEmail(object.getEmail());
-		try {
-			PreparedStatement statement = connection.prepareStatement("DELETE FROM utilisateur WHERE email LIKE ?");
-			statement.setString(1,object.getEmail());
-			statement.executeUpdate();
-			System.out.println("Delete de "+object.getEmail()+" fait\n----------------");
-			return true;
-		} catch (SQLException e) {
-			System.out.println("Delete non fait");
-			e.printStackTrace();
+	public boolean remove(int id) {
+		if (findById(id) != null) {
+			try {
+				PreparedStatement statement = connection
+						.prepareStatement("DELETE FROM utilisateur WHERE id_utilisateur=?");
+				statement.setInt(1, id);
+				statement.executeUpdate();
+				System.out.println("Remove de l'utilisateur id=" + id + " fait\n----------------");
+				return true;
+			} catch (SQLException e) {
+				System.out.println("Remove non fait");
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Remove non fait id non présent dans la base");
 		}
 		return false;
 	}
