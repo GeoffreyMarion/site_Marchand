@@ -45,7 +45,7 @@ if (request.getParameter("id") != null && request.getParameter("action").equalsI
 			response.sendRedirect(request.getContextPath()+"/utilisateurs");
 		}else {
 			
-			request.getRequestDispatcher(".jsp").forward(request, response);
+			request.getRequestDispatcher("utilisateur.jsp").forward(request, response);
 		}
 		
 
