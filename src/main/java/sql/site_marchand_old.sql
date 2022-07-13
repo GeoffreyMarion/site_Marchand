@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.3
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jul 13, 2022 at 07:05 PM
--- Server version: 5.7.26
--- PHP Version: 7.4.2
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 11 juil. 2022 à 15:39
+-- Version du serveur : 10.4.24-MariaDB
+-- Version de PHP : 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `site_Marchand`
+-- Base de données : `site_marchand`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrateur`
+-- Structure de la table `administrateur`
 --
 
 CREATE TABLE `administrateur` (
@@ -34,18 +35,10 @@ CREATE TABLE `administrateur` (
   `privileges` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `administrateur`
---
-
-INSERT INTO `administrateur` (`id_administrateur`, `nom`, `email`, `mot_de_passe`, `privileges`) VALUES
-(1, 'admin', 'admin@test.fr', '123456', ''),
-(2, 'admin', 'admin@test.fr', '123456', '');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adresse_livraison`
+-- Structure de la table `adresse_livraison`
 --
 
 CREATE TABLE `adresse_livraison` (
@@ -59,7 +52,7 @@ CREATE TABLE `adresse_livraison` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorie`
+-- Structure de la table `categorie`
 --
 
 CREATE TABLE `categorie` (
@@ -67,19 +60,10 @@ CREATE TABLE `categorie` (
   `titre` varchar(70) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `categorie`
---
-
-INSERT INTO `categorie` (`id_categorie`, `titre`) VALUES
-(1, 'informatique'),
-(4, 'livre'),
-(7, 'musique');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commande`
+-- Structure de la table `commande`
 --
 
 CREATE TABLE `commande` (
@@ -94,7 +78,7 @@ CREATE TABLE `commande` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commentaire`
+-- Structure de la table `commentaire`
 --
 
 CREATE TABLE `commentaire` (
@@ -108,7 +92,7 @@ CREATE TABLE `commentaire` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contact`
+-- Structure de la table `contact`
 --
 
 CREATE TABLE `contact` (
@@ -123,7 +107,7 @@ CREATE TABLE `contact` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `coordonnees`
+-- Structure de la table `coordonnees`
 --
 
 CREATE TABLE `coordonnees` (
@@ -138,7 +122,7 @@ CREATE TABLE `coordonnees` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `details_commande`
+-- Structure de la table `details_commande`
 --
 
 CREATE TABLE `details_commande` (
@@ -152,7 +136,7 @@ CREATE TABLE `details_commande` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `entree_en_stock`
+-- Structure de la table `entree_en_stock`
 --
 
 CREATE TABLE `entree_en_stock` (
@@ -166,7 +150,7 @@ CREATE TABLE `entree_en_stock` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favori`
+-- Structure de la table `favori`
 --
 
 CREATE TABLE `favori` (
@@ -178,7 +162,7 @@ CREATE TABLE `favori` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fournisseur`
+-- Structure de la table `fournisseur`
 --
 
 CREATE TABLE `fournisseur` (
@@ -186,18 +170,10 @@ CREATE TABLE `fournisseur` (
   `nom` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `fournisseur`
---
-
-INSERT INTO `fournisseur` (`id_fournisseur`, `nom`) VALUES
-(1, 'fournisseur_1'),
-(2, 'fournisseur_2');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image`
+-- Structure de la table `image`
 --
 
 CREATE TABLE `image` (
@@ -209,7 +185,7 @@ CREATE TABLE `image` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produit`
+-- Structure de la table `produit`
 --
 
 CREATE TABLE `produit` (
@@ -223,40 +199,10 @@ CREATE TABLE `produit` (
   `stock_minimum` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `produit`
---
-
-INSERT INTO `produit` (`id_produit`, `titre_produit`, `description`, `prix`, `image`, `fk_id_sous_categorie`, `stock`, `stock_minimum`) VALUES
-(1, 'testTitre', 'NEW DESCRIPTION', 999, '', 12, 4, 2),
-(2, 'roman2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 10, '', 12, 10, 5),
-(7, 'roman3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 15, '', 12, 10, 5),
-(9, 'manga1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 7, '', 13, 6, 4),
-(11, 'manga2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 10, '', 13, 10, 5),
-(13, 'manga3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 10, '', 13, 10, 5),
-(15, 'livreEnfant1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 10, '', 16, 20, 10),
-(16, 'livreEnfant2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 7, '', 16, 7, 5),
-(21, 'livreEnfant3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 25, '', 16, 8, 4),
-(22, 'sciencesHumaines1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 25, '', 17, 30, 5),
-(23, 'sciencesHumaines2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 40, '', 17, 5, 5),
-(24, 'sciencesHumaines3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 20, '', 17, 2, 2),
-(27, 'coffretIntegrale1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 19.99, '', 4, 50, 20),
-(28, 'coffretIntegrale2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 17.99, '', 4, 200, 50),
-(31, 'coffretIntegrale3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 8.99, '', 4, 30, 10),
-(32, 'vinyle1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 12, '', 5, 49, 10),
-(35, 'vinyle2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 25, '', 5, 100, 44),
-(36, 'vinyle3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 33, '', 5, 44, 33),
-(37, 'instrumentMusique1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 200, '', 8, 24, 20),
-(38, 'instrumentMusique2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 3999, '', 8, 77, 50),
-(39, 'instrumentMusique3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 79, '', 8, 35, 10),
-(40, 'carteGraphique1', 'Je suis la description Je suis la description Je suis la description Je suis la description', 899.99, '', 1, 33, 15),
-(41, 'carteGraphique2', 'Je suis la description Je suis la description Je suis la description Je suis la description', 1299, '', 1, 79, 20),
-(42, 'carteGraphique3', 'Je suis la description Je suis la description Je suis la description Je suis la description', 799.99, '', 1, 10, 10);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recherche`
+-- Structure de la table `recherche`
 --
 
 CREATE TABLE `recherche` (
@@ -269,7 +215,7 @@ CREATE TABLE `recherche` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `slide`
+-- Structure de la table `slide`
 --
 
 CREATE TABLE `slide` (
@@ -282,7 +228,7 @@ CREATE TABLE `slide` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sous_categorie`
+-- Structure de la table `sous_categorie`
 --
 
 CREATE TABLE `sous_categorie` (
@@ -291,26 +237,10 @@ CREATE TABLE `sous_categorie` (
   `fk_id_categorie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `sous_categorie`
---
-
-INSERT INTO `sous_categorie` (`id_sous_categorie`, `titre`, `fk_id_categorie`) VALUES
-(1, 'carte_graphique', 1),
-(3, 'disque_dur', 1),
-(4, 'coffret_integrale', 7),
-(5, 'vinyle', 7),
-(8, 'instrument_musique', 7),
-(10, 'ssd', 1),
-(12, 'roman', 4),
-(13, 'manga', 4),
-(16, 'livre_enfant', 4),
-(17, 'sciences_humaines', 4);
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utilisateur`
+-- Structure de la table `utilisateur`
 --
 
 CREATE TABLE `utilisateur` (
@@ -322,19 +252,10 @@ CREATE TABLE `utilisateur` (
   `mot_de_passe` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`id_utilisateur`, `nom`, `prenom`, `date_inscription`, `email`, `mot_de_passe`) VALUES
-(1, 'GUEST', 'Welcome', '2022-07-12', 'welcomeguest@test.fr', '123456'),
-(2, 'Camara', 'Moussa', '2022-07-12', 'moussa.camara@gmail.com', '123456'),
-(3, 'test', 'test', '2022-07-13', 'test@test.fr', '123456');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `visite`
+-- Structure de la table `visite`
 --
 
 CREATE TABLE `visite` (
@@ -345,29 +266,29 @@ CREATE TABLE `visite` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `administrateur`
+-- Index pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
   ADD PRIMARY KEY (`id_administrateur`);
 
 --
--- Indexes for table `adresse_livraison`
+-- Index pour la table `adresse_livraison`
 --
 ALTER TABLE `adresse_livraison`
   ADD PRIMARY KEY (`id_adresse`);
 
 --
--- Indexes for table `categorie`
+-- Index pour la table `categorie`
 --
 ALTER TABLE `categorie`
   ADD PRIMARY KEY (`id_categorie`);
 
 --
--- Indexes for table `commande`
+-- Index pour la table `commande`
 --
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`id_commande`),
@@ -375,7 +296,7 @@ ALTER TABLE `commande`
   ADD KEY `fk_commande_adresse` (`fk_id_adresse`);
 
 --
--- Indexes for table `commentaire`
+-- Index pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
   ADD PRIMARY KEY (`id_commentaire`),
@@ -383,20 +304,20 @@ ALTER TABLE `commentaire`
   ADD KEY `fk_commentaire_utiliateur` (`fk_id_utilisateur`);
 
 --
--- Indexes for table `contact`
+-- Index pour la table `contact`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`id_contact`),
   ADD KEY `fk_contact_utilisateur` (`fk_id_utilisateur`);
 
 --
--- Indexes for table `coordonnees`
+-- Index pour la table `coordonnees`
 --
 ALTER TABLE `coordonnees`
   ADD PRIMARY KEY (`id_coordonnees`);
 
 --
--- Indexes for table `details_commande`
+-- Index pour la table `details_commande`
 --
 ALTER TABLE `details_commande`
   ADD PRIMARY KEY (`id_details_commande`),
@@ -404,7 +325,7 @@ ALTER TABLE `details_commande`
   ADD KEY `fk_detail_commande_produit` (`fk_id_produit`);
 
 --
--- Indexes for table `entree_en_stock`
+-- Index pour la table `entree_en_stock`
 --
 ALTER TABLE `entree_en_stock`
   ADD PRIMARY KEY (`id_entree_en_stock`),
@@ -412,7 +333,7 @@ ALTER TABLE `entree_en_stock`
   ADD KEY `fk_entre_en_stock_produit` (`fk_id_produit`);
 
 --
--- Indexes for table `favori`
+-- Index pour la table `favori`
 --
 ALTER TABLE `favori`
   ADD PRIMARY KEY (`id_favori`),
@@ -420,53 +341,53 @@ ALTER TABLE `favori`
   ADD KEY `fk_favori_utilisateur` (`fk_id_utilisateur`);
 
 --
--- Indexes for table `fournisseur`
+-- Index pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
   ADD PRIMARY KEY (`id_fournisseur`);
 
 --
--- Indexes for table `image`
+-- Index pour la table `image`
 --
 ALTER TABLE `image`
   ADD PRIMARY KEY (`id_image`),
   ADD KEY `fk_image_produit` (`fk_id_produit`);
 
 --
--- Indexes for table `produit`
+-- Index pour la table `produit`
 --
 ALTER TABLE `produit`
   ADD PRIMARY KEY (`id_produit`),
   ADD KEY `fk_produit_sous_categorie` (`fk_id_sous_categorie`);
 
 --
--- Indexes for table `recherche`
+-- Index pour la table `recherche`
 --
 ALTER TABLE `recherche`
   ADD PRIMARY KEY (`id_recherche`),
   ADD KEY `fk_recherche_utilisateur` (`fk_id_utilisateur`);
 
 --
--- Indexes for table `slide`
+-- Index pour la table `slide`
 --
 ALTER TABLE `slide`
   ADD PRIMARY KEY (`id_slide`);
 
 --
--- Indexes for table `sous_categorie`
+-- Index pour la table `sous_categorie`
 --
 ALTER TABLE `sous_categorie`
   ADD PRIMARY KEY (`id_sous_categorie`),
   ADD KEY `fk_sous_categorie_categorie` (`fk_id_categorie`);
 
 --
--- Indexes for table `utilisateur`
+-- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`id_utilisateur`);
 
 --
--- Indexes for table `visite`
+-- Index pour la table `visite`
 --
 ALTER TABLE `visite`
   ADD PRIMARY KEY (`id_visite`),
@@ -474,192 +395,193 @@ ALTER TABLE `visite`
   ADD KEY `fk_visite_utilisateur` (`fk_id_utilisateur`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `administrateur`
+-- AUTO_INCREMENT pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
-  MODIFY `id_administrateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_administrateur` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `adresse_livraison`
+-- AUTO_INCREMENT pour la table `adresse_livraison`
 --
 ALTER TABLE `adresse_livraison`
   MODIFY `id_adresse` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categorie`
+-- AUTO_INCREMENT pour la table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `commande`
+-- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
   MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `commentaire`
+-- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
   MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `contact`
+-- AUTO_INCREMENT pour la table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id_contact` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `coordonnees`
+-- AUTO_INCREMENT pour la table `coordonnees`
 --
 ALTER TABLE `coordonnees`
   MODIFY `id_coordonnees` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `details_commande`
+-- AUTO_INCREMENT pour la table `details_commande`
 --
 ALTER TABLE `details_commande`
   MODIFY `id_details_commande` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `entree_en_stock`
+-- AUTO_INCREMENT pour la table `entree_en_stock`
 --
 ALTER TABLE `entree_en_stock`
   MODIFY `id_entree_en_stock` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `favori`
+-- AUTO_INCREMENT pour la table `favori`
 --
 ALTER TABLE `favori`
   MODIFY `id_favori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `fournisseur`
+-- AUTO_INCREMENT pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
-  MODIFY `id_fournisseur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_fournisseur` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `image`
+-- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
   MODIFY `id_image` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `produit`
+-- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `recherche`
+-- AUTO_INCREMENT pour la table `recherche`
 --
 ALTER TABLE `recherche`
   MODIFY `id_recherche` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `slide`
+-- AUTO_INCREMENT pour la table `slide`
 --
 ALTER TABLE `slide`
   MODIFY `id_slide` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sous_categorie`
+-- AUTO_INCREMENT pour la table `sous_categorie`
 --
 ALTER TABLE `sous_categorie`
-  MODIFY `id_sous_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_sous_categorie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `utilisateur`
+-- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `visite`
+-- AUTO_INCREMENT pour la table `visite`
 --
 ALTER TABLE `visite`
   MODIFY `id_visite` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `commande`
+-- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `fk_commande_adresse` FOREIGN KEY (`fk_id_adresse`) REFERENCES `adresse_livraison` (`id_adresse`),
   ADD CONSTRAINT `fk_commande_utilisateur` FOREIGN KEY (`fk_id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
--- Constraints for table `commentaire`
+-- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
   ADD CONSTRAINT `fk_commentaire_produit` FOREIGN KEY (`fk_id_produit`) REFERENCES `produit` (`id_produit`),
   ADD CONSTRAINT `fk_commentaire_utiliateur` FOREIGN KEY (`fk_id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
--- Constraints for table `contact`
+-- Contraintes pour la table `contact`
 --
 ALTER TABLE `contact`
   ADD CONSTRAINT `fk_contact_utilisateur` FOREIGN KEY (`fk_id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
--- Constraints for table `details_commande`
+-- Contraintes pour la table `details_commande`
 --
 ALTER TABLE `details_commande`
   ADD CONSTRAINT `fk_detail_commande_commande` FOREIGN KEY (`fk_id_commande`) REFERENCES `commande` (`id_commande`),
   ADD CONSTRAINT `fk_detail_commande_produit` FOREIGN KEY (`fk_id_produit`) REFERENCES `produit` (`id_produit`);
 
 --
--- Constraints for table `entree_en_stock`
+-- Contraintes pour la table `entree_en_stock`
 --
 ALTER TABLE `entree_en_stock`
   ADD CONSTRAINT `fk_entre_en_stock_produit` FOREIGN KEY (`fk_id_produit`) REFERENCES `produit` (`id_produit`),
   ADD CONSTRAINT `fk_entree_en_stock_fournisseur` FOREIGN KEY (`fk_id_fournisseur`) REFERENCES `fournisseur` (`id_fournisseur`);
 
 --
--- Constraints for table `favori`
+-- Contraintes pour la table `favori`
 --
 ALTER TABLE `favori`
   ADD CONSTRAINT `fk_favori_produit` FOREIGN KEY (`fk_id_produit`) REFERENCES `produit` (`id_produit`),
   ADD CONSTRAINT `fk_favori_utilisateur` FOREIGN KEY (`fk_id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
--- Constraints for table `image`
+-- Contraintes pour la table `image`
 --
 ALTER TABLE `image`
   ADD CONSTRAINT `fk_image_produit` FOREIGN KEY (`fk_id_produit`) REFERENCES `produit` (`id_produit`);
 
 --
--- Constraints for table `produit`
+-- Contraintes pour la table `produit`
 --
 ALTER TABLE `produit`
   ADD CONSTRAINT `fk_produit_sous_categorie` FOREIGN KEY (`fk_id_sous_categorie`) REFERENCES `sous_categorie` (`id_sous_categorie`);
 
 --
--- Constraints for table `recherche`
+-- Contraintes pour la table `recherche`
 --
 ALTER TABLE `recherche`
   ADD CONSTRAINT `fk_recherche_utilisateur` FOREIGN KEY (`fk_id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
 
 --
--- Constraints for table `sous_categorie`
+-- Contraintes pour la table `sous_categorie`
 --
 ALTER TABLE `sous_categorie`
   ADD CONSTRAINT `fk_sous_categorie_categorie` FOREIGN KEY (`fk_id_categorie`) REFERENCES `categorie` (`id_categorie`);
 
 --
--- Constraints for table `visite`
+-- Contraintes pour la table `visite`
 --
 ALTER TABLE `visite`
   ADD CONSTRAINT `fk_visite_produit` FOREIGN KEY (`fk_id_produit`) REFERENCES `produit` (`id_produit`),
   ADD CONSTRAINT `fk_visite_utilisateur` FOREIGN KEY (`fk_id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
