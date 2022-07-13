@@ -103,12 +103,13 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 			statement.setString(1,email);
 			afficher=statement.executeQuery();
 			while (afficher.next()) {
+				int id = afficher.getInt("id_utilisateur");
 				String nom = afficher.getString("nom");
 				String prenom = afficher.getString("prenom");
 				Date date = afficher.getDate("date_inscription");
 				String mail = afficher.getString("email");
 				String mdp = afficher.getString("mot_de_passe");
-				Utilisateur utilisateur= new Utilisateur(nom,prenom,date,mail,mdp);
+				Utilisateur utilisateur= new Utilisateur(id,nom,prenom,date,mail,mdp);
 				return utilisateur;
 			}
 		} catch (SQLException e) {
@@ -133,7 +134,7 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 				Date date = afficher.getDate("date_inscription");
 				String mail = afficher.getString("email");
 				String mdp = afficher.getString("mot_de_passe");
-				Utilisateur utilisateur= new Utilisateur(nom,prenom,date,mail,mdp);
+				Utilisateur utilisateur= new Utilisateur(id,nom,prenom,date,mail,mdp);
 				return utilisateur;
 			}
 		} catch (SQLException e) {
