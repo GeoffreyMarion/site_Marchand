@@ -150,7 +150,7 @@ public class ProduitDao implements IDAO<Produit> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN catégorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_categorie=?");
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_categorie=?");
 			statement.setInt(1, id_categorie);
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
