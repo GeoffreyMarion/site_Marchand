@@ -42,7 +42,7 @@ public class ProduitDao implements IDAO<Produit> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN catégorie ON sous_categorie.fk_categorie_id=categorie.id_categorie");
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie");
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
 				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
@@ -118,7 +118,7 @@ public class ProduitDao implements IDAO<Produit> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN catégorie ON sous_categorie.fk_categorie_id=categorie.id_categorie WHERE id_produit=?");
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_produit=?");
 			statement.setInt(1, id);
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
@@ -150,7 +150,7 @@ public class ProduitDao implements IDAO<Produit> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN catégorie ON sous_categorie.fk_categorie_id=categorie.id_categorie WHERE id_categorie=?");
+							+ "INNER JOIN catégorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_categorie=?");
 			statement.setInt(1, id_categorie);
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
@@ -173,7 +173,7 @@ public class ProduitDao implements IDAO<Produit> {
 			e.printStackTrace();
 		}
 		if (afficher == null) {
-			System.err.println(id_categorie + " ne se trouve pas dans la base de données\n----------------");
+			System.err.println("Aucun produit avec id_categorie="+id_categorie + " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
 	}
@@ -183,7 +183,7 @@ public class ProduitDao implements IDAO<Produit> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN catégorie ON sous_categorie.fk_categorie_id=categorie.id_categorie WHERE id_sous_categorie=?");
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_sous_categorie=?");
 			statement.setInt(1, id_sous_categorie);
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
@@ -206,7 +206,7 @@ public class ProduitDao implements IDAO<Produit> {
 			e.printStackTrace();
 		}
 		if (afficher == null) {
-			System.err.println(id_sous_categorie + " ne se trouve pas dans la base de données\n----------------");
+			System.err.println("Aucun produit avec une id_sous_categorie="+id_sous_categorie + " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
 	}
