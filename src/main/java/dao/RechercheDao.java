@@ -53,13 +53,13 @@ public class RechercheDao implements IDAO<Recherche>{
 		return ListRecherche;
 	}
 	
-	public Recherche update(String mot_cle,int id) {
+	public Recherche update(Utilisateur utilisateur,String mot_cle,int id) {
 		Recherche recherche=null;
 		if(findById(id)!=null) {
 			recherche=findById(id);
 			try {	
 				PreparedStatement statement = connection.prepareStatement("UPDATE recherche SET fk_id_utilisateur=?,mot_cle=? WHERE id_recherche=?");
-				statement.setInt(1, recherche.getUtilisateur().getId_utilisateur());
+				statement.setInt(1, utilisateur.getId_utilisateur());
 				statement.setString(2,mot_cle);
 				statement.setInt(3,id);
 				statement.executeUpdate();
@@ -102,10 +102,12 @@ public class RechercheDao implements IDAO<Recherche>{
 			statement.setInt(1,id);
 			afficher=statement.executeQuery();
 			while (afficher.next()) {
-				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"),afficher.getString("nom"),afficher.getString("prenom"),afficher.getDate("date_inscription"),afficher.getString("email"),afficher.getString("mot_de_passe"));
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
 				String mot_cle = afficher.getString("mot_cle");
 				Date date = afficher.getDate("date_recherche");
-				Recherche recherche= new Recherche(id,utilisateur,mot_cle,date);
+				Recherche recherche = new Recherche(id, utilisateur, mot_cle, date);
 				return recherche;
 			}
 		} catch (SQLException e) {
