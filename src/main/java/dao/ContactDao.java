@@ -56,7 +56,7 @@ public class ContactDao implements IDAO<Contact>{
 		return ListContact;
 	}
 	
-	public Contact update(String sujet, String message, boolean etat_contact, String email, int id) {
+	public Contact update(String sujet, String message, boolean etat_contact,Utilisateur utilisateur, String email, int id) {
 		Contact contact = null;
 		if (findById(id) != null) {
 			contact = findById(id);
@@ -66,7 +66,7 @@ public class ContactDao implements IDAO<Contact>{
 				statement.setString(1, sujet);
 				statement.setString(2, message);
 				statement.setBoolean(3, etat_contact);
-				statement.setInt(4, contact.getUtilisateur().getId_utilisateur());
+				statement.setInt(4, utilisateur.getId_utilisateur());
 				statement.setString(5, email);
 				statement.setInt(6, id);
 				statement.executeUpdate();

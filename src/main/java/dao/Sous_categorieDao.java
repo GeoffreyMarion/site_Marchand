@@ -50,7 +50,7 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 		return ListSous_categorie;
 	}
 
-	public Sous_categorie update(String titre, int id) {
+	public Sous_categorie update(String titre,Categorie categorie, int id) {
 		Sous_categorie sous_categorie = null;
 		if (findById(id) != null) {
 			sous_categorie = findById(id);
@@ -58,7 +58,7 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 				PreparedStatement statement = connection.prepareStatement(
 						"UPDATE sous_categorie SET titre=?,fk_id_categorie=? WHERE id_sous_categorie=?");
 				statement.setString(1, titre);
-				statement.setInt(2, sous_categorie.getCategorie().getId_categorie());
+				statement.setInt(2, categorie.getId_categorie());
 				statement.setInt(3, id);
 				statement.executeUpdate();
 			} catch (SQLException e) {

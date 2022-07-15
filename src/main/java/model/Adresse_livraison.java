@@ -2,6 +2,7 @@ package model;
 
 public class Adresse_livraison {
 	private int id_adresse;
+	private Utilisateur utilisateur;
 	private String adresse;
 	private int code_postal;
 	private String ville;
@@ -11,8 +12,17 @@ public class Adresse_livraison {
 
 	}
 
-	public Adresse_livraison(int id_adresse, String adresse, int code_postal, String ville, String pays) {
+	public Adresse_livraison(int id_adresse,Utilisateur utilisateur, String adresse, int code_postal, String ville, String pays) {
 		this.id_adresse = id_adresse;
+		this.utilisateur = utilisateur;
+		this.adresse = adresse;
+		this.code_postal = code_postal;
+		this.ville = ville;
+		this.pays = pays;
+	}
+	
+	public Adresse_livraison(Utilisateur utilisateur, String adresse, int code_postal, String ville, String pays) {
+		this.utilisateur = utilisateur;
 		this.adresse = adresse;
 		this.code_postal = code_postal;
 		this.ville = ville;
@@ -22,9 +32,17 @@ public class Adresse_livraison {
 	public int getId_adresse() {
 		return id_adresse;
 	}
-
+	
 	public void setId_adresse(int id_adresse) {
 		this.id_adresse = id_adresse;
+	}
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	public String getAdresse() {

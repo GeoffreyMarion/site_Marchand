@@ -70,7 +70,7 @@ public class ProduitDao implements IDAO<Produit> {
 				statement.setString(2, description);
 				statement.setFloat(3, prix);
 				statement.setString(4, image);
-				statement.setInt(5, produit.getSous_categorie().getId_sous_categorie());
+				statement.setInt(5, sous_categorie.getId_sous_categorie());
 				statement.setInt(6, stock);
 				statement.setInt(7, stock_minimum);
 				statement.setInt(8, id);
