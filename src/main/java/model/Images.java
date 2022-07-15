@@ -1,16 +1,16 @@
 package model;
 
-public class Image {
+public class Images {
 	private int id_image;
 	private Produit produit;
 	private String url;
 
-	public Image() {
+	public Images() {
 
 	}
 
 
-	public Image(int id_image, Produit produit, String url) {
+	public Images(int id_image, Produit produit, String url) {
 		super();
 		this.id_image = id_image;
 		this.produit = produit;
