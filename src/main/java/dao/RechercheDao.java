@@ -106,7 +106,7 @@ public class RechercheDao implements IDAO<Recherche>{
 						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
 						afficher.getString("mot_de_passe"));
 				String mot_cle = afficher.getString("mot_cle");
-				Date date = afficher.getDate("date_recherche");
+				java.sql.Date date = afficher.getDate("date_recherche");
 				Recherche recherche = new Recherche(id, utilisateur, mot_cle, date);
 				return recherche;
 			}
@@ -129,7 +129,7 @@ public class RechercheDao implements IDAO<Recherche>{
 				int id = afficher.getInt("id_recherche");
 				Utilisateur utilisateur = new Utilisateur(id_utilisateur,afficher.getString("nom"),afficher.getString("prenom"),afficher.getDate("date_inscription"),afficher.getString("email"),afficher.getString("mot_de_passe"));
 				String mot_cle = afficher.getString("mot_cle");
-				Date date = afficher.getDate("date_recherche");
+				java.sql.Date date = afficher.getDate("date_recherche");
 				Recherche recherche= new Recherche(id,utilisateur,mot_cle,date);
 				return recherche;
 			}
