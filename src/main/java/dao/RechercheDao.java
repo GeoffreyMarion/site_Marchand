@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import connection.Database;
 import model.Recherche;
@@ -106,7 +106,7 @@ public class RechercheDao implements IDAO<Recherche>{
 						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
 						afficher.getString("mot_de_passe"));
 				String mot_cle = afficher.getString("mot_cle");
-				java.sql.Date date = afficher.getDate("date_recherche");
+				Date date = afficher.getDate("date_recherche");
 				Recherche recherche = new Recherche(id, utilisateur, mot_cle, date);
 				return recherche;
 			}
