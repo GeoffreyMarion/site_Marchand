@@ -210,5 +210,39 @@ public class ProduitDao implements IDAO<Produit> {
 		}
 		return null;
 	}
+	
+	public Produit findByI(String input) {
+		ResultSet afficher = null;
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE produit.titre_produit LIKE '%?%' OR produit.description LIKE '%?%'");
+			statement.setString(1, input);
+			statement.setString(2, input);
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				int id_produit = afficher.getInt("id_produit");
+				String titre_produit = afficher.getString("titre_produit");
+				String description = afficher.getString("prenom");
+				float prix = afficher.getFloat("prix");
+				String image = afficher.getString("image");
+				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+						new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre")));
+				int stock = afficher.getInt("stock");
+				int stock_minimum = afficher.getInt("stock_minimum");
+				Produit produit = new Produit(id_produit, titre_produit, description, prix, image, sous_categorie,
+						stock, stock_minimum);
+				return produit;
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println("Aucun produit contenant le mot=" + input
+					+ " ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
 }
 
