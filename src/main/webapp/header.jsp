@@ -15,8 +15,8 @@
 	crossorigin="anonymous">
 
 <!-- CSS -->
-<link href="./CSS/styles.css" rel="stylesheet" type="text/css">
-
+<!-- <link href="./CSS/styles.css" rel="stylesheet" type="text/css">
+ -->
 <%-- <style>
 <%@
 include
@@ -67,6 +67,8 @@ styles
 <img src="images/icon_home.png" height="50" width="50">
 
 <img src="${pageContext.request.contextPath}/images/icon_home.png" height="100%" width="100%"/> 
+<img src="image1.jpeg">
+
 
 
 	</div>
