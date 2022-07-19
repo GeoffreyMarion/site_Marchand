@@ -146,4 +146,28 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 		return null;
 	}
 
+	public Utilisateur connexion(String email,String mot_de_passe,String cmot_de_passe) {
+		ResultSet afficher=null;
+		try {
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM utilisateur WHERE email LIKE'?' AND mot_de_passe LIKE '?' AND mot_de_passe LIKE '?'");
+			statement.setString(1,email);
+			statement.setString(2,mot_de_passe);
+			statement.setString(3,cmot_de_passe);
+			afficher=statement.executeQuery();
+			if (afficher.next()) {
+				int id = afficher.getInt("id_utilisateur");
+				String nom = afficher.getString("nom");
+				String prenom = afficher.getString("prenom");
+				Date date = afficher.getDate("date_inscription");
+				Utilisateur utilisateur= new Utilisateur(id,nom,prenom,date);
+				return utilisateur;
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if(afficher==null){System.err.println(email+" ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
 }

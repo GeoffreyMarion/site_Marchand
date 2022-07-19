@@ -7,13 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Sous_categorieDao;
+
+
 /**
- * Servlet implementation class Index_S
+ * Servlet implementation class Utilisateur_S
  */
-@WebServlet("/Index_S")
+@WebServlet("/index")
 public class Index_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	Sous_categorieDao sous_categorieDao = new Sous_categorieDao();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -27,7 +32,10 @@ public class Index_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("ListImages", sous_categorieDao.ReadImgsProd());
+		request.setAttribute("ListSous_categorie", sous_categorieDao.read());
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**

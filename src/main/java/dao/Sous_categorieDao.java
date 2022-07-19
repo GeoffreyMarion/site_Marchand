@@ -117,6 +117,29 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 		return null;
 	}
 	
+	public Sous_categorie findByCat(int id) {
+		ResultSet afficher = null;
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM sous_categorie INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE fk_id_categorie=?");
+			statement.setInt(1, id);
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				String titre = afficher.getString("titre");
+				Categorie categorie = new Categorie(id, afficher.getString("titre"));
+				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"), titre, categorie);
+				return sous_categorie;
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println(id + " ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
+	
 	public ArrayList<String> ReadImgsProd() {
 		ResultSet afficher;
 		ArrayList<String> ListImages = new ArrayList<>();
