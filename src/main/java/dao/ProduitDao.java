@@ -244,5 +244,30 @@ public class ProduitDao implements IDAO<Produit> {
 		}
 		return null;
 	}
+	
+	public String imgBySous_cat(Sous_categorie sous_categorie) {
+		ResultSet afficher = null;
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT image FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+"WHERE produit.fk_id_sous_categorie LIKE '?' ");
+			statement.setInt(1, sous_categorie.getId_sous_categorie());
+			afficher = statement.executeQuery();
+			if (afficher.next()) {
+				String image=afficher.getString("image");
+				return image;
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println("Aucun produit contenant le mot=" + sous_categorie
+					+ " ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	
+	}
+
 }
 
