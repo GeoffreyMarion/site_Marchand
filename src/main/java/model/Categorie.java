@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Categorie {
 	private int id_categorie;
 	private String titre;
@@ -20,6 +22,7 @@ public class Categorie {
 	public void setId_categorie(int id_categorie) {
 		this.id_categorie = id_categorie;
 	}
+
 
 	public String getTitre() {
 		return titre;
