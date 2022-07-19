@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import connection.Database;
 import model.Categorie;
+import model.Produit;
 import model.Sous_categorie;
 
 public class Sous_categorieDao implements IDAO<Sous_categorie> {
@@ -140,9 +141,9 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 		return null;
 	}
 	
-	public ArrayList<String> ReadImgsProd() {
+	public ArrayList<Produit> ReadImgsProd() {
 		ResultSet afficher;
-		ArrayList<String> ListImages = new ArrayList<>();
+		ArrayList<Produit> ListProduits = new ArrayList<>();
 		ProduitDao PDao= new ProduitDao();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
@@ -152,13 +153,13 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"),
 						afficher.getString("titre"),
 						new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre")));
-				String image= PDao.imgBySous_cat(sous_categorie);
-				ListImages.add(image);
+				Produit produit= PDao.imgBySous_cat(sous_categorie);
+				ListProduits.add(produit);
 			}
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
 		}
-		return ListImages;
+		return ListProduits;
 	}
 }
