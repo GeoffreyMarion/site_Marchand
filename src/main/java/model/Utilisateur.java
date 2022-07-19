@@ -27,6 +27,14 @@ public class Utilisateur {
 		this.mot_de_passe = mot_de_passe;
 	}
 	
+	public Utilisateur(int id_utilisateur, String nom, String prenom, Date date_inscription) {
+
+		this.id_utilisateur = id_utilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.date_inscription = date_inscription;
+	}
+	
 	public Utilisateur(String nom, String prenom, Date date_inscription, String email,
 			String mot_de_passe) {
 
