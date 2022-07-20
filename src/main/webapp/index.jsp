@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +20,33 @@
 
 </head>
 <body>
-	<%@include file="/header.jsp"%>
+	<%-- 	<%@include file="/header.jsp"%> --%>
 	<div class="container">
+
+		<div id="carouselExampleSlidesOnly" class="carousel slide"
+			data-ride="carousel">
+			<div class="carousel-inner">
+
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="images/slides/slide1.jpg
+"
+						alt="First slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="images/slides/slide2.jpg
+"
+						alt="Second slide">
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="images/slides/slide3.jpg
+"
+						alt="Third slide">
+				</div>
+
+			</div>
+		</div>
+
+
 		<div id="carousel" class="carousel slide" data-bs-touch="false"
 			data-bs-interval="false">
 			<div class="carousel-inner">
@@ -42,16 +67,18 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
+		<br>
 
-		<div class="d-flex flex-row">
+		<div class="d-flex flex-wrap">
 			<c:forEach items="${ListImages}" var="produit">
-				<div class="card bg-dark text-white">
-					<img src="${produit.image}" class="card-img" alt="...">
-					<div class="card-img-overlay">
-						<h5 class="card-title">${produit.sous_categorie.titre}</h5>
+				<div class="card mb-3" style="max-width: 14rem; margin: 1rem;">
+					<div class="card-header">
+						<b>${produit.sous_categorie.titre}</b>
+					</div>
+					<div class="card-body">
+						<img src="${produit.image}" class="card-img" alt="...">
 					</div>
 				</div>
-
 			</c:forEach>
 		</div>
 
