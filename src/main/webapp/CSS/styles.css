@@ -1,7 +1,43 @@
+#test2 {
+	margin-right: 10px;
+	color: red !important;
+}
+
+
 .icons {
 	background-color: white;
 }
 
 .test {
 	color: red !important;
+}
+
+#icon_basket {
+	margin-right: 20px;
+	color: red;
+}
+
+
+.btn-toggle {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.25rem 0.5rem;
+	font-weight: 600;
+	color: rgba(0, 0, 0, .65);
+	background-color: transparent;
+	border: 0;
+}
+
+.btn_dropdown_category {
+		text-transform:capitalize;
+}
+
+#header_titre_site {
+		margin-left: 10px !important;
+	
+}
+
+#header_produits {
+	padding-top: 15px !important;
+		padding-left: 200%;
 }
