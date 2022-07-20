@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CategorieDao;
 import dao.Sous_categorieDao;
@@ -35,6 +36,11 @@ public class Header_S extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		HttpSession session = request.getSession( true );
+		if(session.getAttribute("isConnected")==null) {
+			session.setAttribute( "isConnected", false );
+		}
 
 		ArrayList listeCategories = new ArrayList<>();
 		listeCategories = categorieDao.read();
