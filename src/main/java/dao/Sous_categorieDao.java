@@ -118,8 +118,9 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 		return null;
 	}
 	
-	public Sous_categorie findByCat(int id) {
+	public ArrayList<Sous_categorie> findByCat(int id) {
 		ResultSet afficher = null;
+		ArrayList<Sous_categorie> ListSous_categorie = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM sous_categorie INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE fk_id_categorie=?");
@@ -129,8 +130,10 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 				String titre = afficher.getString("titre");
 				Categorie categorie = new Categorie(id, afficher.getString("titre"));
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"), titre, categorie);
-				return sous_categorie;
+				ListSous_categorie.add(sous_categorie);
 			}
+			return ListSous_categorie;
+			
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
@@ -142,7 +145,7 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 	}
 	
 	public ArrayList<Produit> ReadImgsProd() {
-		ResultSet afficher;
+		ResultSet afficher;	
 		ArrayList<Produit> ListProduits = new ArrayList<>();
 		ProduitDao PDao= new ProduitDao();
 		try {

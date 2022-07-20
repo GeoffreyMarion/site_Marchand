@@ -35,40 +35,41 @@
 				<a href="${index}"
 					class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
 					<img alt="" src="image/logo.png" height="40px">
+									<p class="pt-4" id="header_titre_site">FNUC</p>
+					
 				</a>
 
-				<ul
+	<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
-					<li><a href="#" class="nav-link px-2 text-white" id="test2">Nos
-							produits</a></li>
+					<li><a href="#" class="nav-link px-2 text-white" id="header_produits">Nos Produits</a></li>
 				</ul>
 
-				<ul class="list-unstyled ps-0 d-flex">
+				<p class="pt-4">Nos Catégories:</p>
+
+				<ul class="list-unstyled ps-0 d-flex justify-content-center pt-4 ">
 					<c:forEach items="${ listeCategories}" var="categorie">
-						<%
-						System.out.println("listeCategories.get(0)" + "${ listeCategories}");
-						%>
 						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button"
-								id="dropdownMenuButton1" data-bs-toggle="dropdown"
-								aria-expanded="false">${categorie.titre }</button>
+							<button
+								class="btn btn-secondary dropdown-toggle btn_dropdown_category"
+								type="button" data-bs-toggle="dropdown" aria-expanded="false">${categorie.titre }</button>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><a class="dropdown-item" href="#">Something else
-										here</a></li>
+								<c:forEach items="${ listeSousCateg}" var="sousCategorie">
+									<c:if
+										test="${sousCategorie.categorie.id_categorie == categorie.id_categorie}">
+										<li><a class="dropdown-item" href="#">${sousCategorie.titre }</a></li>
+									</c:if>
+								</c:forEach>
 							</ul>
 						</div>
 					</c:forEach>
 				</ul>
 
-
 				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
 					<input type="search"
-						class="form-control form-control-dark text-white"
+						class="form-control form-control-dark text-white pt-2"
 						placeholder="Rechercher..." aria-label="Search">
 				</form>
 

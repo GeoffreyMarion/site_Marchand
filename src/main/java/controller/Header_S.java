@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.CategorieDao;
 import dao.Sous_categorieDao;
 import dao.UtilisateurDao;
+import model.Categorie;
 
 @WebServlet("/header")
 public class Header_S extends HttpServlet {
@@ -38,17 +39,12 @@ public class Header_S extends HttpServlet {
 		ArrayList listeCategories = new ArrayList<>();
 		listeCategories = categorieDao.read();
 		request.setAttribute("listeCategories", listeCategories);
-
-		System.out.println(listeCategories.get(0));
-
-		for (int i = 0; i < listeCategories.size(); i++) {
-			ArrayList listeSousCategParCateg = new ArrayList<>();
-			int id_categorie = listeCategories.get(i).getId_categorie();
-			listeSousCategParCateg = sousCategorieDao.findByCat(id_categorie);
-		}
-
+		
+		ArrayList listeSousCateg = new ArrayList<>();
+		listeSousCateg = sousCategorieDao.read();
+		request.setAttribute("listeSousCateg", listeSousCateg);
+		
 		request.getRequestDispatcher("header.jsp").forward(request, response);
-
 	}
 
 	/**
