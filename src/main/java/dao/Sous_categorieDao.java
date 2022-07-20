@@ -145,7 +145,7 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 	}
 	
 	public ArrayList<Produit> ReadImgsProd() {
-		ResultSet afficher;
+		ResultSet afficher;	
 		ArrayList<Produit> ListProduits = new ArrayList<>();
 		ProduitDao PDao= new ProduitDao();
 		try {

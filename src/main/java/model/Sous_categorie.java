@@ -9,8 +9,6 @@ public class Sous_categorie {
 	public Sous_categorie() {
 	}
 
-	
-
 
 	public Sous_categorie(int id_sous_categorie, String titre, Categorie categorie) {
 		super();
