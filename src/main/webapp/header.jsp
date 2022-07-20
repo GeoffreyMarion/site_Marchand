@@ -35,16 +35,17 @@
 				<a href="${index}"
 					class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
 					<img alt="" src="image/logo.png" height="40px">
-									<p class="pt-4" id="header_titre_site">FNUC</p>
-					
+					<p class="pt-4" id="header_titre_site">FNUC</p>
+
 				</a>
 
-	<ul
+				<ul
 					class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
-					<li><a href="#" class="nav-link px-2 text-white" id="header_produits">Nos Produits</a></li>
+					<li><a href="#" class="nav-link px-2 text-white"
+						id="header_produits">Nos Produits</a></li>
 				</ul>
 
 				<p class="pt-4">Nos Catégories:</p>
@@ -81,11 +82,47 @@
 						class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 						<a href="${index}"
 							class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-							id="icon_basket"> <img alt="" src="icones/icon_basket2.png"
+							id="icon_basket"> <img alt="" src="icones/icon_basket3.png"
 							height="40px">
-						</a> <a href="${index}"
+						</a>
+						<%--  <a href="${index}"
 							class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
 							<img alt="" src="icones/icon_person.png" height="40px">
+ --%>
+						<div class="tb_right_pull-right">
+							<ul class="header_list_user">
+								<%
+								if ((boolean) session.getAttribute("isConnected") == false) {
+								%>
+								<li>
+									<div class="tbr-info">
+										<a href="Connexion"><span>Inscription / connexion</span></a>
+									</div>
+								</li>
+								<%
+								} else {
+								%>
+								<li>
+									<div class="tbr-info">
+										<a href="#"><span>Bonjour ${usernom}</span></a>
+									</div>
+								</li>
+								<li>
+									<div class="tbr-info">
+										<a href="#"><span>Mon compte</span></a>
+									</div>
+								</li>
+								<li>
+									<div class="tbr-info">
+										<a href="Deconnexion"><span>D&eacute;connexion </span></a>
+									</div>
+								</li>
+								<%
+								}
+								%>
+							</ul>
+						</div>
+
 					</div>
 				</div>
 			</div>
