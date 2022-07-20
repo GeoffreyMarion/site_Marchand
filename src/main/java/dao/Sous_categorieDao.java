@@ -132,6 +132,8 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"), titre, categorie);
 				ListSous_categorie.add(sous_categorie);
 			}
+			return ListSous_categorie;
+			
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
