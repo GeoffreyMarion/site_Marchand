@@ -102,7 +102,7 @@ public class SlideDao implements IDAO<Slide>{
 			PreparedStatement statement = connection.prepareStatement("SELECT* FROM slide WHERE id_slide=?");
 			statement.setInt(1,id);
 			afficher=statement.executeQuery();
-			while (afficher.next()) {
+			if (afficher.next()) {
 				String titre_slide = afficher.getString("titre_slide");
 				String image = afficher.getString("image");
 				String url = afficher.getString("url");

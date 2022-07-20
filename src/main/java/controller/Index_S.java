@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.SlideDao;
 import dao.Sous_categorieDao;
 
 
@@ -18,6 +19,7 @@ public class Index_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	Sous_categorieDao sous_categorieDao = new Sous_categorieDao();
+	SlideDao slideDao = new SlideDao();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,7 +36,7 @@ public class Index_S extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("ListImages", sous_categorieDao.ReadImgsProd());
-		request.setAttribute("ListSous_categorie", sous_categorieDao.read());
+		request.setAttribute("ListeSlide", slideDao.read());
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

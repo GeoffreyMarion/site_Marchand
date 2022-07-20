@@ -245,20 +245,23 @@ public class ProduitDao implements IDAO<Produit> {
 		return null;
 	}
 	
-	public String imgBySous_cat(Sous_categorie sous_categorie) {
+	public Produit imgBySous_cat(Sous_categorie sous_categorie) {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT image FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+"WHERE produit.fk_id_sous_categorie LIKE '?' ");
+							+"WHERE produit.fk_id_sous_categorie LIKE ? ");
 			statement.setInt(1, sous_categorie.getId_sous_categorie());
 			afficher = statement.executeQuery();
 			if (afficher.next()) {
+				Produit produit = new Produit();
 				String image=afficher.getString("image");
-				return image;
+				produit.setImage(image);
+				produit.setSous_categorie(sous_categorie);
+				return produit;
 			}
 		} catch (SQLException e) {
-			System.out.println("Données non lues");
+			System.out.println("Données non lues sousCat");
 			e.printStackTrace();
 		}
 		if (afficher == null) {
