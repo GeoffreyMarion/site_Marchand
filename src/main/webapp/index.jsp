@@ -25,9 +25,9 @@
 		<div id="carousel" class="carousel slide" data-bs-touch="false"
 			data-bs-interval="false">
 			<div class="carousel-inner">
-				<c:forEach items="${ListProduits}" var="produit">
+				<c:forEach items="${ListSlide}" var="slide">
 					<div class="carousel-item">
-						<img src="..." class="d-block w-100" alt="...">
+						<img src="${slide.image}" class="d-block w-100" alt="...">
 					</div>
 				</c:forEach>
 			</div>
@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="d-flex flex-row">
-			<c:forEach items="${ListProduits}" var="produit">
+			<c:forEach items="${ListImages}" var="produit">
 				<div class="card bg-dark text-white">
 					<img src="${produit.image}" class="card-img" alt="...">
 					<div class="card-img-overlay">

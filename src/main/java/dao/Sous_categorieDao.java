@@ -102,7 +102,7 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 					"SELECT* FROM sous_categorie INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_sous_categorie=?");
 			statement.setInt(1, id);
 			afficher = statement.executeQuery();
-			while (afficher.next()) {
+			if (afficher.next()) {
 				String titre = afficher.getString("titre");
 				Categorie categorie = new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"));
 				Sous_categorie sous_categorie = new Sous_categorie(id, titre, categorie);
