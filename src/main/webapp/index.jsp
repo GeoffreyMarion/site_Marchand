@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,38 +20,54 @@
 
 </head>
 <body>
-	<%@include file="/header.jsp"%>
+	<%-- 	<%@include file="/header.jsp"%> --%>
 	<div class="container">
-		<div id="carousel" class="carousel slide" data-bs-touch="false"
-			data-bs-interval="false">
+
+		<div id="carouselExampleFade" class="carousel slide carousel-fade"
+			data-bs-ride="carousel"  style="height: 200px;">
 			<div class="carousel-inner">
-				<c:forEach items="${ListSlide}" var="slide">
-					<div class="carousel-item">
+				<c:forEach items="${ListSlide}" var="slide" varStatus="status">
+					<c:if test="${status.first}">
+					<div class="carousel-item active"  style="height: 200px;">
 						<img src="${slide.image}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>${slide.titre_slide}</h5>
+						</div>
 					</div>
+					</c:if>
+					<c:if test="${!status.first}">
+					<div class="carousel-item" style="height: 200px;">
+						<img src="${slide.image}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>${slide.titre_slide}</h5>
+						</div>
+					</div>
+					</c:if>
 				</c:forEach>
 			</div>
 			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carousel" data-bs-slide="prev">
+				data-bs-target="#carouselExampleFade" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
 			</button>
 			<button class="carousel-control-next" type="button"
-				data-bs-target="#carousel" data-bs-slide="next">
+				data-bs-target="#carouselExampleFade" data-bs-slide="next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
+		<br>
 
-		<div class="d-flex flex-row">
+		<div class="d-flex flex-wrap">
 			<c:forEach items="${ListImages}" var="produit">
-				<div class="card bg-dark text-white">
-					<img src="${produit.image}" class="card-img" alt="...">
-					<div class="card-img-overlay">
-						<h5 class="card-title">${produit.sous_categorie.titre}</h5>
+				<div class="card mb-3" style="max-width: 14rem; margin: 1rem;">
+					<div class="card-header">
+						<b>${produit.sous_categorie.titre}</b>
+					</div>
+					<div class="card-body">
+						<img src="${produit.image}" class="card-img" alt="...">
 					</div>
 				</div>
-
 			</c:forEach>
 		</div>
 
