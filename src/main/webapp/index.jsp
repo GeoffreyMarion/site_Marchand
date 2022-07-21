@@ -23,46 +23,35 @@
 	<%-- 	<%@include file="/header.jsp"%> --%>
 	<div class="container">
 
-		<div id="carouselExampleSlidesOnly" class="carousel slide"
-			data-ride="carousel">
+		<div id="carouselExampleFade" class="carousel slide carousel-fade"
+			data-bs-ride="carousel"  style="height: 200px;">
 			<div class="carousel-inner">
-
-				<div class="carousel-item active">
-					<img class="d-block w-100" src="images/slides/slide1.jpg
-"
-						alt="First slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="images/slides/slide2.jpg
-"
-						alt="Second slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="images/slides/slide3.jpg
-"
-						alt="Third slide">
-				</div>
-
-			</div>
-		</div>
-
-
-		<div id="carousel" class="carousel slide" data-bs-touch="false"
-			data-bs-interval="false">
-			<div class="carousel-inner">
-				<c:forEach items="${ListSlide}" var="slide">
-					<div class="carousel-item">
+				<c:forEach items="${ListSlide}" var="slide" varStatus="status">
+					<c:if test="${status.first}">
+					<div class="carousel-item active"  style="height: 200px;">
 						<img src="${slide.image}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>${slide.titre_slide}</h5>
+						</div>
 					</div>
+					</c:if>
+					<c:if test="${!status.first}">
+					<div class="carousel-item" style="height: 200px;">
+						<img src="${slide.image}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>${slide.titre_slide}</h5>
+						</div>
+					</div>
+					</c:if>
 				</c:forEach>
 			</div>
 			<button class="carousel-control-prev" type="button"
-				data-bs-target="#carousel" data-bs-slide="prev">
+				data-bs-target="#carouselExampleFade" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
 			</button>
 			<button class="carousel-control-next" type="button"
-				data-bs-target="#carousel" data-bs-slide="next">
+				data-bs-target="#carouselExampleFade" data-bs-slide="next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Next</span>
 			</button>

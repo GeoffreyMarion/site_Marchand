@@ -36,7 +36,7 @@ public class Index_S extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setAttribute("ListImages", sous_categorieDao.ReadImgsProd());
-		request.setAttribute("ListeSlide", slideDao.read());
+		request.setAttribute("ListSlide", slideDao.read());
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
