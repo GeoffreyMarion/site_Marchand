@@ -37,19 +37,21 @@ public class Header_S extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		HttpSession session = request.getSession( true );
-		if(session.getAttribute("isConnected")==null) {
-			session.setAttribute( "isConnected", false );
-		}
+//		HttpSession session = request.getSession( true );
+//		if(session.getAttribute("isConnected")==null) {
+//			session.setAttribute( "isConnected", false );
+//		}
+
+		System.out.println(request.getSession());
 
 		ArrayList listeCategories = new ArrayList<>();
 		listeCategories = categorieDao.read();
 		request.setAttribute("listeCategories", listeCategories);
-		
+
 		ArrayList listeSousCateg = new ArrayList<>();
 		listeSousCateg = sousCategorieDao.read();
 		request.setAttribute("listeSousCateg", listeSousCateg);
-		
+
 		request.getRequestDispatcher("header.jsp").forward(request, response);
 	}
 

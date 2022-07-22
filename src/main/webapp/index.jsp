@@ -15,33 +15,38 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="CSS/styles.css"
-	media="screen" />
+<!-- <link rel="stylesheet" type="text/css" href="/CSS/styles.css"
+	media="screen" /> -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/CSS/styles.css" />
 
 </head>
 <body>
-	<%-- 	<%@include file="/header.jsp"%> --%>
-	<div class="container">
+	<%@include file="/header.jsp"%>
+
+	<%--   <jsp:include page="header" /> --%>
+
+	<div class="container" id="index_main_container">
 
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
-			data-bs-ride="carousel"  style="height: 200px;">
+			data-bs-ride="carousel" style="height: 200px;">
 			<div class="carousel-inner">
 				<c:forEach items="${ListSlide}" var="slide" varStatus="status">
 					<c:if test="${status.first}">
-					<div class="carousel-item active"  style="height: 200px;">
-						<img src="${slide.image}" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h5>${slide.titre_slide}</h5>
+						<div class="carousel-item active" style="height: 200px;">
+							<img src="${slide.image}" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>${slide.titre_slide}</h5>
+							</div>
 						</div>
-					</div>
 					</c:if>
 					<c:if test="${!status.first}">
-					<div class="carousel-item" style="height: 200px;">
-						<img src="${slide.image}" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h5>${slide.titre_slide}</h5>
+						<div class="carousel-item" style="height: 200px;">
+							<img src="${slide.image}" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>${slide.titre_slide}</h5>
+							</div>
 						</div>
-					</div>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -70,7 +75,10 @@
 				</div>
 			</c:forEach>
 		</div>
+		<%@include file="/footer.jsp"%>
+		<%-- <jsp:include page="footer" /> --%>
 
 	</div>
+
 </body>
 </html>

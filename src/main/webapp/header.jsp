@@ -30,6 +30,7 @@
 <body>
 	<header class="p-3 bg-secondary text-white">
 		<div class="container">
+		<%= session %>
 			<div
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 				<a href="${index}"
@@ -48,7 +49,7 @@
 						id="header_produits">Nos Produits</a></li>
 				</ul>
 
-				<p class="pt-4">Nos CatÃ©gories:</p>
+				<p class="pt-4">Nos Catégories:</p>
 
 				<ul class="list-unstyled ps-0 d-flex justify-content-center pt-4 ">
 					<c:forEach items="${ listeCategories}" var="categorie">
@@ -90,7 +91,7 @@
 							<img alt="" src="icones/icon_person.png" height="40px">
  --%>
 						<div class="tb_right_pull-right">
-							<ul class="header_list_user">
+							<%-- <ul class="header_list_user">
 								<%
 								if ((boolean) session.getAttribute("isConnected") == false) {
 								%>
@@ -120,7 +121,7 @@
 								<%
 								}
 								%>
-							</ul>
+							</ul> --%>
 						</div>
 
 					</div>
