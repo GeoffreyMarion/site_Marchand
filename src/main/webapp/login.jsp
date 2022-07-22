@@ -15,7 +15,7 @@
 					<label for="" class="form-label"><b>S'enregistrer</b></label>
 					<hr>
 				</div>
-				<c:if test="${(boolean)messageinscriptionok == true}">
+				<c:if test="${messageinscriptionok == true}">
 					<div class="alert alert-success" role="alert">Votre
 						inscription a bien été prise en compte, veuillez-vous connecter</div>
 				</c:if>
@@ -52,7 +52,7 @@
 					<label for="" class="form-label"><b>Se Conneter</b></label>
 					<hr>
 				</div>
-				<c:if test="${(boolean)messageconnexionno == true}">
+				<c:if test="${messageconnexionno == false}">
 					<div class="alert alert-danger" role="alert">Adresse e-mail
 						ou mot de passe invalide</div>
 				</c:if>

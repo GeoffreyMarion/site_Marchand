@@ -36,15 +36,16 @@ public class Login_S extends HttpServlet {
 			throws ServletException, IOException {
 		boolean messageinscriptionok = false;
 		if (request.getParameter("register") != null) {
-			request.setAttribute("nom", request.getParameter("nom"));
-			request.setAttribute("prenom", request.getParameter("prenom"));
-			request.setAttribute("email", request.getParameter("email"));
-			request.setAttribute("password", request.getParameter("password"));
-			request.setAttribute("cpassword", request.getParameter("cpassword"));
-
-			Utilisateur utilisateur = new Utilisateur(request.getParameter("nom"), request.getParameter("prenom"), null,
-					request.getParameter("email"), request.getParameter("password"));
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String cpassword = request.getParameter("cpassword");
+			
+			if(password==cpassword) {
+			Utilisateur utilisateur = new Utilisateur(nom, prenom, null, email, password);
 			messageinscriptionok = utilisateurDao.create(utilisateur);
+			}
 		}
 		request.setAttribute("messageinscriptionok", messageinscriptionok);
 
@@ -64,13 +65,14 @@ public class Login_S extends HttpServlet {
 				session.setAttribute("nomuser", utilisateur.getNom());
 				session.setAttribute("prenomuser", utilisateur.getPrenom());
 				session.setAttribute("dateuser", utilisateur.getDate_inscription());
+				session.setAttribute( "isConnected", true);
 				connected = true;
 				response.sendRedirect("index");
 			}
 
 		}
 		request.setAttribute("messageconnexionno", messageconnexionno);
-
+		
 		if (connected == false) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
