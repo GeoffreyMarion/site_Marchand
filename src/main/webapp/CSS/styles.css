@@ -16,9 +16,10 @@
 	color: red !important;
 }
 
-#icon_basket {
+#header_icon_basket {
 	margin-right: 20px;
 	color: red;
+	margin-left: 40px;
 }
 
 
@@ -42,7 +43,7 @@
 }
 
 #header_produits {
-	padding-top: 15px !important;
+	padding-top: 20px !important;
 		padding-left: 200%;
 }
 
@@ -67,6 +68,18 @@ a:hover {
 
 .tb_right_pull-righ {
 	padding-top: 20px !important;
+	padding-top: 5px;
+}
+
+#header_form_search {
+	position: relative;
+	margin-left:40px;
+}
+
+#header_icon_loop {
+	position: absolute;
+	right: 0;
+	top: 7px;
 }
 
 /* /////////////////////////////////// */
