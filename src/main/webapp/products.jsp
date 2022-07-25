@@ -25,6 +25,7 @@
 	<%-- 	<%@include file="/header.jsp"%> --%>
 	<div class="container">
 
+
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
 			data-bs-ride="carousel" style="height: 200px;">
 			<!-- 			<div class="carousel-indicators"> -->
@@ -104,5 +105,6 @@
 		</div>
 
 	</div>
+	
 </body>
 </html>

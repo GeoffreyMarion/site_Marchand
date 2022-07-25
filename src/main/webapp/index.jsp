@@ -20,7 +20,8 @@
 
 </head>
 <body>
-	<%-- 	<%@include file="/header.jsp"%> --%>
+<%--  	<c:url value="Header_S" var="Header"></c:url> --%>
+	<c:import url="Header_S"></c:import>
 	<div class="container">
 
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"

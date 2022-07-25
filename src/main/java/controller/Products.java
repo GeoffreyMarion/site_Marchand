@@ -29,11 +29,18 @@ public class Products extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setAttribute("ListProduit", pDao.read());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setAttribute("ListSlide", slideDao.read());
-		request.getRequestDispatcher("products.jsp").forward(request, response);
+		if (request.getParameter("id") != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			pDao.findBySCat(id);
+		}
+
+		else {
+			request.setAttribute("ListProduit", pDao.read());
+			request.getRequestDispatcher("products.jsp").forward(request, response);
+		}
 	}
 
 	/**
