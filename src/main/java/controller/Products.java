@@ -41,8 +41,8 @@ public class Products extends HttpServlet {
 //
 //		else {
 			request.setAttribute("ListProduit", pDao.read());
-			request.getRequestDispatcher("products.jsp").forward(request, response);
 //		}
+			request.getRequestDispatcher("products.jsp").forward(request, response);
 	}
 
 	/**
