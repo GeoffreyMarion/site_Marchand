@@ -32,15 +32,17 @@ public class Products extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("ListSlide", slideDao.read());
-		if (request.getParameter("id") != null) {
-			int id = Integer.parseInt(request.getParameter("id"));
-			pDao.findBySCat(id);
-		}
-
-		else {
+		
+//		***Pour la suite if avec id sous cat***
+//		if (request.getParameter("id") != null) {
+//			int id = Integer.parseInt(request.getParameter("id"));
+//			pDao.findBySCat(id);
+//		}
+//
+//		else {
 			request.setAttribute("ListProduit", pDao.read());
 			request.getRequestDispatcher("products.jsp").forward(request, response);
-		}
+//		}
 	}
 
 	/**
