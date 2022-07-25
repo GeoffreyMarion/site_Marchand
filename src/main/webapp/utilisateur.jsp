@@ -27,11 +27,15 @@
 </head>
 <body>
 	<
-<%-- 	<%@include file="Header_S"%>
- --%>	
-<%--  <%@include file="header.jsp" %> --%>
+<%--  <%@include file="./../main/java/controller/Header_S"%> --%>
+ 
+<%-- <%@include file="header.jsp" %> --%>
 
-            <jsp:include page="header" />
+<%-- <%@include file="/header.jsp" %>  --%>
+
+ <jsp:include page="/header" />
+
+<%-- <jsp:include page="src/main/java/controller/Header_S" /> --%>
 
  <c:if test="${empty listeUtilisateurs }">
 	Pas d'utilisateur disponible

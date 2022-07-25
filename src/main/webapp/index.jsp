@@ -21,8 +21,13 @@
 </head>
 <body>
 	<%-- 	<%@include file="/header.jsp"%> --%>
-	<div class="container">
 
+<%-- 	<jsp:include page="/header" /> --%>
+<%-- <%@include file="/header" %> --%> 
+
+ <jsp:include page="/header" flush="false" />
+ 
+	<div class="container">
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
 			data-bs-ride="carousel" style="height: 200px;">
 <!-- 			<div class="carousel-indicators"> -->

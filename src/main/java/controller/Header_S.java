@@ -49,8 +49,9 @@ public class Header_S extends HttpServlet {
 		ArrayList listeSousCateg = new ArrayList<>();
 		listeSousCateg = sousCategorieDao.read();
 		request.setAttribute("listeSousCateg", listeSousCateg);
+		System.out.println("listeSousCateg" + sousCategorieDao.read()); 
 		
-		request.getRequestDispatcher("header.jsp").forward(request, response);
+		request.getRequestDispatcher("header.jsp").include(request, response);
 	}
 
 	/**
