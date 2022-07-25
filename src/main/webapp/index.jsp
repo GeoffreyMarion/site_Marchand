@@ -20,10 +20,13 @@
 
 </head>
 <body>
-<%--  	<c:url value="Header_S" var="Header"></c:url> --%>
-	<c:import url="Header_S"></c:import>
-	<div class="container">
+	<%-- 	<%@include file="/header.jsp"%> --%>
+<%-- 	<jsp:include page="/header" /> --%>
+<%-- <%@include file="/header" %> --%> 
 
+ <jsp:include page="/header" flush="false" />
+ 
+	<div class="container">
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
 			data-bs-ride="carousel" style="height: 200px;">
 <!-- 			<div class="carousel-indicators"> -->

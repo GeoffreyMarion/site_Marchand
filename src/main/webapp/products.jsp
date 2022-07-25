@@ -22,6 +22,9 @@
 	media="screen" />
 </head>
 <body>
+<jsp:include page="/header" />
+<%-- <%@include file="/header" %>  --%>
+
 	<%-- 	<%@include file="/header.jsp"%> --%>
 	<div class="container">
 

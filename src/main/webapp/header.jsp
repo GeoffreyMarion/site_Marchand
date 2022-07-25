@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%-- <%@page buffer="500kb"%> --%>
 <html>
 <c:url value="utilisateur" var="utilisateur"></c:url>
 <c:url value="about" var="about"></c:url>
@@ -34,9 +35,8 @@
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 				<a href="${index}"
 					class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-					<img alt="" src="image/logo.png" height="40px">
-					<p class="pt-4" id="header_titre_site">FNUC</p>
-
+					<img alt="" src="image/logo.png" height="40px"> <a
+					href="/site_Marchand/index" class="pt-2" id="header_titre_site">FNUC</a>
 				</a>
 
 				<ul
@@ -44,11 +44,12 @@
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
 					<li><a href="#" class="nav-link px-2 text-white"></a></li>
-					<li><a href="#" class="nav-link px-2 text-white"
-						id="header_produits">Nos Produits</a></li>
+					<li>
+					<a href="/site_Marchand/products" class="nav-link px-2 text-white" id="header_produits">Nos
+							Produits</a></li>
 				</ul>
 
-				<p class="pt-4">Nos CatÃ©gories:</p>
+				<p class="pt-4">Nos Catégories:</p>
 
 				<ul class="list-unstyled ps-0 d-flex justify-content-center pt-4 ">
 					<c:forEach items="${ listeCategories}" var="categorie">
@@ -68,28 +69,33 @@
 					</c:forEach>
 				</ul>
 
-				<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-					<input type="search"
-						class="form-control form-control-dark text-white pt-2"
-						placeholder="Rechercher..." aria-label="Search">
-				</form>
+				<div class="d-flex pt-2" id="header_form_search">
+					<form class="col-9 col-lg-auto" role="search">
+						<input type="search"
+							class="form-control form-control-dark text-white pt-2"
+							placeholder="Rechercher..." aria-label="Search">
+					</form>
+					<input type="image" clqss="pt-2" id="header_icon_loop" alt="Loop"
+						src="icones/icon_loop.png" height="40px">
+
+				</div>
 
 				<div class="text-end">
 					<!-- <button type="button" class="btn btn-outline-light me-2">Login</button> -->
 					<!-- 					<button type="button" class="btn btn-warning">Sign-up</button>
  -->
 					<div
-						class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+						class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pt-2">
 						<a href="${index}"
 							class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-							id="icon_basket"> <img alt="" src="icones/icon_basket3.png"
-							height="40px">
+							id="header_icon_basket"> <img alt=""
+							src="icones/icon_basket3.png" height="50px">
 						</a>
 						<%--  <a href="${index}"
 							class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
 							<img alt="" src="icones/icon_person.png" height="40px">
  --%>
-						<div class="tb_right_pull-right">
+						<%-- <div class="tb_right_pull-right">
 							<ul class="header_list_user">
 								<%
 								if ((boolean) session.getAttribute("isConnected") == false) {
@@ -121,7 +127,7 @@
 								}
 								%>
 							</ul>
-						</div>
+						</div> --%>
 
 					</div>
 				</div>
