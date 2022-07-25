@@ -48,7 +48,7 @@
 						id="header_produits">Nos Produits</a></li>
 				</ul>
 
-				<p class="pt-4">Nos CatÃ©gories:</p>
+				<p class="pt-4">Nos Catégories:</p>
 
 				<ul class="list-unstyled ps-0 d-flex justify-content-center pt-4 ">
 					<c:forEach items="${ listeCategories}" var="categorie">
