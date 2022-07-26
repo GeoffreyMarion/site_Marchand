@@ -145,8 +145,9 @@ public class ProduitDao implements IDAO<Produit> {
 		return null;
 	}
 	
-	public Produit findByCat(int id_categorie) {
+	public ArrayList<Produit> findByCat(int id_categorie) {
 		ResultSet afficher = null;
+		ArrayList<Produit> ListProduit = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
@@ -166,8 +167,9 @@ public class ProduitDao implements IDAO<Produit> {
 				int stock_minimum = afficher.getInt("stock_minimum");
 				Produit produit = new Produit(id_produit,titre_produit, description, prix, image, sous_categorie, stock,
 						stock_minimum);
-				return produit;
+				ListProduit.add(produit);	
 			}
+			return ListProduit;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
@@ -178,8 +180,9 @@ public class ProduitDao implements IDAO<Produit> {
 		return null;
 	}
 	
-	public Produit findBySCat(int id_sous_categorie) {
+	public ArrayList<Produit> findBySCat(int id_sous_categorie) {
 		ResultSet afficher = null;
+		ArrayList<Produit> ListProduit = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
@@ -199,8 +202,9 @@ public class ProduitDao implements IDAO<Produit> {
 				int stock_minimum = afficher.getInt("stock_minimum");
 				Produit produit = new Produit(id_produit,titre_produit, description, prix, image, sous_categorie, stock,
 						stock_minimum);
-				return produit;
+				ListProduit.add(produit);
 			}
+			return ListProduit;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
@@ -211,8 +215,9 @@ public class ProduitDao implements IDAO<Produit> {
 		return null;
 	}
 	
-	public Produit findByI(String input) {
+	public ArrayList<Produit> findByI(String input) {
 		ResultSet afficher = null;
+		ArrayList<Produit> ListProduit = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
@@ -232,8 +237,9 @@ public class ProduitDao implements IDAO<Produit> {
 				int stock_minimum = afficher.getInt("stock_minimum");
 				Produit produit = new Produit(id_produit, titre_produit, description, prix, image, sous_categorie,
 						stock, stock_minimum);
-				return produit;
+				ListProduit.add(produit);
 			}
+			return ListProduit;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();

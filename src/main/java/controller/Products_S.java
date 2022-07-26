@@ -14,14 +14,14 @@ import dao.SlideDao;
  * Servlet implementation class Products
  */
 @WebServlet("/products")
-public class Products extends HttpServlet {
+public class Products_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ProduitDao pDao = new ProduitDao();
     SlideDao slideDao = new SlideDao();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Products() {
+    public Products_S() {
         super();
         // TODO Auto-generated constructor stub
     }
