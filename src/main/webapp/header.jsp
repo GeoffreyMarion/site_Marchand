@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<%-- <%@page buffer="500kb"%> --%>
+<%-- <!DOCTYPE html>
+<%@page buffer="500kb"%>
 <html>
 <c:url value="utilisateur" var="utilisateur"></c:url>
 <c:url value="about" var="about"></c:url>
-<c:url value="contact" var="contact"></c:url>
-
+<c:url value="contact" var="contact"></c:url> --%>
+<!-- 
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,22 +20,23 @@
 	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 	crossorigin="anonymous"></script>
 
-<!-- CSS -->
+CSS
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
 
-</head>
-<c:url value="utilisateur" var="utilisateur"></c:url>
+</head> -->
+<%-- <c:url value="utilisateur" var="utilisateur"></c:url>
 <c:url value="about" var="about"></c:url>
-<c:url value="contact" var="contact"></c:url>
-<body>
-	<header class="p-3 bg-secondary text-white">
+<c:url value="contact" var="contact"></c:url> --%>
+<!-- <body>
+ -->	
+ <header class="p-3 bg-secondary text-white">
 		<div class="container">
 			<div
 				class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 				<a href="${index}"
 					class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-					<img alt="" src="image/logo.png" height="40px"> <a
+					<img alt="" src="images/logo.png" height="40px"> <a
 					href="/site_Marchand/index" class="pt-2" id="header_titre_site">FNUC</a>
 				</a>
 
@@ -134,6 +135,6 @@
 			</div>
 		</div>
 	</header>
-	<br>
+<!-- 	<br>
 </body>
-</html>
+</html> -->

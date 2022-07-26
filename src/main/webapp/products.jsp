@@ -22,10 +22,12 @@
 	media="screen" />
 </head>
 <body>
-<jsp:include page="/header" />
-<%-- <%@include file="/header" %>  --%>
+<%--  <jsp:include page="/header" /> --%>
+ <%-- <%@include file="/header" %>  --%>
 
 	<%-- 	<%@include file="/header.jsp"%> --%>
+	
+	 <c:import url="/header" />
 	<div class="container">
 
 

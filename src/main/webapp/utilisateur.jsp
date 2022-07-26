@@ -33,7 +33,7 @@
 
 <%-- <%@include file="/header.jsp" %>  --%>
 
- <jsp:include page="/header" />
+<%-- <jsp:include page="/header" /> --%>
 
 <%-- <jsp:include page="src/main/java/controller/Header_S" /> --%>
 
