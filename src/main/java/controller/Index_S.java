@@ -33,11 +33,16 @@ public class Index_S extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		request.setAttribute("ListImages", sous_categorieDao.ReadImgsProd());
 		request.setAttribute("ListSlide", slideDao.read());
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+
+		if (request.getParameter("idSCat") != null) {
+			
+			request.getRequestDispatcher("products.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
 	}
 
 	/**
