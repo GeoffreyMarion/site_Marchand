@@ -221,9 +221,10 @@ public class ProduitDao implements IDAO<Produit> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM produit INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE produit.titre_produit LIKE '%?%' OR produit.description LIKE '%?%'");
-			statement.setString(1, input);
-			statement.setString(2, input);
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE produit.titre_produit LIKE ? OR produit.description LIKE ?");
+//							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE produit.titre_produit LIKE '%?%' OR produit.description LIKE '%?%'");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
 				int id_produit = afficher.getInt("id_produit");
