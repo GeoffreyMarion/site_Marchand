@@ -21,12 +21,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
 </head>
-<body>
-<%--  <jsp:include page="/header" /> --%>
- <%-- <%@include file="/header" %>  --%>
-
-	<%-- 	<%@include file="/header.jsp"%> --%>
-	
+<body>	
 	 <c:import url="/header" />
 	<div class="container">
 

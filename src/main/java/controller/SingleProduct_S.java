@@ -17,7 +17,7 @@ import model.Sous_categorie;
 /**
  * Servlet implementation class SingleProduct_S
  */
-@WebServlet("/SingleProduct_S")
+@WebServlet("/produit")
 public class SingleProduct_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,17 +41,21 @@ public class SingleProduct_S extends HttpServlet {
 		
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
+			System.out.println("idAsInt" + idAsInt);
+			
 			Produit produit = produitDao.findById(idAsInt);
 			
-			Sous_categorie sousCategorieFromProduit = produit.getSous_categorie();
-			int sousCategorieId = sousCategorieFromProduit.getId_sous_categorie();
-			String sousCategorieTitre = sousCategorieFromProduit.getTitre();
+//			Sous_categorie sousCategorieFromProduit = produit.getSous_categorie();
+//			int sousCategorieId = sousCategorieFromProduit.getId_sous_categorie();
+//			String sousCategorieTitre = sousCategorieFromProduit.getTitre();
 //			ArrayList <Produit> sousCategorieProduits = produitDao.findBySCat(sousCategorieId);
 			request.setAttribute("produit", produit);
 //			request.setAttribute("produitsSimilaires", sousCategorieProduits);
-			request.setAttribute("sousCategorieTitre", sousCategorieTitre);
+//			request.setAttribute("sousCategorieTitre", sousCategorieTitre);
+			
+			request.getRequestDispatcher("/singleProduct.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("/singleProduct.jsp").forward(request, response);
+
 	}
 
 	/**
