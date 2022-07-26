@@ -22,7 +22,7 @@
 	media="screen" />
 </head>
 <body>
-<jsp:include page="/header" />
+<%-- <jsp:include page="/header" /> --%>
 <%-- <%@include file="/header" %>  --%>
 
 	<%-- 	<%@include file="/header.jsp"%> --%>
@@ -78,7 +78,16 @@
 			</button>
 		</div>
 		<br>
-
+		<c:if test="${id!=null}">
+			<div class="text-bg-dark p-2"><h4>Vos produits dans la sous-catégorie ${Sous_cat.titre}</h4> </div>
+		</c:if>
+		<c:if test="${idc!=null}">
+			<div class="text-bg-dark p-2"><h4>Vos produits dans la catégorie ${Sous_cat.categorie.titre}</h4> </div>
+		</c:if>
+		<c:if test="${id==null}&&${idc==null}">
+			<div class="text-bg-dark p-2"><h4>Nos produits</h4> </div>
+		</c:if>
+		
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${ListProduit}" var="produit">
 				<div class="card mb-3" style="width: 14rem; margin: 1rem;">

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ProduitDao;
 import dao.SlideDao;
+import dao.Sous_categorieDao;
 
 /**
  * Servlet implementation class Products
@@ -17,6 +18,7 @@ import dao.SlideDao;
 public class Products_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     ProduitDao pDao = new ProduitDao();
+    Sous_categorieDao s_cDao= new Sous_categorieDao();
     SlideDao slideDao = new SlideDao();
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,15 +35,25 @@ public class Products_S extends HttpServlet {
 			throws ServletException, IOException {
 		request.setAttribute("ListSlide", slideDao.read());
 		
-//		***Pour la suite if avec id sous cat***
-//		if (request.getParameter("id") != null) {
-//			int id = Integer.parseInt(request.getParameter("id"));
-//			pDao.findBySCat(id);
-//		}
-//
-//		else {
+		if (request.getParameter("idSCat") != null) {
+			int id = Integer.parseInt(request.getParameter("idSCat"));
+			request.setAttribute("id",id);
+			request.setAttribute("Sous_cat",s_cDao.findById(id));
+			request.setAttribute("ListProduit",pDao.findBySCat(id));
+		}
+		else if (request.getParameter("mot") != null) {
+			String mot = request.getParameter("mot");
+			request.setAttribute("mot",mot);
+			request.setAttribute("ListProduit",pDao.findByMot(mot));
+		}
+		else if (request.getParameter("idCat") != null) {
+			int idc = Integer.parseInt(request.getParameter("idCat"));
+			request.setAttribute("idc",idc);
+			request.setAttribute("ListProduit",pDao.findByCat(idc));
+		}
+		else {
 			request.setAttribute("ListProduit", pDao.read());
-//		}
+		}
 			request.getRequestDispatcher("products.jsp").forward(request, response);
 	}
 
