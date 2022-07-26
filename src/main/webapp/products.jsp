@@ -103,11 +103,14 @@
 						<li class="list-group-item">(${produit.stock}) en stock</li>
 					</ul>
 					<div class="card-body" style="color: black">
-						<a href="#" class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a> <a
+						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
+							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
+								<a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm"
+							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a> 
+							<a
 							href="#" class="btn btn-dark btn-sm" role="button"
 							data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
-							pannier</a>
+							panier</a>
 					</div>
 				</div>
 			</c:forEach>
