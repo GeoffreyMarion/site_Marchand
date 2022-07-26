@@ -24,29 +24,30 @@
 <%-- 	<jsp:include page="/header" /> --%>
 <%-- <%@include file="/header" %> --%> 
 
- <jsp:include page="/header" flush="false" />
+<%--  <jsp:include page="/header" flush="false" /> --%>
  
 	<div class="container">
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
 			data-bs-ride="carousel" style="height: 200px;">
-<!-- 			<div class="carousel-indicators"> -->
-<%-- 				<c:forEach items="${ListSlide}" var="slide" varStatus="status"> --%>
-<%-- 					<c:if test="${status.first}"> --%>
-<!-- 						<button type="button" data-bs-target="#carouselExampleCaptions" -->
-<%-- 							data-bs-slide-to="${slide.id_slide}" class="active" aria-current="true" --%>
-<%-- 							aria-label="Slide ${slide.id_slide}"></button> --%>
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${!status.first}"> --%>
-<!-- 						<button type="button" data-bs-target="#carouselExampleCaptions" -->
-<%-- 							data-bs-slide-to="${slide.id_slide}" aria-label="Slide ${slide.id_slide}"></button> --%>
-<%-- 					</c:if> --%>
-<%-- 				</c:forEach> --%>
-<!-- 			</div> -->
+			<!-- 			<div class="carousel-indicators"> -->
+			<%-- 				<c:forEach items="${ListSlide}" var="slide" varStatus="status"> --%>
+			<%-- 					<c:if test="${status.first}"> --%>
+			<!-- 						<button type="button" data-bs-target="#carouselExampleCaptions" -->
+			<%-- 							data-bs-slide-to="${slide.id_slide}" class="active" aria-current="true" --%>
+			<%-- 							aria-label="Slide ${slide.id_slide}"></button> --%>
+			<%-- 					</c:if> --%>
+			<%-- 					<c:if test="${!status.first}"> --%>
+			<!-- 						<button type="button" data-bs-target="#carouselExampleCaptions" -->
+			<%-- 							data-bs-slide-to="${slide.id_slide}" aria-label="Slide ${slide.id_slide}"></button> --%>
+			<%-- 					</c:if> --%>
+			<%-- 				</c:forEach> --%>
+			<!-- 			</div> -->
 			<div class="carousel-inner">
 				<c:forEach items="${ListSlide}" var="slide" varStatus="status">
 					<c:if test="${status.first}">
 						<div class="carousel-item active" style="height: 200px;">
-							<img src="${slide.image}" class="d-block w-100" alt="${slide.titre_slide}">
+							<img src="${slide.image}" class="d-block w-100"
+								alt="${slide.titre_slide}">
 							<div class="carousel-caption d-none d-md-block">
 								<h5>${slide.titre_slide}</h5>
 							</div>
@@ -54,7 +55,8 @@
 					</c:if>
 					<c:if test="${!status.first}">
 						<div class="carousel-item" style="height: 200px;">
-							<img src="${slide.image}" class="d-block w-100" alt="${slide.titre_slide}">
+							<img src="${slide.image}" class="d-block w-100"
+								alt="${slide.titre_slide}">
 							<div class="carousel-caption d-none d-md-block">
 								<h5>${slide.titre_slide}</h5>
 							</div>
@@ -79,7 +81,10 @@
 			<c:forEach items="${ListImages}" var="produit">
 				<div class="card mb-3" style="max-width: 14rem; margin: 1rem;">
 					<div class="card-header text-bg-dark">
-						<b>${produit.sous_categorie.titre}</b>
+						<button type="submit" name="idSCat" value="${produit.sous_categorie.id_sous_categorie}"
+							class="link-button">
+							<b>${produit.sous_categorie.titre}</b>
+						</button>
 					</div>
 					<div class="card-body">
 						<img src="${produit.image}" class="card-img" alt="...">
