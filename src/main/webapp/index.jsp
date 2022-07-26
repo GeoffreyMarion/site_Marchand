@@ -76,7 +76,7 @@
 			</button>
 		</div>
 		<br>
-
+		<div class="text-bg-dark p-2"><h4>Nos sous-catégories de produits</h4> </div>
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${ListImages}" var="produit">
 				<a href="products?idSCat=${produit.sous_categorie.id_sous_categorie }"><div class="card mb-3" style="max-width: 14rem; margin: 1rem;">
