@@ -33,15 +33,21 @@ public class Products_S extends HttpServlet {
 			throws ServletException, IOException {
 		request.setAttribute("ListSlide", slideDao.read());
 		
-//		***Pour la suite if avec id sous cat***
-//		if (request.getParameter("id") != null) {
-//			int id = Integer.parseInt(request.getParameter("id"));
-//			pDao.findBySCat(id);
-//		}
-//
-//		else {
+		if (request.getParameter("idSCat") != null) {
+			int id = Integer.parseInt(request.getParameter("idSCat"));
+			request.setAttribute("ListProduit",pDao.findBySCat(id));
+		}
+		else if (request.getParameter("mot") != null) {
+			String mot = request.getParameter("mot");
+			request.setAttribute("ListProduit",pDao.findByMot(mot));
+		}
+		else if (request.getParameter("idCat") != null) {
+			int id = Integer.parseInt(request.getParameter("idCat"));
+			request.setAttribute("ListProduit",pDao.findByCat(id));
+		}
+		else {
 			request.setAttribute("ListProduit", pDao.read());
-//		}
+		}
 			request.getRequestDispatcher("products.jsp").forward(request, response);
 	}
 

@@ -79,17 +79,14 @@
 
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${ListImages}" var="produit">
-				<div class="card mb-3" style="max-width: 14rem; margin: 1rem;">
-					<div class="card-header text-bg-dark">
-						<button type="submit" name="idSCat" value="${produit.sous_categorie.id_sous_categorie}"
-							class="link-button">
+				<a href="products?idSCat=${produit.sous_categorie.id_sous_categorie }"><div class="card mb-3" style="max-width: 14rem; margin: 1rem;">
+					 <div class="card-header text-bg-dark">
 							<b>${produit.sous_categorie.titre}</b>
-						</button>
 					</div>
 					<div class="card-body">
 						<img src="${produit.image}" class="card-img" alt="...">
 					</div>
-				</div>
+				</div></a>
 			</c:forEach>
 		</div>
 

@@ -123,7 +123,7 @@ public class ProduitDao implements IDAO<Produit> {
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
 				String titre_produit = afficher.getString("titre_produit");
-				String description = afficher.getString("prenom");
+				String description = afficher.getString("description");
 				float prix = afficher.getFloat("prix");
 				String image = afficher.getString("image");
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"),
@@ -157,7 +157,7 @@ public class ProduitDao implements IDAO<Produit> {
 			while (afficher.next()) {
 				int id_produit = afficher.getInt("id_produit");
 				String titre_produit = afficher.getString("titre_produit");
-				String description = afficher.getString("prenom");
+				String description = afficher.getString("description");
 				float prix = afficher.getFloat("prix");
 				String image = afficher.getString("image");
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"),
@@ -192,7 +192,7 @@ public class ProduitDao implements IDAO<Produit> {
 			while (afficher.next()) {
 				int id_produit = afficher.getInt("id_produit");
 				String titre_produit = afficher.getString("titre_produit");
-				String description = afficher.getString("prenom");
+				String description = afficher.getString("description");
 				float prix = afficher.getFloat("prix");
 				String image = afficher.getString("image");
 				Sous_categorie sous_categorie = new Sous_categorie(id_sous_categorie,
@@ -215,7 +215,7 @@ public class ProduitDao implements IDAO<Produit> {
 		return null;
 	}
 	
-	public ArrayList<Produit> findByI(String input) {
+	public ArrayList<Produit> findByMot(String input) {
 		ResultSet afficher = null;
 		ArrayList<Produit> ListProduit = new ArrayList<>();
 		try {
@@ -228,7 +228,7 @@ public class ProduitDao implements IDAO<Produit> {
 			while (afficher.next()) {
 				int id_produit = afficher.getInt("id_produit");
 				String titre_produit = afficher.getString("titre_produit");
-				String description = afficher.getString("prenom");
+				String description = afficher.getString("description");
 				float prix = afficher.getFloat("prix");
 				String image = afficher.getString("image");
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
