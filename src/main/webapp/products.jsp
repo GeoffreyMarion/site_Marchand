@@ -76,10 +76,10 @@
 		</div>
 		<br>
 		<c:if test="${id!=null}">
-			<div class="text-bg-dark p-2"><h4>Vos produits dans la sous-catégorie ${Sous_cat.titre}</h4> </div>
+			<div class="text-bg-dark p-2"><h4>Nos produits dans la sous-catégorie ${Sous_cat.titre}</h4> </div>
 		</c:if>
 		<c:if test="${idc!=null}">
-			<div class="text-bg-dark p-2"><h4>Vos produits dans la catégorie ${Sous_cat.categorie.titre}</h4> </div>
+			<div class="text-bg-dark p-2"><h4>Nos produits dans la catégorie ${Sous_cat.categorie.titre}</h4> </div>
 		</c:if>
 		<c:if test="${id==null}&&${idc==null}">
 			<div class="text-bg-dark p-2"><h4>Nos produits</h4> </div>

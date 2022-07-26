@@ -34,8 +34,6 @@ public class Header_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		HttpSession session = request.getSession( true );
 		if(session.getAttribute("isConnected")==null) {
@@ -49,7 +47,6 @@ public class Header_S extends HttpServlet {
 		ArrayList listeSousCateg = new ArrayList<>();
 		listeSousCateg = sousCategorieDao.read();
 		request.setAttribute("listeSousCateg", listeSousCateg);
-//		System.out.println("listeSousCateg" + sousCategorieDao.read()); 
 		
 		request.getRequestDispatcher("header.jsp").include(request, response);
 	}

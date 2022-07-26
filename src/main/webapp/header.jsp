@@ -30,7 +30,7 @@
 							<c:forEach items="${ listeSousCateg}" var="sousCategorie">
 								<c:if
 									test="${sousCategorie.categorie.id_categorie == categorie.id_categorie}">
-									<li><a class="dropdown-item" href="#">${sousCategorie.titre }</a></li>
+									<li><a class="dropdown-item" href="products?idSCat=${sousCategorie.id_sous_categorie }">${sousCategorie.titre }</a></li>
 								</c:if>
 							</c:forEach>
 						</ul>
@@ -39,14 +39,17 @@
 			</ul>
 
 			<div class="d-flex pt-4" id="header_form_search">
-				<form class="col-9 col-lg-auto" role="search">
-					<input type="search"
-						class="form-control form-control-dark text-white pt-2"
-						placeholder="Rechercher..." aria-label="Search">
-				</form>
-				<input type="image" class="pt-4" id="header_icon_loop" alt="Loop"
-					src="icones/icon_loop.png" height="50px">
+				<!-- 			<input type="image" class="pt-4" id="header_icon_loop" alt="Loop" -->
+				<!-- 					src="icones/icon_loop.png" height="50px"> -->
+				<form class="col-9 col-lg-auto" role="search" method="post" action="products">
 
+					<input type="search"
+						class="form-control form-control-dark text-black pt-2"
+						placeholder="Rechercher..." aria-label="Search" name="mot">
+					<button class="btn btn-default" type="submit">
+						<img src="icones/icon_loop.png" width="20" />
+					</button>
+				</form>
 			</div>
 
 			<div class="text-end">
