@@ -20,11 +20,7 @@
 
 </head>
 <body>
-	<%-- 	<%@include file="/header.jsp"%> --%>
-<%-- 	<jsp:include page="/header" /> --%>
-<%-- <%@include file="/header" %> --%> 
-
-<%--  <jsp:include page="/header" flush="false" /> --%>
+	 <c:import url="/header" />
  
 	<div class="container">
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
