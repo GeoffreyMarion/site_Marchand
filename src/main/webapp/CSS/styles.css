@@ -1,12 +1,10 @@
 /* /////////////////////////////////// */
 /* HEADER  */
 /* /////////////////////////////////// */
-
 #test2 {
 	margin-right: 10px;
 	color: red !important;
 }
-
 
 .icons {
 	background-color: white;
@@ -22,7 +20,6 @@
 	margin-left: 40px;
 }
 
-
 .btn-toggle {
 	display: inline-flex;
 	align-items: center;
@@ -34,34 +31,35 @@
 }
 
 .btn_dropdown_category {
-		text-transform:capitalize;
+	text-transform: capitalize;
 }
 
 #header_titre_site {
-		margin-left: 10px !important;
-	
+	margin-left: 10px !important;
 }
 
 #header_produits {
 	padding-top: 20px !important;
-		padding-left: 200%;
+	padding-left: 200%;
 }
 
 .header_list_user {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-bottom:0 !important;
+	margin-bottom: 0 !important;
 }
 
 .header_list_user 
 li {
-	  list-style-type: none; 	
+	list-style-type: none;
 }
+
 a {
-	text-decoration:none;
+	text-decoration: none;
 	color: white;
-} 
+}
+
 a:hover {
 	color: black;
 }
@@ -73,13 +71,14 @@ a:hover {
 
 #header_form_search {
 	position: relative;
-	margin-left:40px;
+	margin-left: 40px;
 }
 
 #header_icon_loop {
 	position: absolute;
 	right: 0;
 	top: 7px;
+/* 	background-color: red; */
 }
 
 /* /////////////////////////////////// */
