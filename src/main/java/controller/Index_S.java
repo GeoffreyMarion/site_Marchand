@@ -37,12 +37,12 @@ public class Index_S extends HttpServlet {
 		request.setAttribute("ListImages", sous_categorieDao.ReadImgsProd());
 		request.setAttribute("ListSlide", slideDao.read());
 
-		if (request.getParameter("idSCat") != null) {
-			
-			request.getRequestDispatcher("products.jsp").forward(request, response);
-		} else {
+//		if (request.getParameter("idSCat") != null) {
+//			request.setAttribute("idSCat", request.getParameter("idSCat"));
+//			request.getRequestDispatcher("products.jsp").forward(request, response);
+//		} else {
 			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
+//		}
 	}
 
 	/**
