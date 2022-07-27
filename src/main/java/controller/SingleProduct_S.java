@@ -45,10 +45,22 @@ public class SingleProduct_S extends HttpServlet {
 			Sous_categorie sousCategorieFromProduit = produit.getSous_categorie();
 			int sousCategorieId = sousCategorieFromProduit.getId_sous_categorie();
 			String sousCategorieTitre = sousCategorieFromProduit.getTitre();
+			
 			ArrayList<Produit> sousCategorieProduits = produitDao.findBySCat(sousCategorieId);
+//			System.out.println("sousCategorieProduits before: " + sousCategorieProduits); 
+//			System.out.println("produit.id_produit: " + produit.getId_produit()); 
+
+			ArrayList<Produit> sousCategorieProduitsApresFiltre = new ArrayList<Produit>();
+
+			for(Produit produitOriginalList: sousCategorieProduits) {
+				if(produitOriginalList.getId_produit() != idAsInt) {
+					sousCategorieProduitsApresFiltre.add(produitOriginalList);
+				}
+			}
+//			System.out.println("sousCategorieProduitsApresFiltre: " + sousCategorieProduitsApresFiltre); 
 			request.setAttribute("id",idAsInt);
 			request.setAttribute("produit", produit);
-			request.setAttribute("produitsSimilaires", sousCategorieProduits);
+			request.setAttribute("produitsSimilaires", sousCategorieProduitsApresFiltre);
 			request.setAttribute("sousCategorieTitre", sousCategorieTitre);
 		}
 		request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
