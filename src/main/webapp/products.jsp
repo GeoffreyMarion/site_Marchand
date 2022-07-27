@@ -85,10 +85,15 @@
 				<h4>Nos produits dans la catégorie ${Sous_cat.categorie.titre}</h4>
 			</div>
 		</c:if>
-		<c:if test="${id==null}&&${idc==null}">
-			<div class="text-bg-dark p-2">
-				<h4>Nos produits</h4>
-			</div>
+
+		<c:if test="${id==null}">
+			<c:if test="${idc==null}">
+			<div class="text-bg-dark p-2"><h4>Nos produits</h4> </div>
+				<c:if test="${ListProduit.size()==0}">
+					<br>
+					<div class="alert alert-danger" role="alert">Il n'y a aucun produits qui correspond à votre recherche ${mot}</div>
+				</c:if>
+			</c:if>
 		</c:if>
 
 		<div class="d-flex flex-wrap">
