@@ -1,12 +1,14 @@
-<header class="p-3 bg-secondary text-white">
+<header class="p-3 bg-dark text-white sticky-top">
 	<div class="container">
 		<div
 			class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 			<a href="${index}"
 				class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-				<img alt="" src="images/logo.png" height="40px"> <a
-				href="/site_Marchand/index" class="pt-2" id="header_titre_site">FNUC</a>
+				<img alt="" src="images/logo.png" height="40px">
+				<a href="index"
+				class="pt-2" id="header_titre_site"><b>FNUC</b></a>
 			</a>
+
 
 			<ul
 				class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -14,18 +16,18 @@
 				<li><a href="#" class="nav-link px-2 text-white"></a></li>
 				<li><a href="#" class="nav-link px-2 text-white"></a></li>
 				<li><a href="/site_Marchand/products"
-					class="nav-link px-2 text-white" id="header_produits">Nos
-						Produits</a></li>
+					class="nav-link px-2 text-white" id="header_produits"><b>Nos
+						Produits</b></a></li>
 			</ul>
 
-			<p class="pt-4">Nos Categories:</p>
+			<p class="pt-4"><b>Nos Categories:</b></p>
 
 			<ul class="list-unstyled ps-0 d-flex justify-content-center pt-4 ">
 				<c:forEach items="${ listeCategories}" var="categorie">
 					<div class="dropdown">
 						<button
-							class="btn btn-secondary dropdown-toggle btn_dropdown_category"
-							type="button" data-bs-toggle="dropdown" aria-expanded="false">${categorie.titre }</button>
+							class="btn btn-dark dropdown-toggle btn_dropdown_category"
+							type="button" data-bs-toggle="dropdown" aria-expanded="false"><b>${categorie.titre }</b></button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 							<c:forEach items="${ listeSousCateg}" var="sousCategorie">
 								<c:if
@@ -39,17 +41,14 @@
 			</ul>
 
 			<div class="d-flex pt-4" id="header_form_search">
-				<!-- 			<input type="image" class="pt-4" id="header_icon_loop" alt="Loop" -->
-				<!-- 					src="icones/icon_loop.png" height="50px"> -->
-				<form class="col-9 col-lg-auto" role="search" method="post" action="products">
-
+				<form class="col-9 col-lg-auto" role="search" method="post" action="products" id="recherche">
 					<input type="search"
 						class="form-control form-control-dark text-black pt-2"
 						placeholder="Rechercher..." aria-label="Search" name="mot">
-					<button class="btn btn-default" type="submit">
-						<img src="icones/icon_loop.png" width="20" />
-					</button>
 				</form>
+				<button class="btn btn-default" type="submit" form="recherche">
+						<img src="icones/icon_loop.png" width="25" alt="Loop" />
+					</button>
 			</div>
 
 			<div class="text-end">
