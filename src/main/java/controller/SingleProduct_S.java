@@ -38,9 +38,6 @@ public class SingleProduct_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("request.getParameter(\"id\") within SingleProduct_S" + request.getParameter("id")); 
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
 			Produit produit = produitDao.findById(idAsInt);

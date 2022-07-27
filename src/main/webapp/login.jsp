@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%@include file="/header.jsp"%>
+	<c:import url="header" />
 	<div class="container">
 		<div class="d-flex flex-row">
-			<form method="post" class="mb-3 col-5" name="sign">
+			<form method="post" class="mb-3 col-5" name="sign" action="#">
 				<div class="mb-3">
 					<label for="" class="form-label"><b>S'enregistrer</b></label>
 					<hr>
@@ -47,7 +47,7 @@
 
 			<div class="col-1"></div>
 
-			<form method="post" class="mb-3 col-5" name="login">
+			<form method="post" class="mb-3 col-5" name="login" action="#">
 				<div class="mb-3">
 					<label for="" class="form-label"><b>Se Conneter</b></label>
 					<hr>
