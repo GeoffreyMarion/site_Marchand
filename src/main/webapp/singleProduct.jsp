@@ -9,45 +9,48 @@ Produit produit = (Produit) request.getAttribute("produit");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>fiche produit</title>
 </head>
 <body>
-	<c:import url="/header" />
+	<c:import url="header" />
 
 	<div class="container">
-		<div class="row">
-			<br /> <br /> <br />
-			<div class="col-md-12 col-sm-12 offset-5">
-				<div class="card" style="width: 18rem;">
-					<img class="card-img-top" src=${produit.image }
-						alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">${produit.titre_produit }</h5>
-						<p class="card-text">${produit.description}.</p>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">${produit.description}</li>
-						<li class="list-group-item">${produit.prix }€</li>
-						<li class="list-group-item">${produit.stock}enstock</li>
-					</ul>
-					<div class="card-body">
-						<a
-							href="products?idSCat=${produit.sous_categorie.id_sous_categorie }"
-							class="btn btn-outline-dark p-2 rounded">${produit.sous_categorie.getTitre()}</a>
+			<br />
+
+		<div class="card mb-3 col-7">
+			<div class="row ">
+				<div class="col-6">
+					<img src="${produit.image }" class="img-fluid rounded-start m-2"
+						alt="${produit.titre_produit }">
+						<br>
+					<div class="d-flex flex-wrap"><img src="${produit.image }" class="col-3 m-2"
+						alt="${produit.titre_produit }"><img src="${produit.image }"  class="col-3 m-2"
+						alt="${produit.titre_produit }"><img src="${produit.image }"  class="col-3 m-2"
+						alt="${produit.titre_produit }"></div>
+				</div>
+				<div class="col-6">
+					<div class="card-header text-bg-dark"><b>${produit.titre_produit }</b></div>
+					<div class="card-body text-bg-light">
+						<ul class="list-group list-group-flush"
+							style="font-size: 1rem; font-weight: bold; text-align: right;">
+							<li class="list-group-item bg-light">${produit.sous_categorie.titre}</li>
+							<li class="list-group-item bg-light">${produit.prix}E</li>
+							<li class="list-group-item bg-light">(${produit.stock}) en stock</li>
+							<li class="list-group-item bg-light"><p>${produit.description}</p></li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<br /> <br />
+		<br />
 		<div class="row">
-			<div class="col-md-12 col-sm-12 offset-5">
-				<h4>Produits similaires:</h4>
+			<div class="text-bg-dark p-2">
+				<h4>Produits similaires</h4>
 			</div>
 		</div>
 
-		<div class="row">
-<!-- 			<div class="col-md-12 col-sm-12">
- -->				<c:forEach items="${produitsSimilaires}" var="produitSimilaire">
+		<div class="d-flex flex-wrap">
+				<c:forEach items="${produitsSimilaires}" var="produitSimilaire">
 					<div class="card mb-3" style="width: 14rem; margin: 1rem;">
 						<div class="card-header text-bg-dark">
 							<b>${produitSimilaire.titre_produit}</b>
@@ -76,7 +79,6 @@ Produit produit = (Produit) request.getAttribute("produit");
 						</div>
 					</div>
 				</c:forEach>
-<!-- 			</div> -->
 		</div>
 
 	</div>

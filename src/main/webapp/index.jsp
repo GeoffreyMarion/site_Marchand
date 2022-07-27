@@ -20,7 +20,7 @@
 
 </head>
 <body>
-	 <c:import url="/header" />
+	 <c:import url="header" />
  
 	<div class="container">
 		<div id="carouselExampleFade" class="carousel slide carousel-fade"
@@ -80,7 +80,7 @@
 							<b>${produit.sous_categorie.titre}</b>
 					</div>
 					<div class="card-body">
-						<img src="${produit.image}" class="card-img" alt="...">
+						<img src="${produit.image}" class="card-img m-2" alt="${produit.sous_categorie.titre}">
 					</div>
 				</div></a>
 			</c:forEach>
