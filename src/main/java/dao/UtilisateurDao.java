@@ -149,7 +149,7 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 	public Utilisateur connexion(String email,String mot_de_passe,String cmot_de_passe) {
 		ResultSet afficher=null;
 		try {
-			PreparedStatement statement = connection.prepareStatement("SELECT* FROM utilisateur WHERE email LIKE'?' AND mot_de_passe LIKE '?' AND mot_de_passe LIKE '?'");
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM utilisateur WHERE email LIKE ? AND mot_de_passe LIKE PASSWORD(?) AND mot_de_passe LIKE PASSWORD(?)");
 			statement.setString(1,email);
 			statement.setString(2,mot_de_passe);
 			statement.setString(3,cmot_de_passe);

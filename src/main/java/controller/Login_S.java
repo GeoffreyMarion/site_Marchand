@@ -42,7 +42,7 @@ public class Login_S extends HttpServlet {
 			String password = request.getParameter("password");
 			String cpassword = request.getParameter("cpassword");
 			
-			if(password==cpassword) {
+			if(password.equalsIgnoreCase(cpassword)) {
 			Utilisateur utilisateur = new Utilisateur(nom, prenom, null, email, password);
 			messageinscriptionok = utilisateurDao.create(utilisateur);
 			}
@@ -56,9 +56,10 @@ public class Login_S extends HttpServlet {
 			String mdp = request.getParameter("password_l");
 			String cmdp = request.getParameter("cpassword_l");
 			Utilisateur utilisateur = utilisateurDao.connexion(email, mdp, cmdp);
-
+			
 			if (utilisateur == null) {
 				messageconnexionno = true;
+
 			} else {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("iduser", utilisateur.getId_utilisateur());

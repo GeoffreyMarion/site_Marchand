@@ -109,11 +109,11 @@
 					</div>
 					<ul class="list-group list-group-flush"
 						style="font-size: 0.7rem; font-weight: bold; text-align: right;">
-						<li class="list-group-item">${produit.sous_categorie.titre}</li>
-						<li class="list-group-item">${produit.prix}E</li>
-						<li class="list-group-item">(${produit.stock}) en stock</li>
+						<li class="list-group-item bg-light">${produit.sous_categorie.titre}</li>
+						<li class="list-group-item bg-light">${produit.prix}E</li>
+						<li class="list-group-item bg-light">(${produit.stock}) en stock</li>
 					</ul>
-					<div class="card-body" style="color: black">
+					<div class="card-body bg-light" style="color: black">
 						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
 							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
 						<a

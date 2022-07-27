@@ -36,7 +36,6 @@ public class Products_S extends HttpServlet {
 		request.setAttribute("ListSlide", slideDao.read());
 		
 		if (request.getParameter("idSCat") != null) {
-			System.out.println("within autre if"); 
 			int id = Integer.parseInt(request.getParameter("idSCat"));
 			request.setAttribute("id",id);
 			request.setAttribute("Sous_cat",s_cDao.findById(id));
