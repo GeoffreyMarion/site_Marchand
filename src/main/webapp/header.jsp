@@ -1,5 +1,5 @@
 <header class="p-3 bg-dark text-white sticky-top">
-	<div class="container">
+<!-- 	<div class="container"> -->
 		<div
 			class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 			<a href="${index}"
@@ -62,46 +62,41 @@
 						id="header_icon_basket"> <img alt=""
 						src="icones/icon_basket3.png" height="50px">
 					</a>
-					<%--  <a href="${index}"
-							class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-							<img alt="" src="icones/icon_person.png" height="40px">
- --%>
-					<%-- <div class="tb_right_pull-right">
-							<ul class="header_list_user">
-								<%
-								if ((boolean) session.getAttribute("isConnected") == false) {
-								%>
-								<li>
-									<div class="tbr-info">
-										<a href="Connexion"><span>Inscription / connexion</span></a>
-									</div>
-								</li>
-								<%
-								} else {
-								%>
-								<li>
-									<div class="tbr-info">
-										<a href="#"><span>Bonjour ${usernom}</span></a>
-									</div>
-								</li>
-								<li>
-									<div class="tbr-info">
-										<a href="#"><span>Mon compte</span></a>
-									</div>
-								</li>
-								<li>
-									<div class="tbr-info">
-										<a href="Deconnexion"><span>D&eacute;connexion </span></a>
-									</div>
-								</li>
-								<%
-								}
-								%>
-							</ul>
-						</div> --%>
 
+					<div class="tb_right_pull-right">
+						<ul class="header_list_user">
+							<%
+							if ((boolean) session.getAttribute("isConnected") == false) {
+							%>
+							<li>
+								<div class="tbr-info">
+									<a href="login"><span>Inscription / connexion</span></a>
+								</div>
+							</li>
+							<%
+							} else {
+							%>
+							<li>
+								<div class="tbr-info">
+									<a href="#"><span>Bonjour ${prenomuser} ${nomuser}</span></a>
+								</div>
+							</li>
+							<li><a href="${index}"
+								class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+									<img alt="" src="icones/icon_person.png" height="40px"> <!-- 									<div class="tbr-info"> -->
+									<!-- 										<a href="#"><span>Mon compte</span></a> --> <!-- 									</div> --></li>
+							<li>
+								<div class="tbr-info">
+									<a href="deconnexion"><span>D&eacute;connexion </span></a>
+								</div>
+							</li>
+							<%
+							}
+							%>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+<!-- 	</div> -->
 </header>

@@ -22,7 +22,7 @@
 	media="screen" />
 </head>
 <body>
-	<c:import url="/header" />
+	<c:import url="header" />
 	<div class="container">
 
 
@@ -104,7 +104,7 @@
 					</div>
 
 					<div class="card-body">
-						<img class="card-img-top" src="${produit.image}"
+						<img class="card-img-top m-2" src="${produit.image}"
 							alt="${produit.titre_produit}">
 					</div>
 					<ul class="list-group list-group-flush"
