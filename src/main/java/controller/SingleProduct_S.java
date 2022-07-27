@@ -40,7 +40,7 @@ public class SingleProduct_S extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		System.out.println("request.getParameter(\"id\") within SingleProduct_S" + request.getParameter("id")); 
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
 			Produit produit = produitDao.findById(idAsInt);
@@ -49,11 +49,12 @@ public class SingleProduct_S extends HttpServlet {
 			int sousCategorieId = sousCategorieFromProduit.getId_sous_categorie();
 			String sousCategorieTitre = sousCategorieFromProduit.getTitre();
 			ArrayList<Produit> sousCategorieProduits = produitDao.findBySCat(sousCategorieId);
+			request.setAttribute("id",idAsInt);
 			request.setAttribute("produit", produit);
 			request.setAttribute("produitsSimilaires", sousCategorieProduits);
 			request.setAttribute("sousCategorieTitre", sousCategorieTitre);
 		}
-		request.getRequestDispatcher("/singleProduct.jsp").forward(request, response);
+		request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
 	}
 
 	/**

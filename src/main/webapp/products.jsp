@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,8 @@
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
 </head>
-<body>	
-	 <c:import url="/header" />
+<body>
+	<c:import url="/header" />
 	<div class="container">
 
 
@@ -76,15 +76,21 @@
 		</div>
 		<br>
 		<c:if test="${id!=null}">
-			<div class="text-bg-dark p-2"><h4>Nos produits dans la sous-catégorie ${Sous_cat.titre}</h4> </div>
+			<div class="text-bg-dark p-2">
+				<h4>Nos produits dans la sous-catégorie ${Sous_cat.titre}</h4>
+			</div>
 		</c:if>
 		<c:if test="${idc!=null}">
-			<div class="text-bg-dark p-2"><h4>Nos produits dans la catégorie ${Sous_cat.categorie.titre}</h4> </div>
+			<div class="text-bg-dark p-2">
+				<h4>Nos produits dans la catégorie ${Sous_cat.categorie.titre}</h4>
+			</div>
 		</c:if>
 		<c:if test="${id==null}&&${idc==null}">
-			<div class="text-bg-dark p-2"><h4>Nos produits</h4> </div>
+			<div class="text-bg-dark p-2">
+				<h4>Nos produits</h4>
+			</div>
 		</c:if>
-		
+
 		<div class="d-flex flex-wrap">
 			<c:forEach items="${ListProduit}" var="produit">
 				<div class="card mb-3" style="width: 14rem; margin: 1rem;">
@@ -99,24 +105,25 @@
 					<ul class="list-group list-group-flush"
 						style="font-size: 0.7rem; font-weight: bold; text-align: right;">
 						<li class="list-group-item">${produit.sous_categorie.titre}</li>
-						<li class="list-group-item">${produit.prix} E</li>
+						<li class="list-group-item">${produit.prix}E</li>
 						<li class="list-group-item">(${produit.stock}) en stock</li>
 					</ul>
 					<div class="card-body" style="color: black">
 						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
 							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
-								<a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm"
-							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a> 
-							<a
-							href="#" class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
-							panier</a>
+						<a
+							href="<%request.getContextPath(); %>product?id=${produit.id_produit}"
+							class="btn btn-dark btn-sm"
+							style="margin: 0.3rem;">Voir détail</a> <a href="#"
+							class="btn btn-dark btn-sm" role="button" data-bs-toggle="button"
+							style="margin: 0.3rem;">Ajouter au panier</a>
 					</div>
 				</div>
 			</c:forEach>
+		
 		</div>
 
 	</div>
-	
+
 </body>
 </html>

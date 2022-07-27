@@ -36,6 +36,7 @@ public class Products_S extends HttpServlet {
 		request.setAttribute("ListSlide", slideDao.read());
 		
 		if (request.getParameter("idSCat") != null) {
+			System.out.println("within autre if"); 
 			int id = Integer.parseInt(request.getParameter("idSCat"));
 			request.setAttribute("id",id);
 			request.setAttribute("Sous_cat",s_cDao.findById(id));
@@ -50,7 +51,10 @@ public class Products_S extends HttpServlet {
 			int idc = Integer.parseInt(request.getParameter("idCat"));
 			request.setAttribute("idc",idc);
 			request.setAttribute("ListProduit",pDao.findByCat(idc));
-		}
+		} else if(request.getParameter("id") != null) {
+					System.out.println("within mon if" + request.getParameter("id")); 
+					response.sendRedirect(request.getContextPath()+"product?id="+request.getParameter("id"));
+				}
 		else {
 			request.setAttribute("ListProduit", pDao.read());
 		}
