@@ -83,4 +83,14 @@ a:hover {
 
 /* /////////////////////////////////// */
 /* END OF HEADER  */
+/* /////////////////////////////////// *
+
+
 /* /////////////////////////////////// */
+/* SINGLE PRODUCT  */
+/* /////////////////////////////////// *
+
+.single_product_commentaire_username {
+		text-transform: capitalize !important;
+}
+}
