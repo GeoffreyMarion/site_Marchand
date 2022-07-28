@@ -75,7 +75,7 @@ public class Login_S extends HttpServlet {
 		request.setAttribute("messageconnexionno", messageconnexionno);
 		
 		if (connected == false) {
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
 

@@ -150,8 +150,9 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		return null;
 	}
 	
-	public Commentaire findByP(int id_produit) {
+	public ArrayList<Commentaire> findByP(int id_produit) {
 		ResultSet afficher = null;
+		ArrayList<Commentaire> ListCommentaire = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM commentaire INNER utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur"
@@ -173,8 +174,9 @@ public class CommentaireDao implements IDAO<Commentaire> {
 
 				Commentaire commentaire = new Commentaire(afficher.getInt("id_commentaire"), afficher.getString("commentaire"),
 						afficher.getInt("note"), produit, utilisateur);
-				return commentaire;
+				ListCommentaire.add(commentaire);
 			}
+			return ListCommentaire;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
