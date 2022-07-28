@@ -21,6 +21,14 @@ public Contact(int id_contact, String sujet, String message, boolean etat_contac
 	this.utilisateur = utilisateur;
 	this.email = email;
 }
+public Contact(String sujet, String message, boolean etat_contact, Utilisateur utilisateur,
+		String email) {
+	this.sujet = sujet;
+	this.message = message;
+	this.etat_contact = etat_contact;
+	this.utilisateur = utilisateur;
+	this.email = email;
+}
 
 
 public int getId_contact() {
