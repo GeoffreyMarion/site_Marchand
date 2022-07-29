@@ -88,10 +88,13 @@
 
 		<c:if test="${id==null}">
 			<c:if test="${idc==null}">
-			<div class="text-bg-dark p-2"><h4>Nos produits</h4> </div>
+				<div class="text-bg-dark p-2">
+					<h4>Nos produits</h4>
+				</div>
 				<c:if test="${ListProduit.size()==0}">
 					<br>
-					<div class="alert alert-danger" role="alert">Il n'y a aucun produits qui correspond à votre recherche ${mot}</div>
+					<div class="alert alert-danger" role="alert">Il n'y a aucun
+						produits qui correspond à votre recherche ${mot}</div>
 				</c:if>
 			</c:if>
 		</c:if>
@@ -114,19 +117,18 @@
 						<li class="list-group-item bg-light">(${produit.stock}) en
 							stock</li>
 					</ul>
-					<div class="card-body bg-light" style="color: black">
-						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
-						<a
-							href="<%request.getContextPath(); %>product?id=${produit.id_produit}"
-							class="btn btn-dark btn-sm" style="margin: 0.3rem;">Voir
-							détail</a> <a href="#" class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
-							panier</a>
-							<form action="" name="favori" method="post">
-						<button class="btn btn-default" type="submit" form="favori">
-							<img src="icones/icon_loop.png" width="25" alt="favori" />
-						</button></form>
+					<div class="card-body text-bg-light d-flex flex-wrap">
+						<a href="product?id=${produit.id_produit}"
+							class="btn btn-dark btn-sm col-6" style="margin: 0.1rem;">Voir détail</a> 
+							<a href="products?fav=${produit.id_produit}" 
+							class="btn btn-dark btn-sm" role="button"
+							data-bs-toggle="button" style="margin: 0.1rem;"><img
+							alt="favori" src="icones/favori.png" style="height: 20"></a> 
+							<a href="products?pan=${produit.id_produit}" 
+							class="btn btn-dark btn-sm" role="button"
+							data-bs-toggle="button" style="margin: 0.1rem;"><img
+							alt="favori" src="icones/icon_basket3.png" style="height: 20"></a>
+
 					</div>
 				</div>
 			</c:forEach>
