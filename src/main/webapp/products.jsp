@@ -111,21 +111,26 @@
 						style="font-size: 0.7rem; font-weight: bold; text-align: right;">
 						<li class="list-group-item bg-light">${produit.sous_categorie.titre}</li>
 						<li class="list-group-item bg-light">${produit.prix}E</li>
-						<li class="list-group-item bg-light">(${produit.stock}) en stock</li>
+						<li class="list-group-item bg-light">(${produit.stock}) en
+							stock</li>
 					</ul>
 					<div class="card-body bg-light" style="color: black">
 						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
 							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
 						<a
 							href="<%request.getContextPath(); %>product?id=${produit.id_produit}"
-							class="btn btn-dark btn-sm"
-							style="margin: 0.3rem;">Voir détail</a> <a href="#"
-							class="btn btn-dark btn-sm" role="button" data-bs-toggle="button"
-							style="margin: 0.3rem;">Ajouter au panier</a>
+							class="btn btn-dark btn-sm" style="margin: 0.3rem;">Voir
+							détail</a> <a href="#" class="btn btn-dark btn-sm" role="button"
+							data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
+							panier</a>
+							<form action="" name="favori" method="post">
+						<button class="btn btn-default" type="submit" form="favori">
+							<img src="icones/icon_loop.png" width="25" alt="favori" />
+						</button></form>
 					</div>
 				</div>
 			</c:forEach>
-		
+
 		</div>
 
 	</div>

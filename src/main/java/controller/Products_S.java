@@ -51,7 +51,6 @@ public class Products_S extends HttpServlet {
 			request.setAttribute("idc",idc);
 			request.setAttribute("ListProduit",pDao.findByCat(idc));
 		} else if(request.getParameter("id") != null) {
-					System.out.println("within mon if" + request.getParameter("id")); 
 					response.sendRedirect(request.getContextPath()+"product?id="+request.getParameter("id"));
 				}
 		else {

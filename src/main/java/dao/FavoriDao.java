@@ -143,8 +143,9 @@ public class FavoriDao implements IDAO<Favori> {
 		return null;
 	}
 	
-	public Favori findByP(int id_produit) {
+	public ArrayList<Favori> findByP(int id_produit) {
 		ResultSet afficher = null;
+		ArrayList<Favori> ListFavori = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM favori INNER utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur"
@@ -165,8 +166,9 @@ public class FavoriDao implements IDAO<Favori> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Favori favori = new Favori(afficher.getInt("id_visite"), produit, utilisateur);
-				return favori;
+				ListFavori.add(favori);
 			}
+			return ListFavori;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
@@ -177,8 +179,9 @@ public class FavoriDao implements IDAO<Favori> {
 		return null;
 	}
 	
-	public Favori findByU(int id_utilisateur) {
+	public ArrayList<Favori> findByU(int id_utilisateur) {
 		ResultSet afficher = null;
+		ArrayList<Favori> ListFavori = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM favori INNER utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur"
@@ -199,8 +202,9 @@ public class FavoriDao implements IDAO<Favori> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Favori favori = new Favori(afficher.getInt("id_visite"), produit, utilisateur);
-				return favori;
+				ListFavori.add(favori);
 			}
+			return ListFavori;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
