@@ -49,7 +49,7 @@
 
 			<form method="post" class="mb-3 col-5" name="login" action="#">
 				<div class="mb-3">
-					<label for="" class="form-label"><b>Se Conneter</b></label>
+					<label for="" class="form-label"><b>Se Connecter</b></label>
 					<hr>
 				</div>
 				<c:if test="${messageconnexionno == false}">
