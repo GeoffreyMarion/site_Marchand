@@ -8,17 +8,16 @@
 				<a href="index"
 				class="pt-2" id="header_titre_site"><b>FNUC</b></a>
 			</a>
-
+			<div class="col-1"></div>
 
 			<ul
 				class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-				<li><a href="#" class="nav-link px-2 text-white"></a></li>
-				<li><a href="#" class="nav-link px-2 text-white"></a></li>
-				<li><a href="#" class="nav-link px-2 text-white"></a></li>
-				<li><a href="/site_Marchand/products"
-					class="nav-link px-2 text-white" id="header_produits"><b>Nos
+			<li><a href="contact" class="nav-link px-2 text-white"
+				id="header_contact"><b>Nous contacter</b></a></li>
+			<li><a href="/site_Marchand/products"
+				class="nav-link px-2 text-white" id="header_produits"><b>Nos
 						Produits</b></a></li>
-			</ul>
+		</ul>
 
 			<p class="pt-4"><b>Nos Categories:</b></p>
 
@@ -46,21 +45,23 @@
 						class="form-control form-control-dark text-black pt-2"
 						placeholder="Rechercher..." aria-label="Search" name="mot">
 				</form>
-				<button class="btn btn-default" type="submit" form="recherche">
+				<button class="btn btn-sm" type="submit" form="recherche">
 						<img src="icones/icon_loop.png" width="25" alt="Loop" />
 					</button>
 			</div>
 
 			<div class="text-end">
-				<!-- <button type="button" class="btn btn-outline-light me-2">Login</button> -->
-				<!-- 					<button type="button" class="btn btn-warning">Sign-up</button>
- -->
 				<div
 					class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pt-2">
 					<a href="${index}"
 						class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
 						id="header_icon_basket"> <img alt=""
-						src="icones/icon_basket3.png" height="50px">
+						src="icones/icon_basket3.png" height="40px">
+					</a>
+					<a href="favori"
+						class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+						id="header_icon_basket"> <img alt=""
+						src="icones/favori.png" height="40px">
 					</a>
 
 					<div class="tb_right_pull-right">
@@ -70,7 +71,7 @@
 							%>
 							<li>
 								<div class="tbr-info">
-									<a href="login"><span>Inscription / connexion</span></a>
+									<a href="login"><span><b>Inscription / connexion</b></span></a>
 								</div>
 							</li>
 							<%
@@ -78,7 +79,7 @@
 							%>
 							<li>
 								<div class="tbr-info">
-									<a href="#"><span>Bonjour ${prenomuser} ${nomuser}</span></a>
+									<a href="#"><span><b>Bonjour ${prenomuser} ${nomuser}</b></span></a>
 								</div>
 							</li>
 							<li><a href="${index}"
@@ -87,7 +88,7 @@
 									<!-- 										<a href="#"><span>Mon compte</span></a> --> <!-- 									</div> --></li>
 							<li>
 								<div class="tbr-info">
-									<a href="deconnexion"><span>D&eacute;connexion </span></a>
+									<a href="deconnexion"><span><b>D&eacute;connexion </b></span></a>
 								</div>
 							</li>
 							<%

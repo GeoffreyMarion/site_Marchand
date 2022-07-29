@@ -9,7 +9,10 @@
 <body>
 <c:import url="header" />
 	<div class="container">
-	
+	<br>
+	<div class="text-bg-dark p-2">
+				<h4>Vos favoris</h4>
+			</div>
 	<div class="d-flex flex-wrap">
 			<c:forEach items="${ListFavori}" var="Favori">
 				<div class="card mb-3" style="width: 14rem; margin: 1rem;">

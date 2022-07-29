@@ -38,8 +38,8 @@ public class FavoriDao implements IDAO<Favori> {
 		ArrayList<Favori> ListFavori = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM favori INNER utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit"
+					"SELECT* FROM favori INNER JOIN utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie");
 			afficher = statement.executeQuery();
@@ -113,8 +113,8 @@ public class FavoriDao implements IDAO<Favori> {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM favori INNER utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit"
+					"SELECT* FROM favori INNER JOIN utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_favori=?");
 			statement.setInt(1, id);
@@ -148,8 +148,8 @@ public class FavoriDao implements IDAO<Favori> {
 		ArrayList<Favori> ListFavori = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM favori INNER utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit"
+					"SELECT* FROM favori INNER JOIN utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_produit=?");
 			statement.setInt(1, id_produit);
@@ -184,8 +184,8 @@ public class FavoriDao implements IDAO<Favori> {
 		ArrayList<Favori> ListFavori = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM favori INNER utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit"
+					"SELECT* FROM favori INNER JOIN utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_utilisateur=?");
 			statement.setInt(1, id_utilisateur);
