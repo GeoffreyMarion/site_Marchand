@@ -16,6 +16,12 @@ public Favori(int id_favori, Produit produit, Utilisateur utilisateur) {
 	this.utilisateur = utilisateur;
 }
 
+public Favori(Produit produit, Utilisateur utilisateur) {
+	super();
+	this.produit = produit;
+	this.utilisateur = utilisateur;
+}
+
 public Produit getProduit() {
 	return produit;
 }
