@@ -128,7 +128,6 @@
 							class="btn btn-dark btn-sm" role="button"
 							data-bs-toggle="button" style="margin: 0.1rem;"><img
 							alt="favori" src="icones/icon_basket3.png" style="height: 20"></a>
-
 					</div>
 				</div>
 			</c:forEach>
