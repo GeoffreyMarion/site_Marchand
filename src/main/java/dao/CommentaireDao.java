@@ -40,8 +40,8 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		ArrayList<Commentaire> ListCommentaire = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM commentaire INNER utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit"
+					"SELECT* FROM commentaire INNER JOIN utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie");
 			afficher = statement.executeQuery();
@@ -67,7 +67,7 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		return ListCommentaire;
 	}
 
-	public Commentaire update(String commentaire,int note,Produit produit, Utilisateur utilisateur,int id) {
+	public Commentaire update(String commentaire, int note, Produit produit, Utilisateur utilisateur, int id) {
 		Commentaire commentaire_ = null;
 		if (findById(id) != null) {
 			commentaire_ = findById(id);
@@ -99,7 +99,8 @@ public class CommentaireDao implements IDAO<Commentaire> {
 	public boolean remove(int id) {
 		if (findById(id) != null) {
 			try {
-				PreparedStatement statement = connection.prepareStatement("DELETE FROM commentaire WHERE id_commentaire=?");
+				PreparedStatement statement = connection
+						.prepareStatement("DELETE FROM commentaire WHERE id_commentaire=?");
 				statement.setInt(1, id);
 				statement.executeUpdate();
 				System.out.println("Remove de l'utilisateur id=" + id + " fait\n----------------");
@@ -119,8 +120,8 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM commentaire INNER utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit"
+					"SELECT* FROM commentaire INNER JOIN utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_commentaire=?");
 			statement.setInt(1, id);
@@ -149,14 +150,14 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		}
 		return null;
 	}
-	
+
 	public ArrayList<Commentaire> findByP(int id_produit) {
 		ResultSet afficher = null;
 		ArrayList<Commentaire> ListCommentaire = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM commentaire INNER utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit"
+					"SELECT* FROM commentaire INNER JOIN utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_produit=?");
 			statement.setInt(1, id_produit);
@@ -172,8 +173,8 @@ public class CommentaireDao implements IDAO<Commentaire> {
 								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
-				Commentaire commentaire = new Commentaire(afficher.getInt("id_commentaire"), afficher.getString("commentaire"),
-						afficher.getInt("note"), produit, utilisateur);
+				Commentaire commentaire = new Commentaire(afficher.getInt("id_commentaire"),
+						afficher.getString("commentaire"), afficher.getInt("note"), produit, utilisateur);
 				ListCommentaire.add(commentaire);
 			}
 			return ListCommentaire;
@@ -186,13 +187,13 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		}
 		return null;
 	}
-	
+
 	public Commentaire findByU(int id_utilisateur) {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM commentaire INNER utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit"
+					"SELECT* FROM commentaire INNER JOIN utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_produit=?");
 			statement.setInt(1, id_utilisateur);
@@ -208,8 +209,8 @@ public class CommentaireDao implements IDAO<Commentaire> {
 								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
-				Commentaire commentaire = new Commentaire(afficher.getInt("id_commentaire"), afficher.getString("commentaire"),
-						afficher.getInt("note"), produit, utilisateur);
+				Commentaire commentaire = new Commentaire(afficher.getInt("id_commentaire"),
+						afficher.getString("commentaire"), afficher.getInt("note"), produit, utilisateur);
 				return commentaire;
 			}
 		} catch (SQLException e) {
@@ -217,7 +218,8 @@ public class CommentaireDao implements IDAO<Commentaire> {
 			e.printStackTrace();
 		}
 		if (afficher == null) {
-			System.err.println("Aucun produit avec une id_sous_categorie="+id_utilisateur + " ne se trouve pas dans la base de données\n----------------");
+			System.err.println("Aucun produit avec une id_sous_categorie=" + id_utilisateur
+					+ " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
 	}

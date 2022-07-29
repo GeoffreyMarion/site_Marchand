@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CommentaireDao;
 import dao.ProduitDao;
 import dao.Sous_categorieDao;
+import model.Commentaire;
 import model.Produit;
 import model.Sous_categorie;
 
@@ -23,6 +25,7 @@ public class SingleProduct_S extends HttpServlet {
 
 	ProduitDao produitDao = new ProduitDao();
 	Sous_categorieDao sousCategorieDao = new Sous_categorieDao();
+	CommentaireDao commentaireDao = new CommentaireDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -54,10 +57,16 @@ public class SingleProduct_S extends HttpServlet {
 					sousCategorieProduitsApresFiltre.add(produitOriginalList);
 				}
 			}
+			
+			ArrayList<Commentaire> commentairesFromProduit = commentaireDao.findByP(idAsInt);
+//			System.out.println("commentairesFromProduit: " + commentairesFromProduit);
+			
 			request.setAttribute("id",idAsInt);
 			request.setAttribute("produit", produit);
 			request.setAttribute("produitsSimilaires", sousCategorieProduitsApresFiltre);
 			request.setAttribute("sousCategorieTitre", sousCategorieTitre);
+			request.setAttribute("commentairesFromProduit", commentairesFromProduit);
+
 		}
 		request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
 	}
