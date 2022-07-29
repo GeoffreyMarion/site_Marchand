@@ -1,27 +1,23 @@
 <header class="p-3 bg-dark text-white sticky-top">
-<!-- 	<div class="container"> -->
-		<div
-			class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-			<a href="${index}"
-				class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			
+			<a href="index"
+				class="d-flex align-items-center justify-content-center col-1">
 				<img alt="" src="images/logo.png" height="40px">
-				<a href="index"
-				class="pt-2" id="header_titre_site"><b>FNUC</b></a>
 			</a>
-			<div class="col-1"></div>
 
-			<ul
-				class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+			<ul class="d-flex nav align-items-center col-3 me-lg-auto">
 			<li><a href="contact" class="nav-link px-2 text-white"
-				id="header_contact"><b>Nous contacter</b></a></li>
+				id="header_contact"><b>Nous Contacter</b></a></li>
 			<li><a href="/site_Marchand/products"
 				class="nav-link px-2 text-white" id="header_produits"><b>Nos
 						Produits</b></a></li>
 		</ul>
 
-			<p class="pt-4"><b>Nos Categories:</b></p>
+		<div class="d-flex align-items-center">
+		<p class=""><b>Nos Categories:</b></p>
 
-			<ul class="list-unstyled ps-0 d-flex justify-content-center pt-4 ">
+			<ul class="list-unstyled ps-0 d-flex justify-content-center">
 				<c:forEach items="${ listeCategories}" var="categorie">
 					<div class="dropdown">
 						<button
@@ -38,32 +34,32 @@
 					</div>
 				</c:forEach>
 			</ul>
+			</div>
 
-			<div class="d-flex pt-4" id="header_form_search">
+			<div class="d-flex" id="header_form_search">
 				<form class="col-9 col-lg-auto" role="search" method="post" action="products" id="recherche">
 					<input type="search"
-						class="form-control form-control-dark text-black pt-2"
+						class="form-control form-control-dark text-black"
 						placeholder="Rechercher..." aria-label="Search" name="mot">
 				</form>
 				<button class="btn btn-sm" type="submit" form="recherche">
 						<img src="icones/icon_loop.png" width="25" alt="Loop" />
 					</button>
 			</div>
-
-			<div class="text-end">
-				<div
-					class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start pt-2">
-					<a href="${index}"
-						class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+			
+			<div class="d-flex align-items-center">
+			<a href="index"
 						id="header_icon_basket"> <img alt=""
 						src="icones/icon_basket3.png" height="40px">
 					</a>
 					<a href="favori"
-						class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
 						id="header_icon_basket"> <img alt=""
 						src="icones/favori.png" height="40px">
 					</a>
-
+			</div>
+			
+			<div class="text-end">
+				<div class="d-flex align-items-center">
 					<div class="tb_right_pull-right">
 						<ul class="header_list_user">
 							<%
@@ -71,24 +67,25 @@
 							%>
 							<li>
 								<div class="tbr-info">
-									<a href="login"><span><b>Inscription / connexion</b></span></a>
+									<a href="login" style="font-size: 0.7rem"><span><b>Inscription / connexion</b></span></a>
 								</div>
 							</li>
 							<%
 							} else {
 							%>
 							<li>
-								<div class="tbr-info">
-									<a href="#"><span><b>Bonjour ${prenomuser} ${nomuser}</b></span></a>
+								<div class="tbr-info align-items-center">
+									<a href="#" style="font-size: 0.7rem"><span><b>Bonjour ${prenomuser} ${nomuser}</b></span></a>
 								</div>
 							</li>
-							<li><a href="${index}"
-								class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-									<img alt="" src="icones/icon_person.png" height="40px"> <!-- 									<div class="tbr-info"> -->
-									<!-- 										<a href="#"><span>Mon compte</span></a> --> <!-- 									</div> --></li>
 							<li>
-								<div class="tbr-info">
-									<a href="deconnexion"><span><b>D&eacute;connexion </b></span></a>
+							<div class="tbr-info align-items-center">
+									<a href="#" style="font-size: 0.7rem"><span><b>Mon compte</b></span></a>
+								</div>
+								</li>
+							<li>
+								<div class="tbr-info align-items-center">
+									<a href="deconnexion" style="font-size: 0.7rem"><span><b>D&eacute;connexion </b></span></a>
 								</div>
 							</li>
 							<%
@@ -99,5 +96,4 @@
 				</div>
 			</div>
 		</div>
-<!-- 	</div> -->
 </header>
