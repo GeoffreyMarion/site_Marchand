@@ -108,5 +108,6 @@ Produit produit = (Produit) request.getAttribute("produit");
 		</div>
 
 	</div>
+	    <script src="./js/handleCart.js"></script>
 </body>
 </html>
