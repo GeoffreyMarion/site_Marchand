@@ -25,7 +25,7 @@
 				<img alt=""src="icones/favori.png" height="35px" class="me-2"><h4>Mes produits favoris</h4>
 			</div>
 	<div class="d-flex flex-wrap">
-			<c:forEach items="${ListFavori}" var="Favori">
+			<c:forEach items="${ListFavori}" var="favori">
 				<div class="card mb-3" style="width: 14rem; margin: 1rem;">
 					<div class="card-header text-bg-dark">
 						<b>${favori.produit.titre_produit}</b>
@@ -43,11 +43,21 @@
 					</ul>
 					<div class="card-body bg-light" style="color: black">
 						<a
-							href="<%request.getContextPath(); %>product?id=${favori.produit.id_produit}"
+							href="product?id=${favori.produit.id_produit}"
 							class="btn btn-dark btn-sm"
-							style="margin: 0.3rem;">Voir détail</a> <a href="#"
-							class="btn btn-dark btn-sm" role="button" data-bs-toggle="button"
-							style="margin: 0.3rem;">Ajouter au panier</a>
+							style="margin: 0.2rem;">Voir détail</a> 
+							
+							<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="favori?del=${favori.id_favori}"><img
+								alt="delete" src="icones/favori.png" style="height: 18"></a>
+						</button>
+							
+							<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="favori?pan=${favori.produit.id_produit}"><img
+								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+						</button>
 					</div>
 				</div>
 			</c:forEach>
