@@ -51,22 +51,15 @@
 						class="form-label">Message</label> <textarea class="form-control"
 							id="InputMessage" name="message" style="height: 30vh"></textarea></li>
 				</ul>
-			
+				<div class="card-body text-bg-light">
+				<button type="submit" class="btn btn-dark"
+					name="send">Envoyer</button>
+					</div>
 			</form>
-			<c:if test="${messageok == false}">
+		</div>
+		<c:if test="${messageok == false}">
 					<div class="alert alert-danger" role="alert">Adresse mail,sujet ou message vide</div>
 				</c:if>
-			<div class="card-body text-bg-light">
-				
-				<button type="submit" class="btn btn-dark btn-sm"
-							style="margin: 0.2rem;">Envoyer
-							<a href="contact?send=true"></a>
-						</button>
-				
-<!-- 				<button type="submit" class="btn btn-dark" formtarget="contact" -->
-<!-- 					name="send">Envoyer</button> -->
-			</div>
-		</div>
 	</div>
 
 </body>
