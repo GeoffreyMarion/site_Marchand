@@ -17,7 +17,7 @@ public class RechercheDao implements IDAO<Recherche>{
 	@Override
 	public boolean create(Recherche recherche) {
 		try {
-			PreparedStatement statement = connection.prepareStatement("Insert INTO recherche(id_utilisateur,mot_cle,date_recherche) VALUES (?,?,now())");
+			PreparedStatement statement = connection.prepareStatement("Insert INTO recherche(fk_id_utilisateur,mot_cle,date_recherche) VALUES (?,?,now())");
 			statement.setInt(1,recherche.getUtilisateur().getId_utilisateur());
 			statement.setString(2,recherche.getMot_cle());
 			statement.executeUpdate();
@@ -122,7 +122,7 @@ public class RechercheDao implements IDAO<Recherche>{
 	public Recherche findByIdU(int id_utilisateur) {
 		ResultSet afficher=null;
 		try {
-			PreparedStatement statement = connection.prepareStatement("SELECT* FROM recherche INNER JOIN utilisateur ON recherche.fk_id_utilisateur=utilisateur.id_utilisateur WHERE id_utilisateur=?");
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM recherche INNER JOIN utilisateur ON recherche.fk_id_utilisateur=utilisateur.id_utilisateur WHERE fk_id_utilisateur=?");
 			statement.setInt(1,id_utilisateur);
 			afficher =statement.executeQuery();
 			while (afficher.next()) {

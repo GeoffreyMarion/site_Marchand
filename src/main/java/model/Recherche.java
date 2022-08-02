@@ -18,6 +18,11 @@ public class Recherche {
 		this.mot_cle = mot_cle;
 		this.date_recherche = date_recherche;
 	}
+	
+	public Recherche(Utilisateur utilisateur, String mot_cle) {
+		this.utilisateur = utilisateur;
+		this.mot_cle = mot_cle;
+	}
 
 	public int getId_recherche() {
 		return id_recherche;

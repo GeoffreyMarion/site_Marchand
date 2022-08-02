@@ -54,7 +54,7 @@
 					</a>
 					<c:if test="${isConnected==true}">
 					<a href="favori"
-						id="header_icon_basket"> <img alt=""
+						id="header_icon_favori"> <img alt=""
 						src="icones/favori.png" height="40px">
 					</a>
 					</c:if>

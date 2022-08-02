@@ -10,10 +10,12 @@ import javax.servlet.http.HttpSession;
 
 import dao.FavoriDao;
 import dao.ProduitDao;
+import dao.RechercheDao;
 import dao.SlideDao;
 import dao.Sous_categorieDao;
 import model.Favori;
 import model.Produit;
+import model.Recherche;
 import model.Utilisateur;
 
 /**
@@ -26,6 +28,7 @@ public class Products_S extends HttpServlet {
     Sous_categorieDao s_cDao= new Sous_categorieDao();
     SlideDao slideDao = new SlideDao();
     FavoriDao fDao = new FavoriDao();
+    RechercheDao rDao = new RechercheDao();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -61,6 +64,12 @@ public class Products_S extends HttpServlet {
 		else if (request.getParameter("mot") != null) {
 			String mot = request.getParameter("mot");
 			request.setAttribute("mot",mot);
+			Utilisateur u = new Utilisateur();
+			u.setId_utilisateur((int)session.getAttribute("iduser"));
+			Recherche r = new Recherche();
+			r.setUtilisateur(u);
+			r.setMot_cle(mot);
+			rDao.create(r);
 			request.setAttribute("ListProduit",pDao.findByMot(mot));
 		}
 		else if (request.getParameter("idCat") != null) {

@@ -41,34 +41,31 @@ public class Contact_S extends HttpServlet {
 		
 		if(session.getAttribute("nomuser")=="" || session.getAttribute("nomuser")==null) {
 				utilisateur.setId_utilisateur(1);
-				System.out.println("invité");
 			}
 			else {
 				utilisateur=UDao.findById((int)session.getAttribute("iduser"));
 				String mail=utilisateur.getEmail();
 				request.setAttribute("mail", mail);
-				System.out.println(utilisateur);
 			}
 
-		if (request.getParameter("send") == "true") {
-//		if (request.getParameter("send") != null) {
+		if (request.getParameter("send") != null) {
 			String sujet = request.getParameter("sujet");
 			String email = request.getParameter("email");
 			String message = request.getParameter("message");
 			Contact contact = new Contact(sujet,message,false,utilisateur,email);
 			messageok = CDao.create(contact);
-			System.out.println("contact créé");
 			request.setAttribute("messageok", messageok);
-			response.sendRedirect(request.getContextPath()+"contact?send="+request.getParameter("send"));
+			response.sendRedirect("index");
 		}
+		else {
 			request.getRequestDispatcher("contact.jsp").forward(request, response);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("post");
 		doGet(request, response);
 	}
 

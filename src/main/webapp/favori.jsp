@@ -50,7 +50,7 @@
 							<button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
 							<a href="favori?del=${favori.id_favori}"><img
-								alt="delete" src="icones/favori.png" style="height: 18"></a>
+								alt="delete" src="icones/favorisup.png" style="height: 18"></a>
 						</button>
 							
 							<button type="submit" class="btn btn-dark btn-sm"
