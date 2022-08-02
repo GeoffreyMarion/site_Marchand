@@ -63,14 +63,16 @@ public class Products_S extends HttpServlet {
 		}
 		else if (request.getParameter("mot") != null) {
 			String mot = request.getParameter("mot");
-			request.setAttribute("mot",mot);
+			request.setAttribute("mot", mot);
 			Utilisateur u = new Utilisateur();
-			u.setId_utilisateur((int)session.getAttribute("iduser"));
+			u.setId_utilisateur((int) session.getAttribute("iduser"));
 			Recherche r = new Recherche();
 			r.setUtilisateur(u);
 			r.setMot_cle(mot);
-			rDao.create(r);
-			request.setAttribute("ListProduit",pDao.findByMot(mot));
+			if (!(mot.equals(""))) {
+				rDao.create(r);
+			}
+			request.setAttribute("ListProduit", pDao.findByMot(mot));
 		}
 		else if (request.getParameter("idCat") != null) {
 			int idc = Integer.parseInt(request.getParameter("idCat"));
