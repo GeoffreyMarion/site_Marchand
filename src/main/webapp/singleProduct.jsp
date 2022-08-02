@@ -22,25 +22,56 @@ Produit produit = (Produit) request.getAttribute("produit");
 <head>
 <meta charset="UTF-8">
 <title>produits</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
-	crossorigin="anonymous">
 
+<!-- <link -->
+<!-- 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" -->
+<!-- 	rel="stylesheet" -->
+<!-- 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" -->
+<!-- 	crossorigin="anonymous"> -->
+
+<!-- <script -->
+<!-- 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" -->
+<!-- 	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" -->
+<!-- 	crossorigin="anonymous"></script> -->
+
+<!-- <link rel="stylesheet" type="text/css" href="CSS/styles.css" -->
+<!-- 	media="screen" /> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" -->
+<!-- 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" -->
+<!-- 	crossorigin="anonymous"></script> -->
+
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous" />
 <script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+	integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+	integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
 	crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+
 </head>
-<body>
+<body class="has-drawer">
 	<c:import url="header" />
+	<div class="container_btn-cart">
+		<button
+			class="btn btn-outline-dark mt-5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         btn-cart"
+			type="button" onclick="openSideDrawer()">
+			Voir mon panier
+		</button>
+	</div>
 	<div class="container">
 		<br />
 
@@ -73,19 +104,19 @@ Produit produit = (Produit) request.getAttribute("produit");
 						</ul>
 					</div>
 
-						<c:if test="${isConnected==true}">
-							<button type="submit" class="btn btn-dark btn-sm"
-								style="margin: 0.2rem;">
-								<a href="product?fav=${produit.id_produit}"><img
-									alt="favori" src="icones/favori.png" style="height: 18"></a>
-							</button>
-						</c:if>
-
+					<c:if test="${isConnected==true}">
 						<button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
-							<a href="product?pan=${produit.id_produit}"><img
-								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+							<a href="product?fav=${produit.id_produit}"><img alt="favori"
+								src="icones/favori.png" style="height: 18"></a>
 						</button>
+					</c:if>
+
+					<button type="submit" class="btn btn-dark btn-sm btn_add-to-cart-2"
+						style="margin: 0.2rem;">
+						<a href='#' onclick="openSideDrawer()"><img alt="favori"
+							src="icones/icon_basket3.png" style="height: 18"></a>
+					</button>
 				</div>
 			</div>
 		</div>
@@ -115,8 +146,7 @@ Produit produit = (Produit) request.getAttribute("produit");
 							stock</li>
 					</ul>
 					<div class="card-body" style="color: black">
-						<a
-							href="product?id=${produitSimilaire.id_produit}"
+						<a href="product?id=${produitSimilaire.id_produit}"
 							class="btn btn-dark btn-sm" style="margin: 0.2rem;">Voir
 							détail</a>
 
@@ -130,15 +160,70 @@ Produit produit = (Produit) request.getAttribute("produit");
 
 						<button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
-							<a href="product?pan=${produitSimilaire.id_produit}" class="btn_add-to-cart"><img
-								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+							<%-- 		<a href="product?pan=${produitSimilaire.id_produit}"
+								class="btn_add-to-cart"><img alt="favori"
+								src="icones/icon_basket3.png" style="height: 18"></a> --%>
+
+							<a href='#' class="btn_add-to-cart"><img alt="favori"
+								src="icones/icon_basket3.png" style="height: 18"
+								onclick="openSideDrawer()"></a>
+
+							<!-- <form method="POST">
+								<input type="hidden" name="pqte" value="1" class="form_hidden">
+								<button class="btn btn-dark btn-sm" type="submit" name="padd">
+									<img alt="favori" src="icones/icon_basket3.png"
+										style="height: 18">
+								</button>
+							</form> -->
+
 						</button>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 
+		<!-- MODAL CLICK ON BTN Voir mon panier -->
+		<!-- SIDE DRAWER -->
+		<div id="side-drawer" class="position-fixed">
+			<div class="h-100 bg-white">
+				<div class="p-4 bg-light">
+					<h2>Mon panier</h2>
+					<div class="container_total-and-btn-valider">
+						<!-- <a href="#"> -->
+						<h5 class="text-total">Total: €</h5>
+					</div>
+				</div>
+				<!-- CART DETAILS -->
+				<div class="container container_details-cart">
+					<h6>Désignation:</h6>
+					<button class="btn btn-outline-danger right-side-drawer_title"
+						onclick="">
+						Supprimer
+						<!-- <h3 class="right-side-drawer_title">Mon panier</h3> -->
+					</button>
+				</div>
+				<!-- END OF CART DETAILS -->
+				<!-- <ul class="list-group" onclick="closeSideDrawer()">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action border-0 rounded-0 active"
+            >Link</a
+          >
+          <a
+            href="#"
+            class="list-group-item list-group-item-action border-0 rounded-0"
+            >Link</a
+          >
+        </ul> -->
+			</div>
+		</div>
+		<div id="side-drawer-void" class="position-fixed d-none"
+			onclick="closeSideDrawer()"></div>
+		<!-- END OF SIDE DRAWER -->
+		<!-- END OF MODAL CLICK ON BTN Voir mon panier -->
+
 	</div>
+	<script src="./js/handleDrawer.js"></script>
 	<script src="js/handleCart.js"></script>
 </body>
 </html>

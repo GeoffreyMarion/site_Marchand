@@ -87,6 +87,15 @@ public class SingleProduct_S extends HttpServlet {
 			request.setAttribute("commentairesFromProduit", commentairesFromProduit);
 
 		}
+		
+		//AJOUTER AU PANIER
+		if(request.getParameter("padd")!=null ) {
+			
+//			HttpSession session = request.getSession( true );
+			
+			int qte=Integer.valueOf(request.getParameter("pqte"));
+		
+			}	
 		request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
 	}
 

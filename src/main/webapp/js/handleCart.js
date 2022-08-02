@@ -5,6 +5,7 @@ $(document).ready(function () {
   console.log("ready", ready);
     console.log("productsAddedToCart", productsAddedToCart);
           selectBtns(productsAddedToCart);
+          selectPrincipalBtn(productsAddedToCart);
 });
 
 function selectBtns(productsAddedToCart) {
@@ -13,57 +14,88 @@ function selectBtns(productsAddedToCart) {
   btns_addToCart.forEach((element) => {
     console.log(element.id);
     element.addEventListener("click", function () {
-      console.log("clicked element", element.parentNode);
-      console.log("clicked element.firstChild.nextElementSibling.href", element.parentNode.firstChild.nextElementSibling.href);
-      addProductToCart(productsAddedToCart, element.parentNode.firstChild.nextElementSibling.href);
-      productsAddedToCart.push(element.parentNode.firstChild.nextElementSibling.href);
+      console.log("clicked element", element.parentNode.parentNode.parentNode);
+      addProductToCart(productsAddedToCart, element.parentNode.parentNode.parentNode);
     });
   });
 }
 
-function addProductToCart(productsAddedToCart, productURI) {
+function selectPrincipalBtn(productsAddedToCart) {
+  var btn_addPrincipalToCart = document.querySelector(".btn_add-to-cart-2");
+  console.log("btn_addPrincipalToCart", btn_addPrincipalToCart);
+    btn_addPrincipalToCart.addEventListener("click", function () {
+      console.log("clicked element within selectPrincipalBtn", btn_addPrincipalToCart.parentNode);
+      addPrincipalProductToCart(productsAddedToCart, btn_addPrincipalToCart.parentNode);
+    });
+}
+
+function addProductToCart(productsAddedToCart, product) {
     reinitiateDisplayCart();
-  console.log("productsAddedToCart within addProductToCart ", productsAddedToCart);
-  console.log("productURI within addProductToCart ", productURI);
+//  console.log("productsAddedToCart within addProductToCart ", productsAddedToCart);
+  console.log("product within addProductToCart ", product);
+//    console.log("product.firstChild.nextElementSibling.firstChild.nextElementSibling.innerHTML within addProductToCart ", product.firstChild.nextElementSibling.firstChild.nextElementSibling.innerHTML);
+    let productTitle = product.firstChild.nextElementSibling.firstChild.nextElementSibling.innerHTML;
+//      console.log("productTitle:  ", productTitle);
+//            console.log("///////////////////////////////////////////");
+//          console.log("product.firstChild.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.currentSrc within addProductToCart ", product.firstChild.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.currentSrc);
+let productImg = product.firstChild.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.currentSrc;
+//      console.log("productImg:  ", productImg);
+//                  console.log("///////////////////////////////////////////");
+//          console.log("product.firstChild.nextElementSibling.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.nextElementSibling.innerHTML within addProductToCart ", product.firstChild.nextElementSibling.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.nextElementSibling.innerHTML);
+let productPrice = product.firstChild.nextElementSibling.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.nextElementSibling.innerHTML;
+//      console.log("productPrice:  ", productPrice);
+let productFormatted = {};
+productFormatted.title = productTitle;
+productFormatted.img = productImg;
+productFormatted.price = productPrice;
+
+if(!isPresent(productsAddedToCart, productFormatted)) {
+	productsAddedToCart.push(productFormatted);
+}
+//      console.log("productsAddedToCart:  ", productsAddedToCart);//      
+      displayCart(productsAddedToCart);
+}
+
+function addPrincipalProductToCart(productsAddedToCart, product) {
+    reinitiateDisplayCart();
+      console.log("product within addPrincipalProductToCart ", product);
+    console.log("product.firstChild.nextElementSibling ", product.firstChild.nextElementSibling);
+let productTitle = product.firstChild.nextElementSibling.firstChild.nextElementSibling.innerHTML;
+      console.log("productTitle: ", productTitle);
+let productImg= product.parentNode.firstChild.nextElementSibling.firstChild.nextElementSibling.src;
+      console.log("productImg: ", productImg);
+let productPrice =product.firstChild.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.firstChild.nextElementSibling.nextElementSibling.innerHTML;
+      console.log("productPrice: ", productPrice);
+      let productFormatted = {};
+productFormatted.title = productTitle;
+productFormatted.img = productImg;
+productFormatted.price = productPrice;
+if(!isPresent(productsAddedToCart, productFormatted)) {
+	productsAddedToCart.push(productFormatted);
+}
+      displayCart(productsAddedToCart);
+
 }
 
 function displayCart(productsAddedToCart) {
   console.log("productsAddedToCart within displayCart", productsAddedToCart);
   reinitiateDisplayCart();
-
+  
   let style = "";
   for (var i = 0; i < productsAddedToCart.length; i++) {
-    var product_title = productsAddedToCart[i][0];
-    var product_price = productsAddedToCart[i][1];
+    var product_title = productsAddedToCart[i].title;
+        var product_img = productsAddedToCart[i].img;
+    var product_price = productsAddedToCart[i].price;
     style += "<div class='container_cart-designation-btn_supprimer-price'>";
     style += "<div class='container_cart-designation-btn_supprimer'>";
     style += style += "<h6>Désignation:</h6>";
     style += "<p>" + product_title + "</p>";
-    style += "</div>";
+      style += style += "<img src=" +  product_img + " class='sidebar_img'>";
+//            style += style += "<h5>" + product_price + "</h5>";
+//    style += "</div>";
     style += "<a href='#' class='btn btn-danger btn_supprimer'>Supprimer</a>";
-
-    // console.log("card_img_url", card_img_url);
-
-    // style += "<div class='container_card col-lg-3 col-md-6'>";
-    // style = style += " <div class='card' style='width: 18rem'>";
-
-    // style +=
-    //   "<img src='" +
-    //   card_img_url +
-    //   "' class='card-img-top card_img' alt='...'>";
-    // // style += "<li>";
-    // style += "<div class='card-body'>";
-    // style += "<h5 class='card-title'>" + card_title + "</h5>";
-
-    // style +=
-    //   "<p class='card-text'>'Some quick example text to build on the card title and make up the bulk of the card' + 's content.'</p>";
-    // style += "<h5>Prix: " + card_price + "€</h5>";
-    // style +=
-    //   "<a href='#' class='btn btn-primary btn_add-to-cart'>Ajouter au panier</a>";
-    // style += "</div>";
-    // style += "</div>";
-
     style += "</div>";
+        style += "</div>";
   }
 
   $(".container_details-cart").html(style);
@@ -77,31 +109,10 @@ function reinitiateDisplayCart() {
 function isPresent(array, element) {
   let isPresent = false;
   for (let i = 0; i < array.length; i++) {
-    if (array[i][0] == element[0]) {
+    if (array[i].title == element.title) {
       isPresent = true;
     }
   }
+  console.log("isPresent", isPresent);
   return isPresent;
-}
-
-function filterArray(array) {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i][0] == element[0]) {
-      isPresent = true;
-    }
-  }
-  return isPresent;
-}
-
-{
-  /* <div class="card" style="width: 18rem;">
-                    <img src="" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <h5>Prix: €</h5>
-                        <a href="#" class="btn btn-primary">Ajouter au panier</a>
-                    </div>
-                </div> */
 }
