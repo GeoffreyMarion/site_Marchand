@@ -37,31 +37,40 @@ Produit produit = (Produit) request.getAttribute("produit");
 <!-- CSS -->
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 </head>
 <body>
 	<c:import url="header" />
 	<div class="container">
-			<br />
+		<br />
 
 		<div class="card mb-3 col-7">
 			<div class="row ">
 				<div class="col-6">
 					<img src="${produit.image }" class="img-fluid rounded-start m-2"
-						alt="${produit.titre_produit }">
-						<br>
-					<div class="d-flex flex-wrap"><img src="${produit.image }" class="col-3 m-2"
-						alt="${produit.titre_produit }"><img src="${produit.image }"  class="col-3 m-2"
-						alt="${produit.titre_produit }"><img src="${produit.image }"  class="col-3 m-2"
-						alt="${produit.titre_produit }"></div>
+						alt="${produit.titre_produit }"> <br>
+					<div class="d-flex flex-wrap">
+						<img src="${produit.image }" class="col-3 m-2"
+							alt="${produit.titre_produit }"><img
+							src="${produit.image }" class="col-3 m-2"
+							alt="${produit.titre_produit }"><img
+							src="${produit.image }" class="col-3 m-2"
+							alt="${produit.titre_produit }">
+					</div>
 				</div>
 				<div class="col-6">
-					<div class="card-header text-bg-dark"><b>${produit.titre_produit }</b></div>
+					<div class="card-header text-bg-dark">
+						<b>${produit.titre_produit }</b>
+					</div>
 					<div class="card-body text-bg-light">
 						<ul class="list-group list-group-flush"
 							style="font-size: 1rem; font-weight: bold; text-align: right;">
 							<li class="list-group-item bg-light">${produit.sous_categorie.titre}</li>
 							<li class="list-group-item bg-light">${produit.prix}E</li>
-							<li class="list-group-item bg-light">(${produit.stock}) en stock</li>
+							<li class="list-group-item bg-light">(${produit.stock}) en
+								stock</li>
 							<li class="list-group-item bg-light"><p>${produit.description}</p></li>
 						</ul>
 					</div>
@@ -76,38 +85,38 @@ Produit produit = (Produit) request.getAttribute("produit");
 		</div>
 
 		<div class="d-flex flex-wrap">
-				<c:forEach items="${produitsSimilaires}" var="produitSimilaire">
-					<div class="card mb-3" style="width: 14rem; margin: 1rem;">
-						<div class="card-header text-bg-dark">
-							<b>${produitSimilaire.titre_produit}</b>
-						</div>
-
-						<div class="card-body">
-							<img class="card-img-top" src="${produitSimilaire.image}"
-								alt="${produitSimilaire.titre_produit}">
-						</div>
-						<ul class="list-group list-group-flush"
-							style="font-size: 0.7rem; font-weight: bold; text-align: right;">
-							<li class="list-group-item">${produitSimilaire.sous_categorie.titre}</li>
-							<li class="list-group-item">${produitSimilaire.prix}E</li>
-							<li class="list-group-item">(${produitSimilaire.stock}) en
-								stock</li>
-						</ul>
-						<div class="card-body" style="color: black">
-							<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
-							<a
-								href="<%request.getContextPath(); %>product?id=${produitSimilaire.id_produit}"
-								class="btn btn-dark btn-sm" style="margin: 0.3rem;">Voir
-								détail</a> <a href="#" class="btn btn-dark btn-sm" role="button"
-								data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
-								panier</a>
-						</div>
+			<c:forEach items="${produitsSimilaires}" var="produitSimilaire">
+				<div class="card mb-3" style="width: 14rem; margin: 1rem;">
+					<div class="card-header text-bg-dark">
+						<b>${produitSimilaire.titre_produit}</b>
 					</div>
-				</c:forEach>
+
+					<div class="card-body">
+						<img class="card-img-top" src="${produitSimilaire.image}"
+							alt="${produitSimilaire.titre_produit}">
+					</div>
+					<ul class="list-group list-group-flush"
+						style="font-size: 0.7rem; font-weight: bold; text-align: right;">
+						<li class="list-group-item">${produitSimilaire.sous_categorie.titre}</li>
+						<li class="list-group-item">${produitSimilaire.prix}E</li>
+						<li class="list-group-item">(${produitSimilaire.stock}) en
+							stock</li>
+					</ul>
+					<div class="card-body" style="color: black">
+						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
+							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
+						<a
+							href="<%request.getContextPath(); %>product?id=${produitSimilaire.id_produit}"
+							class="btn btn-dark btn-sm" style="margin: 0.3rem;">Voir
+							détail</a> <a href="#" class="btn btn-dark btn-sm btn_add-to-cart" role="button"
+							data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
+							panier</a>
+					</div>
+				</div>
+			</c:forEach>
 		</div>
 
 	</div>
-	    <script src="./js/handleCart.js"></script>
+	<script src="js/handleCart.js"></script>
 </body>
 </html>
