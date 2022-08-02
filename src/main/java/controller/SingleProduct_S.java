@@ -8,13 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CommentaireDao;
+import dao.FavoriDao;
 import dao.ProduitDao;
+import dao.SlideDao;
 import dao.Sous_categorieDao;
 import model.Commentaire;
+import model.Favori;
 import model.Produit;
 import model.Sous_categorie;
+import model.Utilisateur;
 
 /**
  * Servlet implementation class SingleProduct_S
@@ -26,6 +31,7 @@ public class SingleProduct_S extends HttpServlet {
 	ProduitDao produitDao = new ProduitDao();
 	Sous_categorieDao sousCategorieDao = new Sous_categorieDao();
 	CommentaireDao commentaireDao = new CommentaireDao();
+    FavoriDao fDao = new FavoriDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -41,6 +47,20 @@ public class SingleProduct_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		
+		if (request.getParameter("fav") != null) {
+			Utilisateur user = new Utilisateur();
+			user.setId_utilisateur((int)session.getAttribute("iduser"));
+			Produit prod = new Produit();
+			prod.setId_produit(Integer.parseInt(request.getParameter("fav")));
+			Favori favori = new Favori(prod,user);
+			if(fDao.findByU_P(prod.getId_produit(),user.getId_utilisateur()).isEmpty()) {
+				fDao.create(favori);
+			}
+		}
+		
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
 			Produit produit = produitDao.findById(idAsInt);
@@ -59,7 +79,6 @@ public class SingleProduct_S extends HttpServlet {
 			}
 			
 			ArrayList<Commentaire> commentairesFromProduit = commentaireDao.findByP(idAsInt);
-//			System.out.println("commentairesFromProduit: " + commentairesFromProduit);
 			
 			request.setAttribute("id",idAsInt);
 			request.setAttribute("produit", produit);

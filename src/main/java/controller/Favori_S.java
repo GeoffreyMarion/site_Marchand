@@ -31,9 +31,17 @@ public class Favori_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		HttpSession session = request.getSession();
-		if ((int)session.getAttribute("iduser") != 1) {
+		
+		if (request.getParameter("del") != null) {
+			int id = Integer.parseInt(request.getParameter("del"));
+			fDao.remove(id);
+			System.out.println("remove");
+			response.sendRedirect(request.getContextPath()+"favori?del="+request.getParameter("del"));
+		}
+		
+		if ((boolean)session.getAttribute("isConnected") == true) {
 			int id = (int)session.getAttribute("iduser");
 			request.setAttribute("id", id);
 			request.setAttribute("ListFavori", fDao.findByU(id));

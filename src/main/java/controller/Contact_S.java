@@ -19,6 +19,7 @@ import model.Utilisateur;
 @WebServlet("/contact")
 public class Contact_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	ContactDao CDao = new ContactDao(); 
 	UtilisateurDao UDao = new UtilisateurDao();
 	
@@ -49,8 +50,8 @@ public class Contact_S extends HttpServlet {
 				System.out.println(utilisateur);
 			}
 
-		
-		if (request.getParameter("send") != null) {
+		if (request.getParameter("send") == "true") {
+//		if (request.getParameter("send") != null) {
 			String sujet = request.getParameter("sujet");
 			String email = request.getParameter("email");
 			String message = request.getParameter("message");
@@ -58,7 +59,7 @@ public class Contact_S extends HttpServlet {
 			messageok = CDao.create(contact);
 			System.out.println("contact créé");
 			request.setAttribute("messageok", messageok);
-			response.sendRedirect("index");
+			response.sendRedirect(request.getContextPath()+"contact?send="+request.getParameter("send"));
 		}
 			request.getRequestDispatcher("contact.jsp").forward(request, response);
 	}
@@ -67,7 +68,6 @@ public class Contact_S extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		System.out.println("post");
 		doGet(request, response);
 	}

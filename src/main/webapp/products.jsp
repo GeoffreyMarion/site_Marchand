@@ -11,13 +11,11 @@
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 
-<!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 	crossorigin="anonymous"></script>
 
-<!-- CSS -->
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
 </head>
@@ -119,15 +117,22 @@
 					</ul>
 					<div class="card-body text-bg-light d-flex flex-wrap">
 						<a href="product?id=${produit.id_produit}"
-							class="btn btn-dark btn-sm col-6" style="margin: 0.1rem;">Voir détail</a> 
-							<a href="products?fav=${produit.id_produit}" 
-							class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.1rem;"><img
-							alt="favori" src="icones/favori.png" style="height: 20"></a> 
-							<a href="products?pan=${produit.id_produit}" 
-							class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.1rem;"><img
-							alt="favori" src="icones/icon_basket3.png" style="height: 20"></a>
+							class="btn btn-dark btn-sm col-6" style="margin: 0.2rem;">Voir détail</a>
+						
+						<c:if test="${isConnected==true}">
+						<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="products?fav=${produit.id_produit}"><img
+								alt="favori" src="icones/favori.png" style="height: 18"></a>
+						</button>
+						</c:if>
+
+						<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="products?pan=${produit.id_produit}"><img
+								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+						</button>
+
 					</div>
 				</div>
 			</c:forEach>

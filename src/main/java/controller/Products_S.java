@@ -48,8 +48,9 @@ public class Products_S extends HttpServlet {
 			Produit prod = new Produit();
 			prod.setId_produit(Integer.parseInt(request.getParameter("fav")));
 			Favori favori = new Favori(prod,user);
-			fDao.create(favori);
-			System.out.println("favori");
+			if(fDao.findByU_P(prod.getId_produit(),user.getId_utilisateur()).isEmpty()) {
+				fDao.create(favori);
+			}
 		}
 		if (request.getParameter("idSCat") != null) {
 			int id = Integer.parseInt(request.getParameter("idSCat"));
