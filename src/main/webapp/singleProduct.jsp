@@ -28,13 +28,11 @@ Produit produit = (Produit) request.getAttribute("produit");
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
 
-<!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
 	crossorigin="anonymous"></script>
 
-<!-- CSS -->
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -74,6 +72,20 @@ Produit produit = (Produit) request.getAttribute("produit");
 							<li class="list-group-item bg-light"><p>${produit.description}</p></li>
 						</ul>
 					</div>
+
+						<c:if test="${isConnected==true}">
+							<button type="submit" class="btn btn-dark btn-sm"
+								style="margin: 0.2rem;">
+								<a href="product?fav=${produit.id_produit}"><img
+									alt="favori" src="icones/favori.png" style="height: 18"></a>
+							</button>
+						</c:if>
+
+						<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="product?pan=${produit.id_produit}"><img
+								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+						</button>
 				</div>
 			</div>
 		</div>
@@ -103,14 +115,24 @@ Produit produit = (Produit) request.getAttribute("produit");
 							stock</li>
 					</ul>
 					<div class="card-body" style="color: black">
-						<%-- <a href="product?id=${produit.id_produit}" class="btn btn-dark btn-sm" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Voir détail</a>  --%>
 						<a
-							href="<%request.getContextPath(); %>product?id=${produitSimilaire.id_produit}"
-							class="btn btn-dark btn-sm" style="margin: 0.3rem;">Voir
-							détail</a> <a href="#" class="btn btn-dark btn-sm btn_add-to-cart" role="button"
-							data-bs-toggle="button" style="margin: 0.3rem;">Ajouter au
-							panier</a>
+							href="product?id=${produitSimilaire.id_produit}"
+							class="btn btn-dark btn-sm" style="margin: 0.2rem;">Voir
+							détail</a>
+
+						<c:if test="${isConnected==true}">
+							<button type="submit" class="btn btn-dark btn-sm"
+								style="margin: 0.2rem;">
+								<a href="product?fav=${produitSimilaire.id_produit}"><img
+									alt="favori" src="icones/favori.png" style="height: 18"></a>
+							</button>
+						</c:if>
+
+						<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="product?pan=${produitSimilaire.id_produit}" class="btn_add-to-cart"><img
+								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+						</button>
 					</div>
 				</div>
 			</c:forEach>
