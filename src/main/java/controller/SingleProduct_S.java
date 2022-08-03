@@ -93,7 +93,8 @@ public class SingleProduct_S extends HttpServlet {
 				System.out.println("within padd");
 
 				HttpSession session = request.getSession();
-				
+				System.out.println("session within padd" + session);
+
 				int qte=Integer.valueOf(request.getParameter("pqte"));
 				Details_panier panieradd=new Details_panier(produit,qte);	
 				
