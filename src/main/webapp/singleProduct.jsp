@@ -70,19 +70,24 @@ Produit produit = (Produit) request.getAttribute("produit");
 						</ul>
 					</div>
 
-						<c:if test="${isConnected==true}">
-							<button type="submit" class="btn btn-dark btn-sm"
-								style="margin: 0.2rem;">
-								<a href="product?fav=${produit.id_produit}"><img
-									alt="favori" src="icones/favori.png" style="height: 18"></a>
-							</button>
-						</c:if>
-
+					<c:if test="${isConnected==true}">
 						<button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
-							<a href="product?pan=${produit.id_produit}"><img
-								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
+							<a href="product?fav=${produit.id_produit}"><img alt="favori"
+								src="icones/favori.png" style="height: 18"></a>
 						</button>
+					</c:if>
+
+		<%-- 			<button type="submit" class="btn btn-dark btn-sm"
+						style="margin: 0.2rem;">
+						<a href="product?pan=${produit.id_produit}"><img alt="favori"
+							src="icones/favori.png" style="height: 18"></a>
+					</button> --%>
+					<form method="POST">
+						Quantit&eacute; : <input type="number" min="1" max=${produit.stock} name="pqte" value="1">
+						<button class="btn btn-dark btn-sm addtobag" type="submit" name="padd">Ajouter
+							au panier</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -112,8 +117,7 @@ Produit produit = (Produit) request.getAttribute("produit");
 							stock</li>
 					</ul>
 					<div class="card-body" style="color: black">
-						<a
-							href="product?id=${produitSimilaire.id_produit}"
+						<a href="product?id=${produitSimilaire.id_produit}"
 							class="btn btn-dark btn-sm" style="margin: 0.2rem;">Voir
 							détail</a>
 
@@ -125,11 +129,18 @@ Produit produit = (Produit) request.getAttribute("produit");
 							</button>
 						</c:if>
 
-						<button type="submit" class="btn btn-dark btn-sm"
+						<%-- <button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
 							<a href="product?pan=${produitSimilaire.id_produit}"><img
-								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
-						</button>
+								alt="favori" src="icones/favori.png" style="height: 18"></a>
+						</button> --%>
+						<div class="col-sm-12">
+						<form method="POST" class="pt-3">
+						Quantit&eacute; : <input type="number" min="1" max=${produitSimilaire.stock} name="pqte" value="1">
+						<button class="btn btn-dark btn-sm addtobag mt-1" type="submit" name="padd">Ajouter
+							au panier</button>
+					</form>
+						</div>
 					</div>
 				</div>
 			</c:forEach>

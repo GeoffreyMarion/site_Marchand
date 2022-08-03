@@ -1,50 +1,59 @@
 package model;
 
-import java.sql.Date;
+import java.util.ArrayList;
 
 public class Panier {
-	private int id_panier;
-	private  Utilisateur utilisateur;
-	private float total;
-	
-	
+	public ArrayList<Details_panier> produits = new ArrayList<>();
+
+	public Panier(ArrayList<Details_panier> produits) {
+		this.produits = produits;
+	}
+
 	public Panier() {
-		super();
-	}
-
-	public Panier(int id_panier, Utilisateur utilisateur, float total) {
-		super();
-		this.id_panier = id_panier;
-		this.utilisateur = utilisateur;
-		this.total = total;
-	}
-
-	public int getId_panier() {
-		return id_panier;
-	}
-
-	public void setId_panier(int id_panier) {
-		this.id_panier = id_panier;
-	}
-
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-
-	public void setUtilisateur(Utilisateur utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public String toString() {
-		return "Panier [id_panier=" + id_panier + ", utilisateur=" + utilisateur + ", total=" + total + "]";
+		return "Panier [articles=" + produits + "]";
 	}
+	
+	public int count() {
+		return this.produits.size();
+	}
+	
+	public void ajouter(Details_panier d) {
+		boolean exist=false;
+		for(Details_panier dp:produits) {
+			if(dp.getProduit().getId_produit()==d.getProduit().getId_produit()) {
+				exist=true;
+				dp.setQte(dp.getQte()+d.getQte());
+			}
+		}
+		if(exist==false) {
+			produits.add(d);
+		}
+	}
+	
+	public double total() {
+		double total=0;
+		for(Details_panier dp:produits) {
+			total+=dp.getProduit().getPrix()*dp.getQte();
+		}
+		return total;
+	}
+	
+	public void delete(int produitid) {
+		Details_panier detail= new Details_panier();
+		for(Details_panier pp:produits) {
+			if(pp.getProduit().getId_produit()==produitid) {
+				detail=pp;
+			}
+		}
+		produits.remove(detail);
+	}
+	
+	public void vider() {
+		produits= new ArrayList<Details_panier>();
+	}	
 }

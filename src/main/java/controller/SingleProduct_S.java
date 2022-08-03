@@ -16,7 +16,9 @@ import dao.ProduitDao;
 import dao.SlideDao;
 import dao.Sous_categorieDao;
 import model.Commentaire;
+import model.Details_panier;
 import model.Favori;
+import model.Panier;
 import model.Produit;
 import model.Sous_categorie;
 import model.Utilisateur;
@@ -47,10 +49,10 @@ public class SingleProduct_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		
+				
 		if (request.getParameter("fav") != null) {
+			HttpSession session = request.getSession();
+
 			Utilisateur user = new Utilisateur();
 			user.setId_utilisateur((int)session.getAttribute("iduser"));
 			Produit prod = new Produit();
@@ -86,7 +88,23 @@ public class SingleProduct_S extends HttpServlet {
 			request.setAttribute("sousCategorieTitre", sousCategorieTitre);
 			request.setAttribute("commentairesFromProduit", commentairesFromProduit);
 
+			//AJOUTER AU PANIER
+			if(request.getParameter("padd")!=null ) {	
+				System.out.println("within padd");
+
+				HttpSession session = request.getSession();
+				
+				int qte=Integer.valueOf(request.getParameter("pqte"));
+				Details_panier panieradd=new Details_panier(produit,qte);	
+				
+				Panier panier=(Panier) session.getAttribute("panier");
+				panier.ajouter(panieradd);
+				session.setAttribute( "panier", panier );
+		
+				System.out.println((Panier) session.getAttribute("panier"));
+			}
 		}
+			
 		request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
 	}
 
