@@ -14,6 +14,7 @@ import dao.CategorieDao;
 import dao.Sous_categorieDao;
 import dao.UtilisateurDao;
 import model.Categorie;
+import model.Panier;
 
 @WebServlet("/header")
 public class Header_S extends HttpServlet {
@@ -38,6 +39,11 @@ public class Header_S extends HttpServlet {
 		HttpSession session = request.getSession( true );
 		if(session.getAttribute("isConnected")==null) {
 			session.setAttribute( "isConnected", false );
+		}
+		
+		if(session.getAttribute("panier")==null) {
+			Panier panier = new Panier();
+			session.setAttribute( "panier", panier );
 		}
 
 		ArrayList listeCategories = new ArrayList<>();
