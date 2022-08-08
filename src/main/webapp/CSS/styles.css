@@ -15,9 +15,9 @@
 }
 
 #header_icon_basket {
-	margin-right: 20px;
 	color: red;
 	margin-left: 40px;
+	position: relative;
 }
 
 .btn-toggle {
@@ -78,9 +78,20 @@ a:hover {
 	position: absolute;
 	right: 0;
 	top: 7px;
-/* 	background-color: red; */
+	/* 	background-color: red; */
 }
 
+#header_badge_cart {
+	color: white !important;
+	background: red;
+	padding: 3px;
+	border-radius: 20%;
+	position: absolute;
+	top: 1px;
+	right: 3px;
+	font-size: 10px;
+	font-weight: bold;
+}
 /* /////////////////////////////////// */
 /* END OF HEADER  */
 /* /////////////////////////////////// *
@@ -91,6 +102,6 @@ a:hover {
 /* /////////////////////////////////// *
 
 .single_product_commentaire_username {
-		text-transform: capitalize !important;
+	text-transform: capitalize !important;
 }
 }

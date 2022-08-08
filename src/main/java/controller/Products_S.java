@@ -13,7 +13,9 @@ import dao.ProduitDao;
 import dao.RechercheDao;
 import dao.SlideDao;
 import dao.Sous_categorieDao;
+import model.Details_panier;
 import model.Favori;
+import model.Panier;
 import model.Produit;
 import model.Recherche;
 import model.Utilisateur;
@@ -60,6 +62,23 @@ public class Products_S extends HttpServlet {
 			request.setAttribute("id",id);
 			request.setAttribute("Sous_cat",s_cDao.findById(id));
 			request.setAttribute("ListProduit",pDao.findBySCat(id));
+			
+			if(request.getParameter("padd")!=null ) {	
+				int id_produit=Integer.valueOf(request.getParameter("padd"));
+				Produit prod_temp=pDao.findById(id_produit);
+				
+				System.out.println("within padd");
+
+				int qte=Integer.valueOf(request.getParameter("pqte"));
+				Details_panier panieradd=new Details_panier(prod_temp,qte);	
+				
+				Panier panier=(Panier) session.getAttribute("panier");
+				panier.ajouter(panieradd);
+				session.setAttribute( "panier", panier );
+		
+				System.out.println((Panier) session.getAttribute("panier"));
+				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
+			}
 		}
 		else if (request.getParameter("mot") != null) {
 			String mot = request.getParameter("mot");
@@ -82,6 +101,22 @@ public class Products_S extends HttpServlet {
 					response.sendRedirect(request.getContextPath()+"product?id="+request.getParameter("id"));
 				}
 		else {
+			if(request.getParameter("padd")!=null ) {	
+				int id_produit=Integer.valueOf(request.getParameter("padd"));
+				Produit prod_temp=pDao.findById(id_produit);
+				
+				System.out.println("within padd");
+
+				int qte=Integer.valueOf(request.getParameter("pqte"));
+				Details_panier panieradd=new Details_panier(prod_temp,qte);	
+				
+				Panier panier=(Panier) session.getAttribute("panier");
+				panier.ajouter(panieradd);
+				session.setAttribute( "panier", panier );
+		
+				System.out.println((Panier) session.getAttribute("panier"));
+				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
+			}
 			request.setAttribute("ListProduit", pDao.read());
 		}
 			request.getRequestDispatcher("products.jsp").forward(request, response);
