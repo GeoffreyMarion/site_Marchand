@@ -34,19 +34,20 @@ public class Favori_S extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		
-		if (request.getParameter("del") != null) {
-			int id = Integer.parseInt(request.getParameter("del"));
-			fDao.remove(id);
-			System.out.println("remove");
-			response.sendRedirect(request.getContextPath()+"favori?del="+request.getParameter("del"));
-		}
-		
 		if ((boolean)session.getAttribute("isConnected") == true) {
 			int id = (int)session.getAttribute("iduser");
 			request.setAttribute("id", id);
 			request.setAttribute("ListFavori", fDao.findByU(id));
 		}
+		
+		if (request.getParameter("del") != null) {
+			int id = Integer.parseInt(request.getParameter("del"));
+			fDao.remove(id);
+			response.sendRedirect("favori");
+		}
+		else {
 		request.getRequestDispatcher("favori.jsp").forward(request, response);
+		}
 	}
 
 	/**
