@@ -53,9 +53,16 @@ public class Contact_S extends HttpServlet {
 			String email = request.getParameter("email");
 			String message = request.getParameter("message");
 			Contact contact = new Contact(sujet,message,false,utilisateur,email);
+			if(sujet.equals("") || email.equals("") || message.equals("")) {
+				messageok=false;
+				request.setAttribute("messageok", messageok);
+				request.getRequestDispatcher("contact.jsp").forward(request, response);
+			}
+			else{
 			messageok = CDao.create(contact);
 			request.setAttribute("messageok", messageok);
 			response.sendRedirect("index");
+			}
 		}
 		else {
 			request.getRequestDispatcher("contact.jsp").forward(request, response);

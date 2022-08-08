@@ -51,30 +51,36 @@ public class Login_S extends HttpServlet {
 
 		boolean connected = false;
 		boolean messageconnexionno = false;
+		
 		if (request.getParameter("connect") != null) {
 			String email = request.getParameter("email_l");
 			String mdp = request.getParameter("password_l");
 			String cmdp = request.getParameter("cpassword_l");
-			Utilisateur utilisateur = utilisateurDao.connexion(email, mdp, cmdp);
+			Utilisateur user= new Utilisateur();
 			
-			if (utilisateur == null) {
+			if(email.equals("") || mdp.equals("") || cmdp.equals("")) {
+				user=null;
+			}
+			user = utilisateurDao.connexion(email, mdp, cmdp);
+			
+			if (user == null) {
 				messageconnexionno = true;
 
 			} else {
 				HttpSession session = request.getSession(true);
-				session.setAttribute("iduser", utilisateur.getId_utilisateur());
-				session.setAttribute("nomuser", utilisateur.getNom());
-				session.setAttribute("prenomuser", utilisateur.getPrenom());
-				session.setAttribute("dateuser", utilisateur.getDate_inscription());
+				session.setAttribute("iduser", user.getId_utilisateur());
+				session.setAttribute("nomuser", user.getNom());
+				session.setAttribute("prenomuser", user.getPrenom());
+				session.setAttribute("dateuser", user.getDate_inscription());
 				session.setAttribute( "isConnected", true);
 				connected = true;
 				response.sendRedirect("index");
 			}
-
+			
 		}
-		request.setAttribute("messageconnexionno", messageconnexionno);
 		
 		if (connected == false) {
+			request.setAttribute("messageconnexionno", messageconnexionno);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
