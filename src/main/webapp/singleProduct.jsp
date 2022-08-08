@@ -17,6 +17,9 @@ Produit produit = (Produit) request.getAttribute("produit");
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="model.Panier"%>
+<%@page import="model.Details_panier"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +39,46 @@ Produit produit = (Produit) request.getAttribute("produit");
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
 </head>
-<body>
+<body class="has-drawer">
 	<c:import url="header" />
 	<div class="container">
+		<%-- 		<%
+		if (session.getAttribute("panier") != null) {
+		%>
+		<p>Panier non vide</p>
+<% for(int i=0; i<session.getAttribute("panier").size(); i++) { %>	
+			<p>${} </p>
+	
+<% } %>		
+
+ <c:forEach var="element" items="session.getAttribute("panier")">
+ <p>${element.id_produit}</p>
+ </c:forEach>
+		<%
+		}
+		%> --%>
+
+		<%
+		Panier panier = (Panier) session.getAttribute("panier");
+		for (Details_panier article : panier.produits) {
+		%>
+
+		<div class="ci-item">
+			<img src="<%=article.getProduit().getImage()%>" width="80" alt="" />
+			<div class="ci-item-info">
+				<h5>
+					<a href="Details?id=<%=article.getProduit().getId_produit()%>"> <%=article.getProduit().getTitre_produit()%></a>
+				</h5>
+				<p><%=article.getQte()%>
+					x
+					<%=article.getProduit().getPrix()%>&euro;
+				</p>
+
+			</div>
+		</div>
+		<%
+		}
+		%>
 		<br />
 
 		<div class="card mb-3 col-7">
@@ -78,15 +118,17 @@ Produit produit = (Produit) request.getAttribute("produit");
 						</button>
 					</c:if>
 
-		<%-- 			<button type="submit" class="btn btn-dark btn-sm"
+					<%-- 			<button type="submit" class="btn btn-dark btn-sm"
 						style="margin: 0.2rem;">
 						<a href="product?pan=${produit.id_produit}"><img alt="favori"
 							src="icones/favori.png" style="height: 18"></a>
 					</button> --%>
 					<form method="POST">
-						Quantit&eacute; : <input type="number" min="1" max=${produit.stock} name="pqte" value="1">
-						<button class="btn btn-dark btn-sm addtobag" type="submit" name="padd">Ajouter
-							au panier</button>
+						Quantit&eacute; : <input type="number" min="1"
+							max=${produit.stock
+							} name="pqte" value="1">
+						<button class="btn btn-dark btn-sm addtobag" type="submit"
+							name="padd">Ajouter au panier</button>
 					</form>
 				</div>
 			</div>
@@ -135,17 +177,58 @@ Produit produit = (Produit) request.getAttribute("produit");
 								alt="favori" src="icones/favori.png" style="height: 18"></a>
 						</button> --%>
 						<div class="col-sm-12">
-						<form method="POST" class="pt-3">
-						Quantit&eacute; : <input type="number" min="1" max=${produitSimilaire.stock} name="pqte" value="1">
-						<button class="btn btn-dark btn-sm addtobag mt-1" type="submit" name="padd">Ajouter
-							au panier</button>
-					</form>
+							<form method="POST" class="pt-3">
+								Quantit&eacute; : <input type="number" min="1"
+									max=${produitSimilaire.stock } name="pqte" value="1">
+								<button class="btn btn-dark btn-sm addtobag mt-1" type="submit"
+									name="padd">Ajouter au panier</button>
+							</form>
+
 						</div>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 
+		<!-- MODAL CLICK ON BTN Voir mon panier -->
+		<!-- SIDE DRAWER -->
+		<div id="side-drawer" class="position-fixed">
+			<div class="h-100 bg-white">
+				<div class="p-4 bg-light">
+					<h2>Mon panier</h2>
+					<div class="container_total-and-btn-valider">
+						<!-- <a href="#"> -->
+						<h5 class="text-total">Total: €</h5>
+					</div>
+				</div>
+				<!-- CART DETAILS -->
+				<div class="container container_details-cart">
+					<h6>Désignation:</h6>
+					<button class="btn btn-outline-danger right-side-drawer_title"
+						onclick="">
+						Supprimer
+						<!-- <h3 class="right-side-drawer_title">Mon panier</h3> -->
+					</button>
+				</div>
+				<!-- END OF CART DETAILS -->
+				<!-- <ul class="list-group" onclick="closeSideDrawer()">
+          <a
+            href="#"
+            class="list-group-item list-group-item-action border-0 rounded-0 active"
+            >Link</a
+          >
+          <a
+            href="#"
+            class="list-group-item list-group-item-action border-0 rounded-0"
+            >Link</a
+          >
+        </ul> -->
+			</div>
+		</div>
+		<div id="side-drawer-void" class="position-fixed d-none"
+			onclick="closeSideDrawer()"></div>
+		<!-- END OF SIDE DRAWER -->
+		<!-- END OF MODAL CLICK ON BTN Voir mon panier -->
 	</div>
 </body>
 </html>

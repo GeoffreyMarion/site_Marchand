@@ -65,6 +65,8 @@ public class SingleProduct_S extends HttpServlet {
 		
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
+			System.out.println("idAsInt: " + idAsInt);
+
 			Produit produit = produitDao.findById(idAsInt);
 
 			Sous_categorie sousCategorieFromProduit = produit.getSous_categorie();
@@ -103,6 +105,7 @@ public class SingleProduct_S extends HttpServlet {
 				session.setAttribute( "panier", panier );
 		
 				System.out.println((Panier) session.getAttribute("panier"));
+				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
 			}
 		}
 			
