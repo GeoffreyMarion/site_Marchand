@@ -52,7 +52,7 @@
 					<label for="" class="form-label"><b>Se Connecter</b></label>
 					<hr>
 				</div>
-				<c:if test="${messageconnexionno == false}">
+				<c:if test="${messageconnexionno == true}">
 					<div class="alert alert-danger" role="alert">Adresse e-mail
 						ou mot de passe invalide</div>
 				</c:if>
