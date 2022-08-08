@@ -92,11 +92,8 @@ public class SingleProduct_S extends HttpServlet {
 
 			//AJOUTER AU PANIER
 			if(request.getParameter("padd")!=null ) {	
-				
-				
 				int id_produit=Integer.valueOf(request.getParameter("padd"));
 				Produit prod_temp=produitDao.findById(id_produit);
-				
 				
 				System.out.println("within padd");
 

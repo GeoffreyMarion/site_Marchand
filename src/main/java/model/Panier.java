@@ -35,12 +35,12 @@ public class Panier {
 		}
 	}
 	
-	public double total() {
+	public String total() {
 		double total=0;
 		for(Details_panier dp:produits) {
 			total+=dp.getProduit().getPrix()*dp.getQte();
 		}
-		return total;
+		return String.format("%.2f", total);
 	}
 	
 	public void delete(int produitid) {

@@ -117,21 +117,33 @@
 					</ul>
 					<div class="card-body text-bg-light d-flex flex-wrap">
 						<a href="product?id=${produit.id_produit}"
-							class="btn btn-dark btn-sm col-6" style="margin: 0.2rem;">Voir détail</a>
-						
+							class="btn btn-dark btn-sm col-6" style="margin: 0.2rem;">Voir
+							détail</a>
+
 						<c:if test="${isConnected==true}">
-						<button type="submit" class="btn btn-dark btn-sm"
-							style="margin: 0.2rem;">
-							<a href="products?fav=${produit.id_produit}"><img
-								alt="favori" src="icones/favori.png" style="height: 18"></a>
-						</button>
+							<button type="submit" class="btn btn-dark btn-sm"
+								style="margin: 0.2rem;">
+								<a href="products?fav=${produit.id_produit}"><img
+									alt="favori" src="icones/favori.png" style="height: 18"></a>
+							</button>
 						</c:if>
 
-						<button type="submit" class="btn btn-dark btn-sm"
+
+						<form method="POST">
+							<input type="hidden" name="pqte" value="1">
+							<button class="btn btn-dark btn-sm addtobag" type="submit"
+								name="padd" value=${produit.id_produit
+							}>
+								<img alt="favori" src="icones/icon_basket3.png"
+									style="height: 18">
+							</button>
+						</form>
+
+		<!-- 				<button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
-							<a href="products?pan=${produit.id_produit}"><img
-								alt="favori" src="icones/icon_basket3.png" style="height: 18"></a>
-						</button>
+							<img alt="favori" src="icones/icon_basket3.png"
+								style="height: 18"></a>
+						</button> -->
 
 					</div>
 				</div>

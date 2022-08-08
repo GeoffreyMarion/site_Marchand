@@ -38,47 +38,14 @@ Produit produit = (Produit) request.getAttribute("produit");
 
 <link rel="stylesheet" type="text/css" href="CSS/styles.css"
 	media="screen" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 </head>
 <body class="has-drawer">
 	<c:import url="header" />
 	<div class="container">
-		<%-- 		<%
-		if (session.getAttribute("panier") != null) {
-		%>
-		<p>Panier non vide</p>
-<% for(int i=0; i<session.getAttribute("panier").size(); i++) { %>	
-			<p>${} </p>
-	
-<% } %>		
-
- <c:forEach var="element" items="session.getAttribute("panier")">
- <p>${element.id_produit}</p>
- </c:forEach>
-		<%
-		}
-		%> --%>
-
-		<%
-		Panier panier = (Panier) session.getAttribute("panier");
-		for (Details_panier article : panier.produits) {
-		%>
-
-		<div class="ci-item">
-			<img src="<%=article.getProduit().getImage()%>" width="80" alt="" />
-			<div class="ci-item-info">
-				<h5>
-					<a href="Details?id=<%=article.getProduit().getId_produit()%>"> <%=article.getProduit().getTitre_produit()%></a>
-				</h5>
-				<p><%=article.getQte()%>
-					x
-					<%=article.getProduit().getPrix()%>&euro;
-				</p>
-
-			</div>
-		</div>
-		<%
-		}
-		%>
 		<br />
 
 		<div class="card mb-3 col-7">
@@ -128,7 +95,9 @@ Produit produit = (Produit) request.getAttribute("produit");
 							max=${produit.stock
 							} name="pqte" value="1">
 						<button class="btn btn-dark btn-sm addtobag" type="submit"
-							name="padd" value=${produit.id_produit} onclick="openSideDrawer()">Ajouter au panier</button>
+							name="padd" value=${produit.id_produit
+							}
+							onclick="openSideDrawer()">Ajouter au panier</button>
 					</form>
 				</div>
 			</div>
@@ -181,13 +150,24 @@ Produit produit = (Produit) request.getAttribute("produit");
 								Quantit&eacute; : <input type="number" min="1"
 									max=${produitSimilaire.stock } name="pqte" value="1">
 								<button class="btn btn-dark btn-sm addtobag mt-1" type="submit"
-									name="padd" value=${produitSimilaire.id_produit} onclick="openSideDrawer()">Ajouter au panier</button>
+									name="padd" value=${produitSimilaire.id_produit
+									}
+									onclick="openSideDrawer()" data-toggle="modal" data-target=".bd-example-modal-lg">Ajouter
+									au panier</button>
 							</form>
 
 						</div>
 					</div>
 				</div>
 			</c:forEach>
+		</div>
+
+
+		<div class="modal fade bd-example-modal-lg" tabindex="-1"
+			role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">...</div>
+			</div>
 		</div>
 
 		<!-- MODAL CLICK ON BTN Voir mon panier -->
@@ -205,26 +185,27 @@ Produit produit = (Produit) request.getAttribute("produit");
 				<div class="container container_details-cart">
 					<h6>Désignation:</h6>
 					<%
-		Panier panier2 = (Panier) session.getAttribute("panier");
-		for (Details_panier article : panier2.produits) {
-		%>
+					Panier panier2 = (Panier) session.getAttribute("panier");
+					for (Details_panier article : panier2.produits) {
+					%>
 
-		<div class="ci-item">
-			<img src="<%=article.getProduit().getImage()%>" width="80" alt="" />
-			<div class="ci-item-info">
-				<h5>
-					<a href="Details?id=<%=article.getProduit().getId_produit()%>"> <%=article.getProduit().getTitre_produit()%></a>
-				</h5>
-				<p><%=article.getQte()%>
-					x
-					<%=article.getProduit().getPrix()%>&euro;
-				</p>
+					<div class="ci-item">
+						<img src="<%=article.getProduit().getImage()%>" width="80" alt="" />
+						<div class="ci-item-info">
+							<h5>
+								<a href="Details?id=<%=article.getProduit().getId_produit()%>">
+									<%=article.getProduit().getTitre_produit()%></a>
+							</h5>
+							<p><%=article.getQte()%>
+								x
+								<%=article.getProduit().getPrix()%>&euro;
+							</p>
 
-			</div>
-		</div>
-		<%
-		}
-		%>
+						</div>
+					</div>
+					<%
+					}
+					%>
 					<button class="btn btn-outline-danger right-side-drawer_title"
 						onclick="">
 						Supprimer
@@ -251,6 +232,8 @@ Produit produit = (Produit) request.getAttribute("produit");
 		<!-- END OF SIDE DRAWER -->
 		<!-- END OF MODAL CLICK ON BTN Voir mon panier -->
 	</div>
-		<script src="./js/handleDrawer.js"></script>
+	<!-- <script src="./js/handleCart.js"></script> -->
+	<script src="./js/handleCart2.js"></script>
+	<script src="./js/handleDrawer.js"></script>
 </body>
 </html>
