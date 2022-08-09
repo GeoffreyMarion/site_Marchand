@@ -52,8 +52,8 @@
 
 
 		<section class="h-100" style="background-color: #eee;">
-			<div class="container h-100 py-5">
-				<h3 class="text-bg-dark p-2 ml-4">Mon panier</h3>
+			<div class="container h-100 py-4">
+				<h3 class="text-bg-dark p-2 ml-4 mb-5">Mon panier</h3>
 
 				<div
 					class="row d-flex justify-content-center align-items-center h-100">
@@ -63,16 +63,18 @@
 						for (Details_panier article : panier.produits) {
 						%>
 						<div class="card rounded-3 mb-4">
-							<div class="card-body p-4">
+							<div class="card-body p-5">
 								<div
-									class="row d-flex justify-content-between align-items-center">
+									class="row d-flex justify-content-between align-items-center cart_row">
 									<div class="col-md-2 col-lg-2 col-xl-2">
-										<img src="<%=article.getProduit().getImage()%>"
-											class="img-fluid rounded-3"
+										<a href="product?id=<%=article.getProduit().getId_produit()%>">
+											<img src="<%=article.getProduit().getImage()%>"
+											class="img-fluid rounded-3 mb-2"
 											alt=<%=article.getProduit().getTitre_produit()%>>
+										</a>
 									</div>
 									<div class="col-md-3 col-lg-3 col-xl-3">
-										<p class="lead fw-normal mb-2"><%=article.getProduit().getTitre_produit()%></p>
+										<p class="lead fw-normal mb-4"><%=article.getProduit().getTitre_produit()%></p>
 									</div>
 									<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
 										<button class="btn btn-link px-2"
@@ -80,32 +82,40 @@
 											<i class="fas fa-minus"></i>
 										</button>
 
-										<input id="form1" min="1"
-											max="<%=article.getProduit().getStock()%>" name="quantity"
-											value="<%=article.getQte()%>" type="number"
-											class="form-control form-control-sm" />
-
-										<button class="btn btn-link px-2"
-											onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-											<i class="fas fa-plus"></i>
-										</button>
+										<form id="cart_form_quantity" method="POST">
+											<input type="number" id="cart_form_quantity_input" min="1"
+												max="<%=article.getProduit().getStock()%>" name="quantity"
+												value="<%=article.getQte()%>" type="number"
+												class="form-control form-control-sm" />
+												
+												 <input type="hidden" name="idProduit" value="<%=article.getProduit().getId_produit()%>"/>
+											<button class="btn btn-link px-2"
+												onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+												<i class="fas fa-plus"></i>
+											</button>
 									</div>
-									<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+									<div class="col-md-2 col-lg-2 col-xl-2 mb-4">
 										<h5 class="mb-0"><%=article.getProduit().getPrix()%>€
 										</h5>
 									</div>
-									<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-										<%-- <button class="btn btn-danger btn-sm addtobag mb-1"
-											type="submit" name="padd"
-											value=${article.id_produit
-									}>X</button> --%>
+									<div class="d-flex col-md-1 col-lg-1 col-xl-1">
+										<button class="btn btn-primary mb-3 cart_btn_update"
+											type="submit" name="pUpdate"
+											value=${article.getProduit().getId_produit()}>Update</button>
+										</form>
+									</div>
+
+									<div class="d-flex col-md-1 col-lg-1 col-xl-1 mb-3">
 										<a
-											href="panier?idtodelete=<%=article.getProduit().getId_produit() %>"
-											class="btn btn-danger btn-sm">X</a>
+											href="panier?idtodelete=<%=article.getProduit().getId_produit()%>"
+											class="btn btn-danger btn-sm cart_btn_delete p-2">X</a>
 									</div>
 								</div>
 							</div>
 						</div>
+						<%
+						}
+						%>
 						<div class="card row d-flex">
 							<div class="col-6 offset-4 pt-3">
 								<h5>Total: ${panier.total()}&euro;</h5>
@@ -118,9 +128,6 @@
 								</div>
 							</div>
 						</div>
-	<%
-						}
-						%> 
 					</div>
 				</div>
 			</div>
