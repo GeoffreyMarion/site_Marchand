@@ -41,6 +41,17 @@ public class Panier_S extends HttpServlet {
 				emptyCart = false;
 			}			
 		}
+		
+//		SUPPRIMER UN PRODUIT => PANIER
+		if(request.getParameter("idtodelete")!=null ) {
+			int idproduit=Integer.valueOf(request.getParameter("idtodelete"));
+			Panier panier2=(Panier) session.getAttribute("panier");
+			panier2.delete(idproduit);
+			if(panier.count() == 0) {
+				emptyCart = true;
+			}
+			session.setAttribute( "panier", panier2 );
+		}
 		session.setAttribute("emptyCart", emptyCart);
 		request.getRequestDispatcher("panier.jsp").forward(request, response);
 	}
