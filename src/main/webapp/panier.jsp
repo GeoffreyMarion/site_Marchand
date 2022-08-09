@@ -95,18 +95,17 @@
 										</h5>
 									</div>
 									<div class="col-md-1 col-lg-1 col-xl-1 text-end">
-										<button class="btn btn-danger btn-sm addtobag mb-1"
+										<%-- <button class="btn btn-danger btn-sm addtobag mb-1"
 											type="submit" name="padd"
 											value=${article.id_produit
-									}>X</button>
+									}>X</button> --%>
+										<a
+											href="panier?idtodelete=<%=article.getProduit().getId_produit() %>"
+											class="btn btn-danger btn-sm">X</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						<%
-						}
-						%>
-
 						<div class="card row d-flex">
 							<div class="col-6 offset-4 pt-3">
 								<h5>Total: ${panier.total()}&euro;</h5>
@@ -119,6 +118,9 @@
 								</div>
 							</div>
 						</div>
+	<%
+						}
+						%> 
 					</div>
 				</div>
 			</div>
@@ -129,8 +131,7 @@
 		<section class="h-100">
 			<div class="container h-100 py-5">
 				<h3 class="text-bg-dark p-2 ml-4">Votre panier est vide.</h3>
-				<h3>Pour
-					le moment...</h3>
+				<h3>Pour le moment...</h3>
 			</div>
 		</section>
 		<%
