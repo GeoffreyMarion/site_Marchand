@@ -213,7 +213,7 @@
 						<li><a href="tables-basic.html">Recherche</a></li>
 						<li><a href="tables-basic.html">Commande</a></li>
 						<li><a href="tables-basic.html">Detail commande</a></li>
-						<li><a href="tables-basic.html">Produits</a></li> <!-- 	+images -->
+						<li><a href="a_produit">Produits</a></li> <!-- 	+images -->
 						<li><a href="tables-basic.html">Sous categorie</a></li>
 						<li><a href="tables-basic.html">Categorie</a></li>
 						<li><a href="tables-basic.html">Visiste</a></li>

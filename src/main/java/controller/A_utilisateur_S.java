@@ -1,9 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.UtilisateurDao;
-import model.Favori;
-import model.Produit;
-import model.Recherche;
 import model.Utilisateur;
 
 /**
@@ -41,6 +35,10 @@ public class A_utilisateur_S extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		request.setAttribute("ListUtilisateur", uDao.read());
+		
+		boolean edition = false;
+		boolean creation = false;
+		boolean suppression = false;
 		if (request.getParameter("edit") != null) {
 			int edit = Integer.parseInt(request.getParameter("edit"));
 			Utilisateur user = uDao.findById(edit);
@@ -52,7 +50,9 @@ public class A_utilisateur_S extends HttpServlet {
 			String password = request.getParameter("e-pass");
 			if (request.getParameter("c-edit") != null) {
 				uDao.update(nom, prenom, email, password, edit);
-				response.sendRedirect("a_utilisateur");
+				edition = true;
+				request.setAttribute("edition", edition);
+				response.sendRedirect("a_utilisateur?edition=true");
 			}else {
 			request.getRequestDispatcher("a_utilisateur.jsp").forward(request, response);
 			}
@@ -67,7 +67,9 @@ public class A_utilisateur_S extends HttpServlet {
 			Utilisateur user = new Utilisateur(nom, prenom, email, password);
 			if (request.getParameter("c-create") != null) {
 			uDao.create(user);
-			response.sendRedirect("a_utilisateur");
+			creation = true;
+			request.setAttribute("creation", creation);
+			response.sendRedirect("a_utilisateur?creation=true");
 			}
 			else {
 			request.getRequestDispatcher("a_utilisateur.jsp").forward(request, response);
@@ -76,8 +78,10 @@ public class A_utilisateur_S extends HttpServlet {
 		else if (request.getParameter("suppr") != null) {
 		int suppr = Integer.parseInt(request.getParameter("suppr"));
 		uDao.remove(suppr);
-		response.sendRedirect("a_utilisateur");
+		suppression = true;
+		request.setAttribute("suppression", suppression);
 		request.setAttribute("ListUtilisateur", uDao.read());
+		response.sendRedirect("a_utilisateur?suppression=true");
 		}
 		else{request.getRequestDispatcher("a_utilisateur.jsp").forward(request, response);}
 	}
@@ -91,3 +95,4 @@ public class A_utilisateur_S extends HttpServlet {
 	}
 
 }
+

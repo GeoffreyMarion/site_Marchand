@@ -54,19 +54,19 @@
 					</div>
 					<!-- end page title -->
 					
-					<a href="a_utilisateur?create=1"><button type="button"
+					<a href="a_produit?create=1"><button type="button"
 							class="btn btn-success waves-effect waves-light width-md">Create</button></a>
 					<div class="row">
 						<br>
 					</div>
 					<c:if test="${creation == true}">
-					<div class="alert alert-success" role="alert">Un compte utilisateur a été créé avec succès</div>
+					<div class="alert alert-success" role="alert">Un produit a été créé avec succès</div>
 				</c:if>
 				<c:if test="${edition == true}">
-					<div class="alert alert-success" role="alert">Un compte utilisateur a été édité avec succès</div>
+					<div class="alert alert-success" role="alert">Un produit a été édité avec succès</div>
 				</c:if>
 				<c:if test="${suppression == true}">
-					<div class="alert alert-danger" role="alert">Un compte utilisateur a été supprimé avec succès</div>
+					<div class="alert alert-danger" role="alert">Un produit a été supprimé avec succès</div>
 				</c:if>
 
 					<c:if test="${create==1}">
@@ -77,24 +77,54 @@
 
 									<form class="form-horizontal" method="post">
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Nom</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Titre</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
-													value="Some text value..." name="nom">
+													value="Some text value..." name="titre">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Prenom</label>
+                                            <label class="col-sm-3 col-form-label" for="example-textarea">Description</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="example-textarea" rows="5" name="description"></textarea>
+                                            </div>
+                                        </div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Prix</label>
 											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="Some text value..." name="prenom">
+												<input type="number" class="form-control" id="simpleinput"
+													value="Some text value..." name="prix">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Email</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
 											<div class="col-sm-9">
-												<input type="email" class="form-control" id="simpleinput"
-													value="Some text value..." name="email">
+												<input type="text" class="form-control" id="simpleinput"
+													value="Some text value..." name="image">
+											</div>
+										</div>
+										 <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Sous categorie</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="scat">
+                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
+                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
+													</c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Stock</label>
+											<div class="col-sm-9">
+												<input type="number" class="form-control" id="simpleinput"
+													value="Some text value..." name="stock">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Stock minimum</label>
+											<div class="col-sm-9">
+												<input type="number" class="form-control" id="simpleinput"
+													value="Some text value..." name="stockmin">
 											</div>
 										</div>
 										<button type="submit"
@@ -116,31 +146,59 @@
 
 									<form class="form-horizontal" method="post">
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Nom</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Titre</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
-													value="${user.nom}" name="e-nom">
+													value="${prod.titre_produit}" name="e-titre">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Prenom</label>
+                                            <label class="col-sm-3 col-form-label" for="example-textarea">Description</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" id="example-textarea" rows="5" name="e-description">${prod.description}</textarea>
+                                            </div>
+                                        </div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Prix</label>
+											<div class="col-sm-9">
+												<input type="number" class="form-control" id="simpleinput"
+													value="${prod.prix}" name="e-prix">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
-													value="${user.prenom}" name="e-prenom">
+													value="${prod.image}" name="e-image">
+											</div>
+										</div>
+										 <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Input Select</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="e-scat">
+                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
+                                                	<c:if test="${sous_categorie.id_sous_categorie == prod.sous_categorie.id_sous_categorie}">
+                                                		<option value="${sous_categorie.id_sous_categorie}"selected>${sous_categorie.titre}</option>
+                                                	</c:if>
+                                                	<c:if test="${sous_categorie.id_sous_categorie != prod.sous_categorie.id_sous_categorie}">
+                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
+                                                    	</c:if>
+													</c:forEach>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Stock</label>
+											<div class="col-sm-9">
+												<input type="number" class="form-control" id="simpleinput"
+													value="${prod.stock}" name="e-stock">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Email</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Stock minimum</label>
 											<div class="col-sm-9">
-												<input type="email" class="form-control" id="simpleinput"
-													value="${user.email}" name="e-email">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Password</label>
-											<div class="col-sm-9">
-												<input type="password" class="form-control" id="simpleinput"
-													value="" name="e-pass">
+												<input type="number" class="form-control" id="simpleinput"
+													value="${prod.stock_minimum}" name="e-stockmin">
 											</div>
 										</div>
 										<button type="submit"
@@ -164,28 +222,34 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Nom</th>
-												<th>Prenom</th>
-												<th>Date de création</th>
-												<th>Email</th>
+												<th>Titre</th>
+												<th>Description</th>
+												<th>Prix</th>
+												<th>Image</th>
+												<th>Sous categorie</th>
+												<th>Stock</th>
+												<th>Stock min</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${ListUtilisateur}" var="utilisateur">
+											<c:forEach items="${ListProduit}" var="produit">
 												<tr>
-													<th scope="row">${utilisateur.id_utilisateur}</th>
-													<td>${utilisateur.prenom}</td>
-													<td>${utilisateur.nom}</td>
-													<td>${utilisateur.date_inscription}</td>
-													<td>${utilisateur.email}</td>
+													<th scope="row">${produit.id_produit}</th>
+													<td>${produit.titre_produit}</td>
+													<td>${produit.description}</td>
+													<td>${produit.prix}</td>
+													<td><img alt="${produit.titre_produit}" src="${produit.image}" style="height: 35"></td>
+													<td>${produit.sous_categorie.titre}</td>
+													<td>${produit.stock}</td>
+													<td>${produit.stock_minimum}</td>
 													<td><a
-														href="a_utilisateur?edit=${utilisateur.id_utilisateur}"><button
+														href="a_produit?edit=${produit.id_produit}"><button
 																type="submit"
 																class="btn btn-sm btn-icon btn-light waves-effect waves-light">
 																<i class="mdi mdi-keyboard"></i>
 															</button></a> <a
-														href="a_utilisateur?suppr=${utilisateur.id_utilisateur}"><button
+														href="a_produit?suppr=${produit.id_produit}"><button
 																type="submit"
 																class="btn btn-sm btn-icon btn-danger waves-effect waves-light">
 																<i class="mdi mdi-close"></i>

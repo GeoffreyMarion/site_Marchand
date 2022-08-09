@@ -27,7 +27,17 @@ public class Produit {
 		this.stock = stock;
 		this.stock_minimum = stock_minimum;
 	}
-
+	public Produit(String titre_produit, String description, float prix, String image,
+			Sous_categorie sous_categorie, int stock, int stock_minimum) {
+		super();
+		this.titre_produit = titre_produit;
+		this.description = description;
+		this.prix = prix;
+		this.image = image;
+		this.sous_categorie = sous_categorie;
+		this.stock = stock;
+		this.stock_minimum = stock_minimum;
+	}
 
 	public int getId_produit() {
 		return id_produit;
