@@ -19,7 +19,12 @@ Produit produit = (Produit) request.getAttribute("produit");
 	pageEncoding="UTF-8"%>
 <%@page import="model.Panier"%>
 <%@page import="model.Details_panier"%>
+<%@page import="model.Commentaire"%>
+<%@page import="java.util.ArrayList"%>
 
+<%
+ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttribute("commentairesFromProduit");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,6 +107,34 @@ Produit produit = (Produit) request.getAttribute("produit");
 				</div>
 			</div>
 		</div>
+		
+		<%
+			if (commentaires.size() >0) {
+			%>
+			<div class="row pt-4">
+				<div class="text-bg-dark p-2">
+					<h4>Ce qu'en disent nos clients:</h4>
+				</div>
+				<div class="pt-5">
+					<c:forEach items="${ commentairesFromProduit}" var="commentaire">
+						<div class="card mb-3">
+							<div class="card-header">Date: ${commentaire.note }</div>
+							<div class="card-body">
+								<blockquote class="blockquote mb-0">
+									<p>${commentaire.commentaire }</p>
+									<footer class="blockquote-footer">
+										De: <cite title="Source Title">${commentaire.utilisateur.getPrenom() }.</cite>
+										Note: <cite title="Source Title">${commentaire.note }/5.</cite>
+									</footer>
+								</blockquote>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<%}%>
+		
+		
 		<br />
 		<div class="row">
 			<div class="text-bg-dark p-2">
