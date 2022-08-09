@@ -118,6 +118,29 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 		return null;
 	}
 	
+	public Sous_categorie findByTitre(String titre) {
+		ResultSet afficher = null;
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM sous_categorie INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE sous_categorie.titre Like ?");
+			statement.setString(1, titre);
+			afficher = statement.executeQuery();
+			if (afficher.next()) {
+				int id = afficher.getInt("id_sous_categorie");
+				Categorie categorie = new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"));
+				Sous_categorie sous_categorie = new Sous_categorie(id, titre, categorie);
+				return sous_categorie;
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println(titre + " ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
+	
 	public ArrayList<Sous_categorie> findByCat(int id) {
 		ResultSet afficher = null;
 		ArrayList<Sous_categorie> ListSous_categorie = new ArrayList<>();
