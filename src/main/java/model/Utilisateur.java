@@ -44,6 +44,15 @@ public class Utilisateur {
 		this.email = email;
 		this.mot_de_passe = mot_de_passe;
 	}
+	
+	public Utilisateur(String nom, String prenom, String email,
+			String mot_de_passe) {
+
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.mot_de_passe = mot_de_passe;
+	}
 
 	public int getId_utilisateur() {
 		return id_utilisateur;

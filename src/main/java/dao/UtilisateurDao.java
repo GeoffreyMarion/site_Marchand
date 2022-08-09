@@ -54,7 +54,7 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 		if(findById(id)!=null) {
 			utilisateur=findById(id);
 			try {	
-				PreparedStatement statement = connection.prepareStatement("UPDATE utilisateur SET nom=?,prenom=?,email,mot_de_passe=PASSWORD(?) WHERE id_utilisateur=?");
+				PreparedStatement statement = connection.prepareStatement("UPDATE utilisateur SET nom=?,prenom=?,email=?,mot_de_passe=PASSWORD(?) WHERE id_utilisateur=?");
 				statement.setString(1,nom);
 				statement.setString(2,prenom);
 				statement.setString(3,email);
