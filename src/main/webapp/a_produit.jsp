@@ -53,9 +53,18 @@
 						</div>
 					</div>
 					<!-- end page title -->
-					
+
 					<a href="a_produit?create=1"><button type="button"
 							class="btn btn-success waves-effect waves-light width-md">Create</button></a>
+					<form class="col-9 col-lg-auto" role="search" method="post"
+						action="products" id="recherche">
+						<input type="search"
+							class="form-control form-control-dark text-black mt-3"
+							placeholder="Rechercher..." aria-label="Search" name="mot">
+					</form>
+					<button class="btn btn-sm" type="submit" form="recherche">
+						<img src="icones/icon_loop.png" width="25" alt="Loop" />
+					</button>
 					<div class="row">
 						<br>
 					</div>

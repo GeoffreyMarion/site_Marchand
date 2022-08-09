@@ -53,21 +53,35 @@
 						</div>
 					</div>
 					<!-- end page title -->
-					
-					<a href="a_utilisateur?create=1"><button type="button"
-							class="btn btn-success waves-effect waves-light width-md">Create</button></a>
+
+					<div class="d-flex flex-wrap">
+						<a href="a_utilisateur?create=1"><button type="button"
+								class="btn btn-success waves-effect waves-light width-md">Create</button></a>
+						<form class="col-8" role="search" method="post"
+							action=a_utilisateur id="recherche">
+							<input type="search"
+								class="form-control form-control-dark text-black mt-3"
+								placeholder="Rechercher..." aria-label="Search" name="mot">
+						</form>
+						<button class="btn btn-sm btn-dark" type="submit" form="recherche">
+							<img src="icones/icon_loop.png" width="25" alt="Loop" />
+						</button>
+					</div>
 					<div class="row">
 						<br>
 					</div>
 					<c:if test="${creation == true}">
-					<div class="alert alert-success" role="alert">Un compte utilisateur a été créé avec succès</div>
-				</c:if>
-				<c:if test="${edition == true}">
-					<div class="alert alert-success" role="alert">Un compte utilisateur a été édité avec succès</div>
-				</c:if>
-				<c:if test="${suppression == true}">
-					<div class="alert alert-danger" role="alert">Un compte utilisateur a été supprimé avec succès</div>
-				</c:if>
+						<div class="alert alert-success" role="alert">Un compte
+							utilisateur a été créé avec succès</div>
+					</c:if>
+					<c:if test="${edition == true}">
+						<div class="alert alert-success" role="alert">Un compte
+							utilisateur a été édité avec succès</div>
+					</c:if>
+					<c:if test="${suppression == true}">
+						<div class="alert alert-danger" role="alert">Un compte
+							utilisateur a été supprimé avec succès</div>
+					</c:if>
 
 					<c:if test="${create==1}">
 						<div class="row">
@@ -98,7 +112,8 @@
 											</div>
 										</div>
 										<button type="submit"
-											class="btn btn-light waves-effect waves-light width-md" name="c-create">Envoyer</button>
+											class="btn btn-light waves-effect waves-light width-md"
+											name="c-create">Envoyer</button>
 									</form>
 
 								</div>
