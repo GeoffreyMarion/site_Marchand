@@ -15,8 +15,8 @@
 						Produits</b></a></li>
 		</ul>
 
-		<div class="d-flex align-items-center">
-			<p class="">
+		<div class="d-flex align-items-center pt-3">
+			<p>
 				<b>Nos Categories:</b>
 			</p>
 
@@ -45,7 +45,7 @@
 			<form class="col-9 col-lg-auto" role="search" method="post"
 				action="products" id="recherche">
 				<input type="search"
-					class="form-control form-control-dark text-black"
+					class="form-control form-control-dark text-black mt-3"
 					placeholder="Rechercher..." aria-label="Search" name="mot">
 			</form>
 			<button class="btn btn-sm" type="submit" form="recherche">
@@ -54,11 +54,11 @@
 		</div>
 
 		<div class="d-flex align-items-center" id="header_icon_basket">
-			<a href="panier"> <img alt=""
-				src="icones/icon_basket3.png" height="40px">
-			 </a>			 
-	<%
-			if ( session.getAttribute("emptyCart") != null) {
+			<a href="panier"> <img alt="" src="icones/icon_basket3.png"
+				height="40px">
+			</a>
+			<%
+			if (session.getAttribute("emptyCart") != null) {
 			%>
 			<span class="" id="header_badge_cart">${panier.count()}</span>
 			<%
@@ -66,13 +66,14 @@
 			%>
 			<%
 			}
-			%> 
-			<c:if test="${isConnected==true}">
-				<a href="favori" id="header_icon_favori"> <img alt=""
-					src="icones/favori.png" height="40px">
-				</a>
-			</c:if>
+			%>
 		</div>
+		<c:if test="${isConnected==true}">
+			<a href="favori" id="header_icon_favori"> <img alt=""
+				src="icones/favori.png" height="40px">
+			</a>
+		</c:if>
+
 
 		<div class="text-end">
 			<div class="d-flex align-items-center">
