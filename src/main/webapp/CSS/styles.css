@@ -104,4 +104,30 @@ a:hover {
 .single_product_commentaire_username {
 	text-transform: capitalize !important;
 }
+
+/* /////////////////////////////////// */
+/* PANIER */
+/* /////////////////////////////////// *
+
+.cart_row {
+	justify-content-between: none !important;
+	margin-right: 0 !important;
+}
+.cart_btn_update {
+	height: 5px !important;
+	margin-right: 5px;
+	font-size: 10px !important;
+}
+
+.cart_btn_delete {
+		height: 5px !important;
+}
+
+#cart_form_quantity {
+	background-color: red !important;
+}
+
+#cart_form_quantity_input {
+	background-color: red !important;
+	padding: 30px;
 }

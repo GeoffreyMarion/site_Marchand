@@ -8,7 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ProduitDao;
+import model.Details_panier;
 import model.Panier;
+import model.Produit;
 
 /**
  * Servlet implementation class Panier_S
@@ -17,6 +20,8 @@ import model.Panier;
 public class Panier_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	ProduitDao produitDao = new ProduitDao();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,6 +45,25 @@ public class Panier_S extends HttpServlet {
 			if(panier.count() >0) {
 				emptyCart = false;
 			}			
+		}
+		
+		//AJOUTER AU PANIER
+		if(request.getParameter("quantity")!=null ) {	
+//			System.out.println("within pUpdate in Panier_S");
+			int newQuantity =Integer.valueOf(request.getParameter("quantity"));
+//			System.out.println("newQuantity: " + newQuantity);
+
+			int idProduit = Integer.valueOf(request.getParameter("idProduit"));
+//			System.out.println("idProduit: " + idProduit);
+
+			Produit prod_temp=produitDao.findById(idProduit);
+
+			Details_panier panierUpdated = new Details_panier(prod_temp,newQuantity);	
+						
+			Panier panier3=(Panier) session.getAttribute("panier");
+			panier3.update(panierUpdated, newQuantity);
+
+			session.setAttribute( "panier", panier3 );
 		}
 		
 //		SUPPRIMER UN PRODUIT => PANIER

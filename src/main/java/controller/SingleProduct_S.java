@@ -65,7 +65,7 @@ public class SingleProduct_S extends HttpServlet {
 		
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
-			System.out.println("idAsInt: " + idAsInt);
+//			System.out.println("idAsInt: " + idAsInt);
 
 			Produit produit = produitDao.findById(idAsInt);
 
@@ -95,10 +95,10 @@ public class SingleProduct_S extends HttpServlet {
 				int id_produit=Integer.valueOf(request.getParameter("padd"));
 				Produit prod_temp=produitDao.findById(id_produit);
 				
-				System.out.println("within padd");
+//				System.out.println("within padd");
 
 				HttpSession session = request.getSession();
-				System.out.println("session within padd" + session);
+//				System.out.println("session within padd" + session);
 
 				int qte=Integer.valueOf(request.getParameter("pqte"));
 				Details_panier panieradd=new Details_panier(prod_temp,qte);	
@@ -107,8 +107,8 @@ public class SingleProduct_S extends HttpServlet {
 				panier.ajouter(panieradd);
 				session.setAttribute( "panier", panier );
 		
-				System.out.println((Panier) session.getAttribute("panier"));
-				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
+//				System.out.println((Panier) session.getAttribute("panier"));
+//				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
 			}
 		}
 			

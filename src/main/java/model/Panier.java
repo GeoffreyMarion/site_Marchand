@@ -43,6 +43,15 @@ public class Panier {
 		return String.format("%.2f", total);
 	}
 	
+	
+	public void update(Details_panier d, int newQuantity) {
+		for(Details_panier dp:produits) {
+			if(dp.getProduit().getId_produit()==d.getProduit().getId_produit()) {
+				dp.setQte(newQuantity);
+			}
+		}
+	}
+	
 	public void delete(int produitid) {
 		Details_panier detail= new Details_panier();
 		for(Details_panier pp:produits) {
