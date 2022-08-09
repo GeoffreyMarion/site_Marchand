@@ -34,7 +34,12 @@ public class A_utilisateur_S extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		request.setAttribute("ListUtilisateur", uDao.read());
+		
+		if(request.getParameter("mot") != null) {
+			String mot = request.getParameter("mot");
+			request.setAttribute("ListUtilisateur", uDao.findByMot(mot));
+		}
+		else {request.setAttribute("ListUtilisateur", uDao.read());}
 		
 		boolean edition = false;
 		boolean creation = false;

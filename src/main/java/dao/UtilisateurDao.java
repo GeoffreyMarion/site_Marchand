@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import connection.Database;
+import model.Categorie;
+import model.Produit;
+import model.Sous_categorie;
 import model.Utilisateur;
 
 public class UtilisateurDao implements IDAO<Utilisateur>{
@@ -142,6 +145,38 @@ public class UtilisateurDao implements IDAO<Utilisateur>{
 			e.printStackTrace();
 		}
 		if(afficher==null){System.err.println(id+" ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
+	
+	public ArrayList<Utilisateur> findByMot(String input) {
+		ResultSet afficher = null;
+		ArrayList<Utilisateur> Utilisateur = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM utilisateur WHERE nom LIKE ? OR prenom LIKE ? OR email LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				int id = afficher.getInt("id_utilisateur");
+				String nom = afficher.getString("nom");
+				String prenom = afficher.getString("prenom");
+				Date date = afficher.getDate("date_inscription");
+				String mail = afficher.getString("email");
+				String mdp = afficher.getString("mot_de_passe");
+				Utilisateur utilisateur= new Utilisateur(id,nom,prenom,date,mail,mdp);
+				Utilisateur.add(utilisateur);
+			}
+			return Utilisateur;
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println("Aucun produit contenant le mot=" + input
+					+ " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
 	}
