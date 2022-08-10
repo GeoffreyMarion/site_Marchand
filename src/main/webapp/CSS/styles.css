@@ -131,3 +131,26 @@ a:hover {
 	background-color: red !important;
 	padding: 30px;
 }
+
+/* /////////////////////////////////// */
+/* PRODUCTS */
+/* /////////////////////////////////// *
+
+#products_product_img {
+	min-height: 200px !important;
+	background-color: red;
+}
+
+#products_btn_basket {
+	height: 20px;
+}
+
+#products_btn_voir_detail {
+	margin: 20px !important;
+} 
+
+.products_list_btns {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: start;
+}
