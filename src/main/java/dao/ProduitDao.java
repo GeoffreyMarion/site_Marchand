@@ -65,7 +65,7 @@ public class ProduitDao implements IDAO<Produit> {
 			produit = findById(id);
 			try {
 				PreparedStatement statement = connection.prepareStatement(
-						"UPDATE produit SET titre_produit=?,description=?,prix=?,image=?,id_sous_categorie=?,stock=?,stock_minimum=? WHERE id_produit=?");
+						"UPDATE produit SET titre_produit=?,description=?,prix=?,image=?,fk_id_sous_categorie=?,stock=?,stock_minimum=? WHERE id_produit=?");
 				statement.setString(1, titre_produit);
 				statement.setString(2, description);
 				statement.setFloat(3, prix);

@@ -128,10 +128,11 @@ public class Adresse_livraisonDao implements IDAO<Adresse_livraison>{
 		return null;
 	}
 	
-	public Adresse_livraison findByIdU(int id_utilisateur) {
+	public ArrayList<Adresse_livraison> findByIdU(int id_utilisateur) {
 		ResultSet afficher=null;
+		ArrayList<Adresse_livraison> ListAdresse = new ArrayList<>();
 		try {
-			PreparedStatement statement = connection.prepareStatement("SELECT* FROM adresse_livraison INNER JOIN utilisateur ON recherche.fk_id_utilisateur=utilisateur.id_utilisateur WHERE id_utilisateur=?");
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM adresse_livraison INNER JOIN utilisateur ON adresse_livraison.fk_id_utilisateur=utilisateur.id_utilisateur WHERE id_utilisateur=?");
 			statement.setInt(1,id_utilisateur);
 			afficher =statement.executeQuery();
 			while (afficher.next()) {
@@ -141,9 +142,10 @@ public class Adresse_livraisonDao implements IDAO<Adresse_livraison>{
 				int code_postal = afficher.getInt("code_postal");
 				String ville = afficher.getString("ville");
 				String pays = afficher.getString("pays");
-				Adresse_livraison recherche= new Adresse_livraison(id,utilisateur,adresse,code_postal,ville,pays);
-				return recherche;
+				Adresse_livraison adresse_liv= new Adresse_livraison(id,utilisateur,adresse,code_postal,ville,pays);
+				ListAdresse.add(adresse_liv);
 			}
+			return ListAdresse;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();

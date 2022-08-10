@@ -8,7 +8,10 @@ import java.util.ArrayList;
 
 import connection.Database;
 import model.Adresse_livraison;
+import model.Categorie;
 import model.Commande;
+import model.Produit;
+import model.Sous_categorie;
 import model.Utilisateur;
 
 public class CommandeDao implements IDAO<Commande> {
@@ -136,16 +139,17 @@ public class CommandeDao implements IDAO<Commande> {
 		return null;
 	}
 	
-	public Commande findByU(int id_utilisateur) {
+	public ArrayList<Commande> findByU(int id_utilisateur) {
 		ResultSet afficher = null;
+		ArrayList<Commande> ListCommande = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM commande INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_utilisateur=?");
+					"SELECT* FROM commande INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+					+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse WHERE id_utilisateur=?");
 			statement.setInt(1, id_utilisateur);
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
-				Utilisateur utilisateur = new Utilisateur(id_utilisateur, afficher.getString("nom"),
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
 						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
 						afficher.getString("mot_de_passe"));
 				Adresse_livraison adresse_livraison = new Adresse_livraison(afficher.getInt("id_adresse"), utilisateur,
@@ -153,8 +157,9 @@ public class CommandeDao implements IDAO<Commande> {
 						afficher.getString("pays"));
 				Commande commande = new Commande(afficher.getInt("id_commande"), utilisateur, afficher.getDate("date"),
 						afficher.getInt("total"), adresse_livraison, afficher.getInt("etat"));
-				return commande;
+				ListCommande.add(commande);
 			}
+			return ListCommande;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
@@ -165,31 +170,100 @@ public class CommandeDao implements IDAO<Commande> {
 		return null;
 	}
 	
-	public Commande findByA(int id_adresse) {
+	public ArrayList<Commande> findByD(String date) {
 		ResultSet afficher = null;
+		ArrayList<Commande> ListCommande = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM commande INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
-							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_adresse=?");
+					"SELECT* FROM commande INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+					+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse WHERE date LIKE ?");
+			statement.setString(1, date);
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+				Adresse_livraison adresse_livraison = new Adresse_livraison(afficher.getInt("id_adresse"), utilisateur,
+						afficher.getString("adresse"), afficher.getInt("code_postal"), afficher.getString("ville"),
+						afficher.getString("pays"));
+				Commande commande = new Commande(afficher.getInt("id_commande"), utilisateur, afficher.getDate("date"),
+						afficher.getInt("total"), adresse_livraison, afficher.getInt("etat"));
+				ListCommande.add(commande);
+			}
+			return ListCommande;
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println(date + " ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
+	
+	public ArrayList<Commande> findByA(int id_adresse) {
+		ResultSet afficher = null;
+		ArrayList<Commande> ListCommande = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM commande INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+					+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse WHERE id_adresse=?");
 			statement.setInt(1, id_adresse);
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
 				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
 						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
 						afficher.getString("mot_de_passe"));
-				Adresse_livraison adresse_livraison = new Adresse_livraison(id_adresse, utilisateur,
+				Adresse_livraison adresse_livraison = new Adresse_livraison(afficher.getInt("id_adresse"), utilisateur,
 						afficher.getString("adresse"), afficher.getInt("code_postal"), afficher.getString("ville"),
 						afficher.getString("pays"));
 				Commande commande = new Commande(afficher.getInt("id_commande"), utilisateur, afficher.getDate("date"),
 						afficher.getInt("total"), adresse_livraison, afficher.getInt("etat"));
-				return commande;
+				ListCommande.add(commande);
 			}
+			return ListCommande;
 		} catch (SQLException e) {
 			System.out.println("Données non lues");
 			e.printStackTrace();
 		}
 		if (afficher == null) {
 			System.err.println("Aucun produit avec une id_sous_categorie="+id_adresse + " ne se trouve pas dans la base de données\n----------------");
+		}
+		return null;
+	}
+	public ArrayList<Commande> findByMot(String input) {
+		ResultSet afficher = null;
+		ArrayList<Commande> ListCommande = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM commande INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse WHERE utilisateur.nom LIKE ? OR "
+							+ "utilisateur.prenom LIKE ? OR adresse_livraison.adresse LIKE ? OR adresse_livraison.ville LIKE ? OR adresse_livraison.pays LIKE ? ");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			statement.setString(4,"%" + input + "%");
+			statement.setString(5,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+				Adresse_livraison adresse_livraison = new Adresse_livraison(afficher.getInt("id_adresse"), utilisateur,
+						afficher.getString("adresse"), afficher.getInt("code_postal"), afficher.getString("ville"),
+						afficher.getString("pays"));
+				Commande commande = new Commande(afficher.getInt("id_commande"), utilisateur, afficher.getDate("date"),
+						afficher.getInt("total"), adresse_livraison, afficher.getInt("etat"));
+				ListCommande.add(commande);
+			}
+			return ListCommande;
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		if (afficher == null) {
+			System.err.println("Aucun produit contenant le mot=" + input
+					+ " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
 	}

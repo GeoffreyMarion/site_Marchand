@@ -211,7 +211,7 @@
 						<li><a href="tables-basic.html">Adresse de Livraison</a></li>
 						<li><a href="tables-basic.html">Favoris</a></li>
 						<li><a href="tables-basic.html">Recherche</a></li>
-						<li><a href="tables-basic.html">Commande</a></li>
+						<li><a href="a_commande">Commande</a></li>
 						<li><a href="tables-basic.html">Detail commande</a></li>
 						<li><a href="a_produit">Produits</a></li> <!-- 	+images -->
 						<li><a href="tables-basic.html">Sous categorie</a></li>
