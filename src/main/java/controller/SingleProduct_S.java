@@ -110,10 +110,16 @@ public class SingleProduct_S extends HttpServlet {
 //				System.out.println((Panier) session.getAttribute("panier"));
 //				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
 			}
-		}
 			
+			//AJOUTER UN COMMENTAIRE 
+			if(request.getParameter("commentaire")!=null ) {
+				System.out.println("within commentaire");
+//				request.getRequestDispatcher("commentaire.jsp").forward(request, response);
+				response.sendRedirect("/Commentaire_S");
+			}
+		}
 		request.getRequestDispatcher("singleProduct.jsp").forward(request, response);
-	}
+			}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

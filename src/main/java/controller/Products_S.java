@@ -84,7 +84,12 @@ public class Products_S extends HttpServlet {
 			String mot = request.getParameter("mot");
 			request.setAttribute("mot", mot);
 			Utilisateur u = new Utilisateur();
-			u.setId_utilisateur((int) session.getAttribute("iduser"));
+			if(session.getAttribute("iduser") != null) {
+				u.setId_utilisateur((int) session.getAttribute("iduser"));
+			} else {
+				u.setId_utilisateur((1));
+
+			}
 			Recherche r = new Recherche();
 			r.setUtilisateur(u);
 			r.setMot_cle(mot);
