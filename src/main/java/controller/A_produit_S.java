@@ -38,7 +38,16 @@ public class A_produit_S extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		request.setAttribute("ListProduit", pDao.read());
+		
+		if(request.getParameter("s-sscat") != null) {
+			int souscat = Integer.parseInt(request.getParameter("s-scat"));
+			request.setAttribute("ListProduit", pDao.findBySCat(souscat));
+		}
+		else if(request.getParameter("mot") != null) {
+			String mot = request.getParameter("mot");
+			request.setAttribute("ListProduit", pDao.findByMot(mot));
+		}
+		else {request.setAttribute("ListProduit", pDao.read());}
 		request.setAttribute("ListSCat", sCatDao.read());
 		boolean edition = false;
 		boolean creation = false;

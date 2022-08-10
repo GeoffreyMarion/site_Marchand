@@ -23,6 +23,13 @@ public class Commande {
 		this.adresse = adresse;
 		this.etat = etat;
 	}
+	public Commande(Utilisateur utilisateur,float total, Adresse_livraison adresse, int etat) {
+		super();
+		this.utilisateur = utilisateur;
+		this.total = total;
+		this.adresse = adresse;
+		this.etat = etat;
+	}
 	public int getId_commande() {
 		return id_commande;
 	}
