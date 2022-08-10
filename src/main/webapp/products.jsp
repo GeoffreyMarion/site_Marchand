@@ -105,8 +105,8 @@
 					</div>
 
 					<div class="card-body">
-						<img class="card-img-top m-2" src="${produit.image}"
-							alt="${produit.titre_produit}">
+						<img class="card-img-top m-2" id="products_product_img"
+							src="${produit.image}" alt="${produit.titre_produit}">
 					</div>
 					<ul class="list-group list-group-flush"
 						style="font-size: 0.7rem; font-weight: bold; text-align: right;">
@@ -115,31 +115,34 @@
 						<li class="list-group-item bg-light">(${produit.stock}) en
 							stock</li>
 					</ul>
-					<div class="card-body text-bg-light d-flex flex-wrap">
-						<a href="product?id=${produit.id_produit}"
-							class="btn btn-dark btn-sm col-6" style="margin: 0.2rem;">Voir
-							détail</a>
+					<div class="card-body text-bg-light">
+						<div class="container d-flex justify-content-between align-items-start">
+							<a href="product?id=${produit.id_produit}"
+								class="btn btn-dark btn-sm col-6" id="products_btn_voir_detail" >Voir
+								détail</a>
 
-						<c:if test="${isConnected==true}">
-							<button type="submit" class="btn btn-dark btn-sm"
-								style="margin: 0.2rem;">
-								<a href="products?fav=${produit.id_produit}"><img
-									alt="favori" src="icones/favori.png" style="height: 18"></a>
-							</button>
-						</c:if>
+							<c:if test="${isConnected==true}">
+								<button type="submit" class="btn btn-dark btn-sm"
+									>
+									<a href="products?fav=${produit.id_produit}"><img
+										alt="favori" src="icones/favori.png" style="height: 18"></a>
+								</button>
+							</c:if>
 
 
-						<form method="POST">
-							<input type="hidden" name="pqte" value="1">
-							<button class="btn btn-dark btn-sm addtobag" type="submit"
-								name="padd" value=${produit.id_produit
+							<form method="POST">
+								<input type="hidden" name="pqte" value="1">
+								<button class="btn btn-dark btn-sm addtobag ml-2" id="products_btn_basket" type="submit"
+									name="padd" value=${produit.id_produit
 							}>
-								<img alt="favori" src="icones/icon_basket3.png"
-									style="height: 18">
-							</button>
-						</form>
+									<img alt="favori" src="icones/icon_basket3.png"
+										style="height: 18">
+								</button>
+							</form>
+						</div>
 
-		<!-- 				<button type="submit" class="btn btn-dark btn-sm"
+
+						<!-- 				<button type="submit" class="btn btn-dark btn-sm"
 							style="margin: 0.2rem;">
 							<img alt="favori" src="icones/icon_basket3.png"
 								style="height: 18"></a>
