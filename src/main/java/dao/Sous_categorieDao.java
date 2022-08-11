@@ -40,8 +40,8 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 			afficher = statement.executeQuery();
 			while (afficher.next()) {
 				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"),
-						afficher.getString("titre"),
-						new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre")));
+						afficher.getString("sous_categorie.titre"),
+						new Categorie(afficher.getInt("id_categorie"), afficher.getString("categorie.titre")));
 				ListSous_categorie.add(sous_categorie);
 			}
 		} catch (SQLException e) {
@@ -187,5 +187,27 @@ public class Sous_categorieDao implements IDAO<Sous_categorie> {
 			e.printStackTrace();
 		}
 		return ListProduits;
+	}
+	
+	public ArrayList<Sous_categorie> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Sous_categorie> ListSous_categorie = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM sous_categorie INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie "
+					+ "WHERE sous_categorie.titre LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Sous_categorie sous_categorie = new Sous_categorie(afficher.getInt("id_sous_categorie"),
+						afficher.getString("titre"),
+						new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre")));
+				ListSous_categorie.add(sous_categorie);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListSous_categorie;
 	}
 }

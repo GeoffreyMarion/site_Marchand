@@ -43,9 +43,9 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM details_commande INNER JOIN commande ON details_commande.fk_id_commande=commande.id_commande "
-							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse"
-							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit"
+							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse "
+							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie");
 			afficher = statement.executeQuery();
@@ -129,9 +129,9 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM details_commande INNER JOIN commande ON details_commande.fk_id_commande=commande.id_commande "
-							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse"
-							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit"
+							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse "
+							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_details_commande=?");
 			statement.setInt(1, id);
@@ -171,9 +171,9 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM details_commande INNER JOIN commande ON details_commande.fk_id_commande=commande.id_commande "
-							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse"
-							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit"
+							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse "
+							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_commande=?");
 			statement.setInt(1, id_commande);
@@ -213,9 +213,9 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
 					"SELECT* FROM details_commande INNER JOIN commande ON details_commande.fk_id_commande=commande.id_commande "
-							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse"
-							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit"
+							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse "
+							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_produit=?");
 			statement.setInt(1, id_produit);
@@ -248,5 +248,48 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 			System.err.println("Aucun produit avec une id_sous_categorie="+id_produit + " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
+	}
+	
+	public ArrayList<Details_commande> findByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Details_commande> ListDetails_commande = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM details_commande INNER JOIN commande ON details_commande.fk_id_commande=commande.id_commande "
+							+ "INNER JOIN utilisateur ON commande.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN adresse_livraison ON commande.fk_id_adresse=adresse_livraison.id_adresse "
+							+ "INNER JOIN produit ON details_commande.fk_id_produit=produit.id_produit "
+							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie "
+							+ "WHERE utilisateur.prenom LIKE ? OR utilisateur.nom LIKE ? OR produit.titre_produit LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+				Adresse_livraison adresse_livraison = new Adresse_livraison(afficher.getInt("id_adresse"), utilisateur,
+						afficher.getString("adresse"), afficher.getInt("code_postal"), afficher.getString("ville"),
+						afficher.getString("pays"));
+				Commande commande = new Commande(afficher.getInt("id_commande"), utilisateur, afficher.getDate("date"),
+						afficher.getInt("total"), adresse_livraison, afficher.getInt("etat"));
+
+				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
+						afficher.getString("description"), afficher.getFloat("prix"), afficher.getString("image"),
+						new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
+						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
+
+				Details_commande details_commande = new Details_commande(afficher.getInt("id_details_commande"),
+						commande, produit, afficher.getInt("quantite"), afficher.getInt("prix"));
+				ListDetails_commande.add(details_commande);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListDetails_commande;
 	}
 }

@@ -20,6 +20,14 @@ public Commentaire(int id_commentaire, String commentaire, int note, Produit pro
 	this.utilisateur = utilisateur;
 }
 
+public Commentaire(String commentaire, int note, Produit produit, Utilisateur utilisateur) {
+	super();
+	this.commentaire = commentaire;
+	this.note = note;
+	this.produit = produit;
+	this.utilisateur = utilisateur;
+}
+
 public int getId_commentaire() {
 	return id_commentaire;
 }
