@@ -38,8 +38,8 @@ public class VisiteDao implements IDAO<Visite> {
 		ArrayList<Visite> ListVisite = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM visite INNER utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit"
+					"SELECT* FROM visite INNER JOIN utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie");
 			afficher = statement.executeQuery();
@@ -113,8 +113,8 @@ public class VisiteDao implements IDAO<Visite> {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM visite INNER utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit"
+					"SELECT* FROM visite INNER JOIN utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_visite=?");
 			statement.setInt(1, id);
@@ -147,8 +147,8 @@ public class VisiteDao implements IDAO<Visite> {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM visite INNER utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit"
+					"SELECT* FROM visite INNER JOIN utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_produit=?");
 			statement.setInt(1, id_produit);
@@ -181,8 +181,8 @@ public class VisiteDao implements IDAO<Visite> {
 		ResultSet afficher = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM visite INNER utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur"
-							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit"
+					"SELECT* FROM visite INNER JOIN utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE id_utilisateur=?");
 			statement.setInt(1, id_utilisateur);
@@ -209,5 +209,74 @@ public class VisiteDao implements IDAO<Visite> {
 			System.err.println("Aucun produit avec une id_sous_categorie="+id_utilisateur + " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
+	}
+	
+	public ArrayList<Visite> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Visite> ListVisite = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM visite INNER JOIN utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit "
+							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie "
+							+ "WHERE utilisateur.prenom LIKE ? OR utilisateur.nom LIKE ? OR produit.titre_produit LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+
+				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
+						afficher.getString("description"), afficher.getFloat("prix"), afficher.getString("image"),
+						new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
+						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
+
+				Visite visite = new Visite(afficher.getInt("id_visite"),
+						produit, utilisateur, afficher.getDate("date_visite"));
+				ListVisite.add(visite);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListVisite;
+	}
+	
+	public ArrayList<Visite> findByD(String date) {
+		ResultSet afficher;
+		ArrayList<Visite> ListVisite = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM visite INNER JOIN utilisateur ON visite.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON visite.fk_id_produit=produit.id_produit "
+							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie WHERE date_visite LIKE ?");
+			statement.setString(1, date);
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+
+				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
+						afficher.getString("description"), afficher.getFloat("prix"), afficher.getString("image"),
+						new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
+						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
+
+				Visite visite = new Visite(afficher.getInt("id_visite"),
+						produit, utilisateur, afficher.getDate("date_visite"));
+				ListVisite.add(visite);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListVisite;
 	}
 }

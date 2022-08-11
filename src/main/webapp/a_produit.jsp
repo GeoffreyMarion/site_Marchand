@@ -57,16 +57,17 @@
 					<div class="d-flex flex-wrap">
 						<a href="a_produit?create=1"><button type="button"
 								class="btn btn-success waves-effect waves-light width-md">Create</button></a>
-						<form class="col-5" role="search" method="post"
+						<form class="col-5 d-flex flex-wrap" role="search" method="post"
 							action=a_produit id="recherche">
 							<input type="search"
-								class="form-control form-control-dark text-black mt-3"
+								class="form-control form-control-dark text-black col-5 me-3"
 								placeholder="Rechercher..." aria-label="Search" name="mot">
-						</form>
-						<button class="btn btn-sm btn-dark" type="submit" form="recherche">
-							<img src="icones/icon_loop.png" width="25" alt="Loop" />
+								<button class="btn btn-dark btn-sm" type="submit" form="recherche">
+							<img src="icones/icon_loop.png" width="18" alt="Loop" />
 						</button>
-						<form class="form" method="post" action=a_produit>
+						</form>
+						
+						<form class="form d-flex flex-wrap" method="post" action=a_produit>
 										 <div class="form-group row">
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="s-scat">

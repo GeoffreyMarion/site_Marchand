@@ -154,4 +154,33 @@ public class Adresse_livraisonDao implements IDAO<Adresse_livraison>{
 		}
 		return null;
 	}
+	
+	public ArrayList<Adresse_livraison> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Adresse_livraison> ListAdresse = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM adresse_livraison INNER JOIN utilisateur ON adresse_livraison.fk_id_utilisateur=utilisateur.id_utilisateur "
+					+ "WHERE utilisateur.prenom LIKE ? OR utilisateur.nom LIKE ? OR adresse LIKE ? OR ville LIKE ? OR pays LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			statement.setString(4,"%" + input + "%");
+			statement.setString(5,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Adresse_livraison adresse_livraison = new Adresse_livraison(afficher.getInt("id_adresse"),
+						new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+								afficher.getString("prenom"), afficher.getDate("date_inscription"),
+								afficher.getString("email"), afficher.getString("mot_de_passe")),
+						afficher.getString("adresse"), afficher.getInt("code_postal"), afficher.getString("ville"),
+						afficher.getString("pays"));
+				ListAdresse.add(adresse_livraison);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListAdresse;
+	}
 }

@@ -27,11 +27,11 @@
     </head>
     <body class="left-side-menu-dark">
 
-		<c:import url="a_header" />
+<%-- 		<c:import url="a_header" /> --%>
 		
         <!-- Begin page -->
         <div id="wrapper">
-        
+        <c:import url="a_header" />
         
                     <div class="content-page">
                 <div class="content">

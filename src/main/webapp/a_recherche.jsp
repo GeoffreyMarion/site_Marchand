@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Commande</title>
+<title>Recherche</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta
 	content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -48,7 +48,7 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box">
-								<h4 class="page-title">Commandes</h4>
+								<h4 class="page-title">Recherches</h4>
 							</div>
 						</div>
 					</div>
@@ -56,7 +56,7 @@
 
 					<div class="d-flex flex-wrap">
 						<form class="col-5 d-flex flex-wrap" role="search" method="post"
-							action=a_commande id="recherche">
+							action=a_recherche id="recherche">
 							<input type="search"
 								class="form-control form-control-dark text-black col-5 me-3"
 								placeholder="Rechercher..." aria-label="Search" name="mot">
@@ -64,8 +64,7 @@
 							<img src="icones/icon_loop.png" width="18" alt="Loop" />
 						</button>
 						</form>
-						
-						<form class="col-5 form d-flex flex-wrap" method="post" action=a_commande>
+						<form class="col-5 form d-flex flex-wrap" method="post" action=a_recherche>
 										 <div class="form-group row">
                                             <div class="col-9">
                                                 <input type="date"
@@ -80,75 +79,7 @@
 					<div class="row">
 						<br>
 					</div>
-					<c:if test="${creation == true}">
-					<div class="alert alert-success" role="alert">Un produit a été créé avec succès</div>
-				</c:if>
-				<c:if test="${edition == true}">
-					<div class="alert alert-success" role="alert">Un produit a été édité avec succès</div>
-				</c:if>
-				<c:if test="${suppression == true}">
-					<div class="alert alert-danger" role="alert">Un produit a été supprimé avec succès</div>
-				</c:if>
-
-					<c:if test="${edit!=null}">
-						<div class="row">
-							<div class="col-12">
-								<div class="card-box">
-									<h4 class="header-title" style="color: white;">Update</h4>
-
-									<form class="form-horizontal" method="post">
-										<div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Select Adresse</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="e-etat">
-                                                	<c:forEach items="${ListAdresse}" var="adresse_livraison">
-                                                	<c:if test="${adresse_livraison.id_adresse == comm.adresse_livraison.id_adresse}">
-                                                		<option value="${adresse_livraison.id_adresse}"selected>${adresse_livraison.adresse}
-														${adresse_livraison.code_postal} ${adresse_livraison.ville} ${adresse_livraison.pays}</option>
-                                                	</c:if>
-                                                	<c:if test="${adresse_livraison.id_adresse != comm.adresse_livraison.id_adresse}">
-                                                    	<option value="${sous_categorie.id_sous_categorie}">${adresse_livraison.adresse}
-														${adresse_livraison.code_postal} ${adresse_livraison.ville} ${adresse_livraison.pays}</option>
-                                                    	</c:if>
-													</c:forEach>                                              	
-                                                </select>
-                                            </div>
-                                        </div>
-										 <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Select Etat</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="e-etat">
-                                                	<c:if test="${comm.etat == 0}">
-                                                		<option value="0"selected>Préparation</option>
-                                                	</c:if>
-                                                	<c:if test="${comm.etat != 0}">
-                                                		<option value="0">Préparation</option>
-                                                	</c:if>
-                                                	<c:if test="${comm.etat == 1}">
-                                                		<option value="1"selected>Livraison</option>
-                                                	</c:if>
-                                                	<c:if test="${comm.etat != 1}">
-                                                		<option value="1">Livraison</option>
-                                                	</c:if>
-                                                	<c:if test="${comm.etat == 2}">
-                                                		<option value="2"selected>Livrée</option>
-                                                	</c:if>
-                                                	<c:if test="${comm.etat != 2}">
-                                                		<option value="2">Livrée</option>
-                                                	</c:if>                                              	
-                                                </select>
-                                            </div>
-                                        </div>
-										<button type="submit"
-											class="btn btn-light waves-effect waves-light width-md" name="c-edit">Envoyer</button>
-									</form>
-
-								</div>
-								<!-- end card-box -->
-							</div>
-							<!-- end col -->
-						</div>
-					</c:if>
+					
 					<!-- end row -->
 
 					<div class="row">
@@ -161,39 +92,17 @@
 											<tr>
 												<th>#</th>
 												<th>Utilisateur</th>
+												<th>Mot cle</th>
 												<th>Date</th>
-												<th>Total</th>
-												<th>Adresse</th>
-												<th>Etat</th>
-												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${ListCommande}" var="commande">
+											<c:forEach items="${ListRecherche}" var="recherche">
 												<tr>
-													<th scope="row">${commande.id_commande}</th>
-													<td>${commande.utilisateur.prenom} ${commande.utilisateur.nom}</td>
-													<td>${commande.date}</td>
-													<td>${commande.total}</td>
-													<td>${commande.adresse_livraison.adresse}
-														${commande.adresse_livraison.code_postal}
-														${commande.adresse_livraison.ville}
-														${commande.adresse_livraison.pays}</td>
-													<c:choose>
-														<c:when test="${commande.etat==0}">Préparation </c:when>
-														<c:when test="${commande.etat==1}">Livraison </c:when>
-														<c:when test="${commande.etat==2}">Livrée</c:when>
-													</c:choose>
-													<td>${commande.etat}</td>
-													<td><a href="a_commande?edit=${commande.id_commande}"><button
-																type="submit"
-																class="btn btn-sm btn-icon btn-light waves-effect waves-light">
-																<i class="mdi mdi-keyboard"></i>
-															</button></a> <a href="a_commande?suppr=${commande.id_commande}"><button
-																type="submit"
-																class="btn btn-sm btn-icon btn-danger waves-effect waves-light">
-																<i class="mdi mdi-close"></i>
-															</button></a></td>
+													<th scope="row">${recherche.id_recherche}</th>
+													<td>${recherche.utilisateur.prenom} ${recherche.utilisateur.nom}</td>
+													<td>${recherche.mot_cle}</td>
+													<td>${recherche.date_recherche}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

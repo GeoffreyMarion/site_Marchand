@@ -208,15 +208,15 @@
 					<ul class="nav-second-level" aria-expanded="false">
 						<li><a href="tables-basic.html">Administrateurs</a></li>
 						<li><a href="a_utilisateur">Utilisateurs</a></li>
-						<li><a href="tables-basic.html">Adresse de Livraison</a></li>
+						<li><a href="a_adresse_livraison">Adresse de Livraison</a></li>
 						<li><a href="tables-basic.html">Favoris</a></li>
-						<li><a href="tables-basic.html">Recherche</a></li>
+						<li><a href="a_recherche">Recherche</a></li>
 						<li><a href="a_commande">Commande</a></li>
 						<li><a href="tables-basic.html">Detail commande</a></li>
 						<li><a href="a_produit">Produits</a></li> <!-- 	+images -->
 						<li><a href="tables-basic.html">Sous categorie</a></li>
 						<li><a href="tables-basic.html">Categorie</a></li>
-						<li><a href="tables-basic.html">Visiste</a></li>
+						<li><a href="a_visite">Visiste</a></li>
 						<li><a href="tables-basic.html">Commentaire</a></li>
 						<li><a href="tables-datatable.html">Entrée en stock</a></li>
 						<li><a href="tables-datatable.html">Fournisseurs</a></li>

@@ -141,4 +141,51 @@ public class RechercheDao implements IDAO<Recherche>{
 		}
 		return null;
 	}
+	public ArrayList<Recherche> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Recherche> ListRecherche = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM recherche INNER JOIN utilisateur ON recherche.fk_id_utilisateur=utilisateur.id_utilisateur WHERE utilisateur.prenom LIKE ? OR utilisateur.nom LIKE ? OR mot_cle LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Recherche recherche = new Recherche(afficher.getInt("id_recherche"),
+						new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+								afficher.getString("prenom"), afficher.getDate("date_inscription"),
+								afficher.getString("email"), afficher.getString("mot_de_passe")),
+						afficher.getString("mot_cle"), afficher.getDate("date_recherche"));
+				ListRecherche.add(recherche);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListRecherche;
+	}
+	
+	public ArrayList<Recherche> findByD(String date) {
+		ResultSet afficher;
+		ArrayList<Recherche> ListRecherche = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM recherche INNER JOIN utilisateur ON recherche.fk_id_utilisateur=utilisateur.id_utilisateur WHERE date_recherche LIKE ?");
+			statement.setString(1, date);
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Recherche recherche = new Recherche(afficher.getInt("id_recherche"),
+						new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+								afficher.getString("prenom"), afficher.getDate("date_inscription"),
+								afficher.getString("email"), afficher.getString("mot_de_passe")),
+						afficher.getString("mot_cle"), afficher.getDate("date_recherche"));
+				ListRecherche.add(recherche);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListRecherche;
+	}
 }
