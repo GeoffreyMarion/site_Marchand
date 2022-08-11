@@ -209,7 +209,7 @@
 						<li><a href="tables-basic.html">Administrateurs</a></li>
 						<li><a href="a_utilisateur">Utilisateurs</a></li>
 						<li><a href="a_adresse_livraison">Adresse de Livraison</a></li>
-						<li><a href="tables-basic.html">Favoris</a></li>
+						<li><a href="a_favori">Favoris</a></li>
 						<li><a href="a_recherche">Recherche</a></li>
 						<li><a href="a_commande">Commande</a></li>
 						<li><a href="tables-basic.html">Detail commande</a></li>
