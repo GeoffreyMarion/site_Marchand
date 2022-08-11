@@ -251,5 +251,41 @@ public class FavoriDao implements IDAO<Favori> {
 		}
 		return null;
 	}
+	
+	public ArrayList<Favori> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Favori> ListFavori = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM favori INNER JOIN utilisateur ON favori.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON favori.fk_id_produit=produit.id_produit "
+							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie "
+							+ "WHERE utilisateur.prenom LIKE ? OR utilisateur.nom LIKE ? OR  produit.titre_produit LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+
+				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
+						afficher.getString("description"), afficher.getFloat("prix"), afficher.getString("image"),
+						new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
+						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
+
+				Favori favori = new Favori(afficher.getInt("id_favori"),
+						produit, utilisateur);
+				ListFavori.add(favori);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListFavori;
+	}
 }
 
