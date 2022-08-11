@@ -67,11 +67,11 @@
 
 				<label for="cars">Notez ce produit</label> <select name="note"
 					id="note">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
+					<option value="1">1 - Pas du tout satisfait</option>
+					<option value="2">2 - Peu satisfait </option>
+					<option value="3">3 - Ni satisfait, ni insatisfait</option>
+					<option value="4">4 - Satisfait</option>
+					<option value="5">5 - Tres satisfait</option>
 				</select>
 
 				<div class="card-body text-bg-light">
