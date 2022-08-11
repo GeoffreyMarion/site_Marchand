@@ -24,7 +24,7 @@ Produit produit = (Produit) request.getAttribute("produit");
 
 <%
 ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttribute("commentairesFromProduit");
-%> 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,6 +88,13 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 							<a href="product?fav=${produit.id_produit}"><img alt="favori"
 								src="icones/favori.png" style="height: 18"></a>
 						</button>
+						<button type="submit" class="btn btn-dark btn-sm"
+							style="margin: 0.2rem;">
+							<a href="commentaire?id=${produit.id_produit}">
+							<img
+								alt="favori" src="icones/icon_comment_white.png"
+								style="height: 18"></a>
+						</button>
 					</c:if>
 
 					<%-- 			<button type="submit" class="btn btn-dark btn-sm"
@@ -95,7 +102,7 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 						<a href="product?pan=${produit.id_produit}"><img alt="favori"
 							src="icones/favori.png" style="height: 18"></a>
 					</button> --%>
-					<form method="POST">
+					<form method="POST" class="mt-3">
 						Quantit&eacute; : <input type="number" min="1"
 							max=${produit.stock
 							} name="pqte" value="1">
@@ -107,34 +114,34 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 				</div>
 			</div>
 		</div>
-		
+
 		<%
-			if (commentaires.size() >0) {
-			%>
-			<div class="row pt-4">
-				<div class="text-bg-dark p-2">
-					<h4>Ce qu'en disent nos clients:</h4>
-				</div>
-				<div class="pt-5">
-					<c:forEach items="${ commentairesFromProduit}" var="commentaire">
-						<div class="card mb-3">
-							<div class="card-header">Date: ${commentaire.note }</div>
-							<div class="card-body">
-								<blockquote class="blockquote mb-0">
-									<p>${commentaire.commentaire }</p>
-									<footer class="blockquote-footer">
-										De: <cite title="Source Title">${commentaire.utilisateur.getPrenom() }.</cite>
-										Note: <cite title="Source Title">${commentaire.note }/5.</cite>
-									</footer>
-								</blockquote>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
+		if (commentaires.size() > 0) {
+		%>
+		<div class="row pt-4">
+			<div class="text-bg-dark p-2">
+				<h4>Ce qu'en disent nos clients:</h4>
 			</div>
-			<%}%>
-		
-		
+			<div class="pt-5">
+				<c:forEach items="${ commentairesFromProduit}" var="commentaire">
+					<div class="card mb-3">
+						<div class="card-header">Date: ${commentaire.note }</div>
+						<div class="card-body">
+							<blockquote class="blockquote mb-0">
+								<p>${commentaire.commentaire }</p>
+								<footer class="blockquote-footer">
+									De: <cite title="Source Title">${commentaire.utilisateur.getPrenom() }.</cite>
+									Note: <cite title="Source Title">${commentaire.note }/5.</cite>
+								</footer>
+							</blockquote>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+		<%}%>
+
+
 		<br />
 		<div class="row">
 			<div class="text-bg-dark p-2">
@@ -185,8 +192,8 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 								<button class="btn btn-dark btn-sm addtobag mt-1" type="submit"
 									name="padd" value=${produitSimilaire.id_produit
 									}
-									onclick="openSideDrawer()" data-toggle="modal" data-target=".bd-example-modal-lg">Ajouter
-									au panier</button>
+									onclick="openSideDrawer()" data-toggle="modal"
+									data-target=".bd-example-modal-lg">Ajouter au panier</button>
 							</form>
 
 						</div>
