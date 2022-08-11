@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Categorie {
 	private int id_categorie;
 	private String titre;
@@ -12,6 +10,11 @@ public class Categorie {
 	public Categorie(int id_categorie, String titre) {
 		super();
 		this.id_categorie = id_categorie;
+		this.titre = titre;
+	}
+	
+	public Categorie(String titre) {
+		super();
 		this.titre = titre;
 	}
 

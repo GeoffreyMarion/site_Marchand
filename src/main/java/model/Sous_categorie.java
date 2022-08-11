@@ -16,6 +16,12 @@ public class Sous_categorie {
 		this.titre = titre;
 		this.categorie = categorie;
 	}
+	
+	public Sous_categorie(String titre, Categorie categorie) {
+		super();
+		this.titre = titre;
+		this.categorie = categorie;
+	}
 
 	public int getId_sous_categorie() {
 		return id_sous_categorie;

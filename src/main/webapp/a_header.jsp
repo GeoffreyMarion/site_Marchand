@@ -212,12 +212,12 @@
 						<li><a href="a_favori">Favoris</a></li>
 						<li><a href="a_recherche">Recherche</a></li>
 						<li><a href="a_commande">Commande</a></li>
-						<li><a href="tables-basic.html">Detail commande</a></li>
+						<li><a href="a_details_commande">Detail commande</a></li>
 						<li><a href="a_produit">Produits</a></li> <!-- 	+images -->
-						<li><a href="tables-basic.html">Sous categorie</a></li>
-						<li><a href="tables-basic.html">Categorie</a></li>
+						<li><a href="a_sous_categorie">Sous categorie</a></li>
+						<li><a href="a_categorie">Categorie</a></li>
 						<li><a href="a_visite">Visiste</a></li>
-						<li><a href="tables-basic.html">Commentaire</a></li>
+						<li><a href="a_commentaire">Commentaire</a></li>
 						<li><a href="tables-datatable.html">Entrée en stock</a></li>
 						<li><a href="tables-datatable.html">Fournisseurs</a></li>
 						<li><a href="tables-responsive.html">Slide</a></li>

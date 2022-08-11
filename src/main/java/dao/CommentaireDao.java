@@ -223,4 +223,42 @@ public class CommentaireDao implements IDAO<Commentaire> {
 		}
 		return null;
 	}
+	
+	public ArrayList<Commentaire> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Commentaire> ListCommentaire = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM commentaire INNER JOIN utilisateur ON commentaire.fk_id_utilisateur=utilisateur.id_utilisateur "
+							+ "INNER JOIN produit ON commentaire.fk_id_produit=produit.id_produit "
+							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie "
+							+ "WHERE utilisateur.prenom LIKE ? OR utilisateur.nom LIKE ? OR produit.titre_produit LIKE ? "
+							+ "OR commentaire.commentaire LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			statement.setString(4,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Utilisateur utilisateur = new Utilisateur(afficher.getInt("id_utilisateur"), afficher.getString("nom"),
+						afficher.getString("prenom"), afficher.getDate("date_inscription"), afficher.getString("email"),
+						afficher.getString("mot_de_passe"));
+
+				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
+						afficher.getString("description"), afficher.getFloat("prix"), afficher.getString("image"),
+						new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
+						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
+
+				Commentaire commentaire = new Commentaire(afficher.getInt("id_commentaire"),
+						afficher.getString("commentaire"), afficher.getInt("note"), produit, utilisateur);
+				ListCommentaire.add(commentaire);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListCommentaire;
+	}
 }
