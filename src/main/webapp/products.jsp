@@ -116,7 +116,7 @@
 							stock</li>
 					</ul>
 					<div class="card-body text-bg-light">
-						<div class="container d-flex justify-content-between align-items-start">
+						<div class="container d-flex justify-content-around align-items-start">
 							<a href="product?id=${produit.id_produit}"
 								class="btn btn-dark btn-sm col-6" id="products_btn_voir_detail" >Voir
 								détail</a>
