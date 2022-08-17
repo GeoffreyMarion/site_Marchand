@@ -35,7 +35,7 @@
 	<c:import url="a_header" />
 
 	<!-- Begin page -->
-	<div id="wrapper">
+	<div id="wrapper" style="overflow: scroll">
 
 
 		<div class="content-page">

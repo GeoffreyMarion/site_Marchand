@@ -26,11 +26,9 @@
 
     </head>
     <body class="left-side-menu-dark">
-
-<%-- 		<c:import url="a_header" /> --%>
 		
         <!-- Begin page -->
-        <div id="wrapper">
+        <div id="wrapper" style="overflow: scroll">
         <c:import url="a_header" />
         
                     <div class="content-page">

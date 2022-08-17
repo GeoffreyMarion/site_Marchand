@@ -92,6 +92,28 @@ public class ProduitDao implements IDAO<Produit> {
 		}
 		return null;
 	}
+	
+	public Produit updateS(int stock,int id) {
+		Produit produit = null;
+		if (findById(id) != null) {
+			produit = findById(id);
+			try {
+				PreparedStatement statement = connection.prepareStatement(
+						"UPDATE produit SET stock=? WHERE id_produit=?");
+				statement.setInt(1, stock);
+				statement.setInt(2, id);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("Update non fait");
+				e.printStackTrace();
+			}
+			produit.setStock(stock);
+			return produit;
+		} else {
+			System.out.println("Update non fait id non présent dans la base");
+		}
+		return null;
+	}
 
 	@Override
 	public boolean remove(int id) {
