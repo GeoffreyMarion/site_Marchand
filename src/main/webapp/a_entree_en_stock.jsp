@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Produits</title>
+<title>Entree en stock</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta
 	content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -48,17 +48,17 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box">
-								<h4 class="page-title">Utilisateurs</h4>
+								<h4 class="page-title">Entrees en stock</h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
 
 					<div class="d-flex flex-wrap">
-						<a href="a_produit?create=1"><button type="button"
+					<a href="a_entree_en_stock?create=1"><button type="button"
 								class="btn btn-success waves-effect waves-light width-md">Create</button></a>
 						<form class="col-5 d-flex flex-wrap" role="search" method="post"
-							action=a_produit id="recherche">
+							action=a_entree_en_stock id="recherche">
 							<input type="search"
 								class="form-control form-control-dark text-black col-5 me-3"
 								placeholder="Rechercher..." aria-label="Search" name="mot">
@@ -66,8 +66,18 @@
 							<img src="icones/icon_loop.png" width="18" alt="Loop" />
 						</button>
 						</form>
-						
-						<form class="form d-flex flex-wrap" method="post" action=a_produit>
+						<form class="col-5 form d-flex flex-wrap" method="post" action=a_entree_en_stock>
+										 <div class="form-group row">
+                                            <div class="col-9">
+                                                <input type="date"
+								class="form-control form-control-dark text-black"
+								placeholder="Rechercher..." aria-label="Search" name="date">
+                                            </div>
+                                        </div>
+										<button type="submit"
+											class="btn btn-light waves-effect waves-light width-md" name="s-date">Chercher</button>
+									</form>
+									<form class="form d-flex flex-wrap" method="post" action=a_entree_en_stock>
 										 <div class="form-group row">
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="s-scat">
@@ -90,15 +100,19 @@
 					<div class="row">
 						<br>
 					</div>
+					
 					<c:if test="${creation == true}">
-					<div class="alert alert-success" role="alert">Un produit a été créé avec succès</div>
-				</c:if>
-				<c:if test="${edition == true}">
-					<div class="alert alert-success" role="alert">Un produit a été édité avec succès</div>
-				</c:if>
-				<c:if test="${suppression == true}">
-					<div class="alert alert-danger" role="alert">Un produit a été supprimé avec succès</div>
-				</c:if>
+						<div class="alert alert-success" role="alert">Un compte
+							utilisateur a été créé avec succès</div>
+					</c:if>
+					<c:if test="${edition == true}">
+						<div class="alert alert-success" role="alert">Un compte
+							utilisateur a été édité avec succès</div>
+					</c:if>
+					<c:if test="${suppression == true}">
+						<div class="alert alert-danger" role="alert">Un compte
+							utilisateur a été supprimé avec succès</div>
+					</c:if>
 
 					<c:if test="${create==1}">
 						<div class="row">
@@ -108,58 +122,29 @@
 
 									<form class="form-horizontal" method="post">
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Titre</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="Some text value..." name="titre">
-											</div>
-										</div>
-										<div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" for="example-textarea">Description</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="example-textarea" rows="5" name="description"></textarea>
-                                            </div>
-                                        </div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Prix</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Fournisseur_id</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control" id="simpleinput"
-													value="Some text value..." name="prix">
+													value="Some text value..." name="idfournisseur">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="Some text value..." name="image">
-											</div>
-										</div>
-										 <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Sous categorie</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="scat">
-                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
-                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
-													</c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Produit_id</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control" id="simpleinput"
-													value="Some text value..." name="stock">
+													value="Some text value..." name="idproduit">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock minimum</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Quantité</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control" id="simpleinput"
-													value="Some text value..." name="stockmin">
+													value="Some text value..." name="quantite">
 											</div>
 										</div>
 										<button type="submit"
-											class="btn btn-light waves-effect waves-light width-md" name="c-create">Envoyer</button>
+											class="btn btn-light waves-effect waves-light width-md"
+											name="c-create">Envoyer</button>
 									</form>
 
 								</div>
@@ -177,59 +162,24 @@
 
 									<form class="form-horizontal" method="post">
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Titre</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="${prod.titre_produit}" name="e-titre">
-											</div>
-										</div>
-										<div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" for="example-textarea">Description</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="example-textarea" rows="5" name="e-description">${prod.description}</textarea>
-                                            </div>
-                                        </div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Prix</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Fournisseur_id</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control" id="simpleinput"
-													value="${prod.prix}" name="e-prix">
+													value="${eestock.fournisseur.id_fournisseur}" name="e-idfournisseur">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="${prod.image}" name="e-image">
-											</div>
-										</div>
-										 <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Input Select</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="e-scat">
-                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
-                                                	<c:if test="${sous_categorie.id_sous_categorie == prod.sous_categorie.id_sous_categorie}">
-                                                		<option value="${sous_categorie.id_sous_categorie}"selected>${sous_categorie.titre}</option>
-                                                	</c:if>
-                                                	<c:if test="${sous_categorie.id_sous_categorie != prod.sous_categorie.id_sous_categorie}">
-                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
-                                                    	</c:if>
-													</c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Produit_id</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control" id="simpleinput"
-													value="${prod.stock}" name="e-stock">
+													value="${eestock.produit.id_produit}" name="e-idproduit">
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock minimum</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Quantité</label>
 											<div class="col-sm-9">
 												<input type="number" class="form-control" id="simpleinput"
-													value="${prod.stock_minimum}" name="e-stockmin">
+													value="${eestock.quantite}" name="e-quantite">
 											</div>
 										</div>
 										<button type="submit"
@@ -242,6 +192,7 @@
 							<!-- end col -->
 						</div>
 					</c:if>
+					
 					<!-- end row -->
 
 					<div class="row">
@@ -253,34 +204,28 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Titre</th>
-												<th>Description</th>
-												<th>Prix</th>
-												<th>Image</th>
-												<th>Sous categorie</th>
-												<th>Stock</th>
-												<th>Stock min</th>
+												<th>Fournisseur</th>
+												<th>Produit</th>
+												<th>Date d'entrée en stock</th>
+												<th>Quantité</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${ListProduit}" var="produit">
+											<c:forEach items="${ListEntreeenstock}" var="entree_en_stock">
 												<tr>
-													<th scope="row">${produit.id_produit}</th>
-													<td>${produit.titre_produit}</td>
-													<td>${produit.description}</td>
-													<td>${produit.prix}</td>
-													<td><img alt="${produit.titre_produit}" src="${produit.image}" style="height: 35"></td>
-													<td>${produit.sous_categorie.titre}</td>
-													<td>${produit.stock}</td>
-													<td>${produit.stock_minimum}</td>
+													<th scope="row">${entree_en_stock.id_entree_en_stock}</th>
+													<td>${entree_en_stock.fournisseur.id_fournisseur}-${entree_en_stock.fournisseur.nom}</td>
+													<td>${entree_en_stock.produit.id_produit}-${entree_en_stock.produit.titre_produit}</td>
+													<td>${entree_en_stock.date_entree_en_stock}</td>
+													<td>${entree_en_stock.quantite}</td>
 													<td><a
-														href="a_produit?edit=${produit.id_produit}"><button
+														href="a_entree_en_stock?edit=${entree_en_stock.id_entree_en_stock}"><button
 																type="submit"
 																class="btn btn-sm btn-icon btn-light waves-effect waves-light">
 																<i class="mdi mdi-keyboard"></i>
 															</button></a> <a
-														href="a_produit?suppr=${produit.id_produit}"><button
+														href="a_entree_en_stock?suppr=${entree_en_stock.id_entree_en_stock}"><button
 																type="submit"
 																class="btn btn-sm btn-icon btn-danger waves-effect waves-light">
 																<i class="mdi mdi-close"></i>

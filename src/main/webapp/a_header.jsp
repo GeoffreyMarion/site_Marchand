@@ -186,7 +186,11 @@
 			<ul class="metismenu" id="side-menu">
 
 				<li class="menu-title">Navigation</li>
-
+				
+				<li><a href="index"> <i class="dripicons-meter"></i>
+						<span>Site_marchand</span>
+				</a></li>
+				
 				<li><a href="a_index"> <i class="dripicons-meter"></i>
 						<span> Dashboard </span>
 				</a></li>
@@ -218,8 +222,8 @@
 						<li><a href="a_categorie">Categorie</a></li>
 						<li><a href="a_visite">Visiste</a></li>
 						<li><a href="a_commentaire">Commentaire</a></li>
-						<li><a href="tables-datatable.html">Entrée en stock</a></li>
-						<li><a href="tables-datatable.html">Fournisseurs</a></li>
+						<li><a href="a_entree_en_stock">Entrée en stock</a></li>
+						<li><a href="a_fournisseur">Fournisseurs</a></li>
 						<li><a href="tables-responsive.html">Slide</a></li>
 						<li><a href="tables-responsive.html">Coordonnées</a></li>
 					</ul></li>

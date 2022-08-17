@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Produits</title>
+<title>Fournisseur</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta
 	content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -48,17 +48,17 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="page-title-box">
-								<h4 class="page-title">Utilisateurs</h4>
+								<h4 class="page-title">Fournisseurs</h4>
 							</div>
 						</div>
 					</div>
 					<!-- end page title -->
 
 					<div class="d-flex flex-wrap">
-						<a href="a_produit?create=1"><button type="button"
+					<a href="a_fournisseur?create=1"><button type="button"
 								class="btn btn-success waves-effect waves-light width-md">Create</button></a>
 						<form class="col-5 d-flex flex-wrap" role="search" method="post"
-							action=a_produit id="recherche">
+							action=a_fournisseur id="recherche">
 							<input type="search"
 								class="form-control form-control-dark text-black col-5 me-3"
 								placeholder="Rechercher..." aria-label="Search" name="mot">
@@ -66,39 +66,23 @@
 							<img src="icones/icon_loop.png" width="18" alt="Loop" />
 						</button>
 						</form>
-						
-						<form class="form d-flex flex-wrap" method="post" action=a_produit>
-										 <div class="form-group row">
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="s-scat">
-                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
-                                                	<c:if test="${sous_categorie.id_sous_categorie == prod.sous_categorie.id_sous_categorie}">
-                                                		<option value="${sous_categorie.id_sous_categorie}"selected>${sous_categorie.titre}</option>
-                                                	</c:if>
-                                                	<c:if test="${sous_categorie.id_sous_categorie != prod.sous_categorie.id_sous_categorie}">
-                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
-                                                    	</c:if>
-													</c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                     
-										<button type="submit"
-											class="btn btn-light waves-effect waves-light width-md" name="s-sscat">Chercher</button>
-									</form>
 					</div>
 					<div class="row">
 						<br>
 					</div>
+					
 					<c:if test="${creation == true}">
-					<div class="alert alert-success" role="alert">Un produit a été créé avec succès</div>
-				</c:if>
-				<c:if test="${edition == true}">
-					<div class="alert alert-success" role="alert">Un produit a été édité avec succès</div>
-				</c:if>
-				<c:if test="${suppression == true}">
-					<div class="alert alert-danger" role="alert">Un produit a été supprimé avec succès</div>
-				</c:if>
+						<div class="alert alert-success" role="alert">Un compte
+							utilisateur a été créé avec succès</div>
+					</c:if>
+					<c:if test="${edition == true}">
+						<div class="alert alert-success" role="alert">Un compte
+							utilisateur a été édité avec succès</div>
+					</c:if>
+					<c:if test="${suppression == true}">
+						<div class="alert alert-danger" role="alert">Un compte
+							utilisateur a été supprimé avec succès</div>
+					</c:if>
 
 					<c:if test="${create==1}">
 						<div class="row">
@@ -108,58 +92,15 @@
 
 									<form class="form-horizontal" method="post">
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Titre</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Nom</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
-													value="Some text value..." name="titre">
-											</div>
-										</div>
-										<div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" for="example-textarea">Description</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="example-textarea" rows="5" name="description"></textarea>
-                                            </div>
-                                        </div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Prix</label>
-											<div class="col-sm-9">
-												<input type="number" class="form-control" id="simpleinput"
-													value="Some text value..." name="prix">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="Some text value..." name="image">
-											</div>
-										</div>
-										 <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Sous categorie</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="scat">
-                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
-                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
-													</c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock</label>
-											<div class="col-sm-9">
-												<input type="number" class="form-control" id="simpleinput"
-													value="Some text value..." name="stock">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock minimum</label>
-											<div class="col-sm-9">
-												<input type="number" class="form-control" id="simpleinput"
-													value="Some text value..." name="stockmin">
+													value="Some text value..." name="nom">
 											</div>
 										</div>
 										<button type="submit"
-											class="btn btn-light waves-effect waves-light width-md" name="c-create">Envoyer</button>
+											class="btn btn-light waves-effect waves-light width-md"
+											name="c-create">Envoyer</button>
 									</form>
 
 								</div>
@@ -177,59 +118,10 @@
 
 									<form class="form-horizontal" method="post">
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Titre</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Nom</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
-													value="${prod.titre_produit}" name="e-titre">
-											</div>
-										</div>
-										<div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" for="example-textarea">Description</label>
-                                            <div class="col-sm-9">
-                                                <textarea class="form-control" id="example-textarea" rows="5" name="e-description">${prod.description}</textarea>
-                                            </div>
-                                        </div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Prix</label>
-											<div class="col-sm-9">
-												<input type="number" class="form-control" id="simpleinput"
-													value="${prod.prix}" name="e-prix">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
-											<div class="col-sm-9">
-												<input type="text" class="form-control" id="simpleinput"
-													value="${prod.image}" name="e-image">
-											</div>
-										</div>
-										 <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Input Select</label>
-                                            <div class="col-sm-9">
-                                                <select class="form-control" name="e-scat">
-                                                	<c:forEach items="${ListSCat}" var="sous_categorie">
-                                                	<c:if test="${sous_categorie.id_sous_categorie == prod.sous_categorie.id_sous_categorie}">
-                                                		<option value="${sous_categorie.id_sous_categorie}"selected>${sous_categorie.titre}</option>
-                                                	</c:if>
-                                                	<c:if test="${sous_categorie.id_sous_categorie != prod.sous_categorie.id_sous_categorie}">
-                                                    	<option value="${sous_categorie.id_sous_categorie}">${sous_categorie.titre}</option>
-                                                    	</c:if>
-													</c:forEach>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock</label>
-											<div class="col-sm-9">
-												<input type="number" class="form-control" id="simpleinput"
-													value="${prod.stock}" name="e-stock">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Stock minimum</label>
-											<div class="col-sm-9">
-												<input type="number" class="form-control" id="simpleinput"
-													value="${prod.stock_minimum}" name="e-stockmin">
+													value="${four.nom}" name="e-nom">
 											</div>
 										</div>
 										<button type="submit"
@@ -242,6 +134,7 @@
 							<!-- end col -->
 						</div>
 					</c:if>
+					
 					<!-- end row -->
 
 					<div class="row">
@@ -253,34 +146,22 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Titre</th>
-												<th>Description</th>
-												<th>Prix</th>
-												<th>Image</th>
-												<th>Sous categorie</th>
-												<th>Stock</th>
-												<th>Stock min</th>
+												<th>Nom</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${ListProduit}" var="produit">
+											<c:forEach items="${ListFournisseur}" var="fournisseur">
 												<tr>
-													<th scope="row">${produit.id_produit}</th>
-													<td>${produit.titre_produit}</td>
-													<td>${produit.description}</td>
-													<td>${produit.prix}</td>
-													<td><img alt="${produit.titre_produit}" src="${produit.image}" style="height: 35"></td>
-													<td>${produit.sous_categorie.titre}</td>
-													<td>${produit.stock}</td>
-													<td>${produit.stock_minimum}</td>
+													<th scope="row">${fournisseur.id_fournisseur}</th>
+													<td>${fournisseur.nom}</td>
 													<td><a
-														href="a_produit?edit=${produit.id_produit}"><button
+														href="a_fournisseur?edit=${fournisseur.id_fournisseur}"><button
 																type="submit"
 																class="btn btn-sm btn-icon btn-light waves-effect waves-light">
 																<i class="mdi mdi-keyboard"></i>
 															</button></a> <a
-														href="a_produit?suppr=${produit.id_produit}"><button
+														href="a_fournisseur?suppr=${fournisseur.id_fournisseur}"><button
 																type="submit"
 																class="btn btn-sm btn-icon btn-danger waves-effect waves-light">
 																<i class="mdi mdi-close"></i>

@@ -11,6 +11,10 @@ public class Fournisseur {
 		this.id_fournisseur = id_fournisseur;
 		this.nom = nom;
 	}
+	
+	public Fournisseur(String nom) {
+		this.nom = nom;
+	}
 
 	public int getId_fournisseur() {
 		return id_fournisseur;

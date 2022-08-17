@@ -21,6 +21,13 @@ public class Entree_en_stock {
 		this.date_entree_en_stock = date_entree_en_stock;
 		this.quantite = quantite;
 	}
+	
+	public Entree_en_stock(Fournisseur fournisseur, Produit produit,int quantite) {
+		super();
+		this.fournisseur = fournisseur;
+		this.produit = produit;
+		this.quantite = quantite;
+	}
 
 
 	public int getId_entree_en_stock() {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import connection.Database;
 import model.Categorie;
 import model.Fournisseur;
+import model.Slide;
 
 public class FournisseurDao implements IDAO<Fournisseur> {
 
@@ -45,6 +46,28 @@ public class FournisseurDao implements IDAO<Fournisseur> {
 			e.printStackTrace();
 		}
 		return listeFournisseurs;
+	}
+	
+	public Fournisseur update(String nom,int id) {
+		Fournisseur fournisseur = null;
+		if (findById(id) != null) {
+			fournisseur = findById(id);
+			try {
+				PreparedStatement statement = connection.prepareStatement(
+						"UPDATE fournisseur SET nom=? WHERE id_fournisseur=?");
+				statement.setString(1, nom);
+				statement.setInt(2, id);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("Update non fait");
+				e.printStackTrace();
+			}
+			fournisseur.setNom(nom);
+			return fournisseur;
+		} else {
+			System.out.println("Update non fait id non présent dans la base");
+		}
+		return null;
 	}
 
 	@Override
@@ -88,6 +111,22 @@ public class FournisseurDao implements IDAO<Fournisseur> {
 		return null;
 	}
 
-
+	public ArrayList<Fournisseur> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Fournisseur> listeFournisseurs= new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM fournisseur WHERE nom LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			afficher=statement.executeQuery();
+			while (afficher.next()) {
+				Fournisseur fournisseur=new Fournisseur(afficher.getInt("id_fournisseur"),afficher.getString("nom"));
+				listeFournisseurs.add(fournisseur);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données/listeFournisseurs non lues");
+			e.printStackTrace();
+		}
+		return listeFournisseurs;
+	}
 
 }
