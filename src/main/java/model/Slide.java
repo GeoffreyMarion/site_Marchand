@@ -16,6 +16,12 @@ public class Slide {
 		this.image = image;
 		this.url = url;
 	}
+	
+	public Slide(String titre_slide, String image, String url) {
+		this.titre_slide = titre_slide;
+		this.image = image;
+		this.url = url;
+	}
 
 	public int getId_slide() {
 		return id_slide;

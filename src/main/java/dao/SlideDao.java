@@ -117,6 +117,26 @@ public class SlideDao implements IDAO<Slide>{
 		}
 		return null;
 	}
+	
+	public ArrayList<Slide> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Slide> ListSlide = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM slide WHERE titre_slide LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Slide slide = new Slide(afficher.getInt("id_slide"), afficher.getString("titre_slide"),
+						afficher.getString("image"), afficher.getString("url"));
+				ListSlide.add(slide);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListSlide;
+	}
 
 }
 

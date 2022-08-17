@@ -18,6 +18,13 @@ public class Administrateur {
 		this.mot_de_passe = mot_de_passe;
 		this.privileges = privileges;
 	}
+	
+	public Administrateur(String nom, String email, String mot_de_passe, String privileges) {
+		this.nom = nom;
+		this.email = email;
+		this.mot_de_passe = mot_de_passe;
+		this.privileges = privileges;
+	}
 
 	public int getId_administrateur() {
 		return id_administrateur;
