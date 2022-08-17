@@ -125,6 +125,30 @@ public class CoordonneesDao implements IDAO<Coordonnees>{
 		}
 		return null;
 	}
+	
+	public ArrayList<Coordonnees> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Coordonnees> ListCoordonnees = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM coordonnees WHERE nom LIKE ? OR "
+					+ "adresse LIKE ? OR email LIKE ? OR logo LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			statement.setString(3,"%" + input + "%");
+			statement.setString(4,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Coordonnees coordonnees = new Coordonnees(afficher.getInt("id_coordonnees"), afficher.getString("nom"),
+						afficher.getString("adresse"), afficher.getString("telephone"), afficher.getString("email"),
+						afficher.getString("logo"));
+				ListCoordonnees.add(coordonnees);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListCoordonnees;
+	}
 
 }
 

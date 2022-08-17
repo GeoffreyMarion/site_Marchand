@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ProduitDao;
+import dao.RechercheDao;
 import dao.Sous_categorieDao;
+import dao.UtilisateurDao;
 import model.Produit;
+import model.Recherche;
 import model.Sous_categorie;
+import model.Utilisateur;
 
 /**
  * Servlet implementation class A_utilisateur_S
@@ -22,6 +26,8 @@ public class A_produit_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ProduitDao pDao = new ProduitDao();
 	Sous_categorieDao sCatDao = new Sous_categorieDao();
+	RechercheDao rDao = new RechercheDao();
+	UtilisateurDao uDao = new UtilisateurDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -45,6 +51,13 @@ public class A_produit_S extends HttpServlet {
 		}
 		else if(request.getParameter("mot") != null) {
 			String mot = request.getParameter("mot");
+			if(request.getParameter("iduser")!=null) {
+			Utilisateur u = uDao.findById(Integer.parseInt(request.getParameter("iduser")));
+			Recherche recherche = new Recherche(u,mot);
+			rDao.create(recherche);}
+			else { Utilisateur u = uDao.findById(1); 
+			Recherche recherche = new Recherche(u,mot);
+			rDao.create(recherche);}
 			request.setAttribute("ListProduit", pDao.findByMot(mot));
 		}
 		else {request.setAttribute("ListProduit", pDao.read());}
@@ -56,7 +69,6 @@ public class A_produit_S extends HttpServlet {
 		if (request.getParameter("edit") != null) {
 			int edit = Integer.parseInt(request.getParameter("edit"));
 			Produit prod = pDao.findById(edit);
-			
 			request.setAttribute("edit", edit);
 			request.setAttribute("prod", prod);
 

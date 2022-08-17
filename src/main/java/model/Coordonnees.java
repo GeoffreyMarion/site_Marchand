@@ -20,6 +20,14 @@ public class Coordonnees {
 		this.email = email;
 		this.logo = logo;
 	}
+	
+	public Coordonnees(String nom, String adresse, String telephone, String email, String logo) {
+		this.nom = nom;
+		this.adresse = adresse;
+		this.telephone = telephone;
+		this.email = email;
+		this.logo = logo;
+	}
 
 	public int getId_coordonnees() {
 		return id_coordonnees;

@@ -120,6 +120,26 @@ public class AdministrateurDao implements IDAO<Administrateur>{
 		}
 		return null;
 	}
+	
+	public ArrayList<Administrateur> FindByMot(String input) {
+		ResultSet afficher;
+		ArrayList<Administrateur> ListAdministrateur = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement("SELECT* FROM administrateur WHERE nom LIKE ? OR email LIKE ?");
+			statement.setString(1,"%" + input + "%");
+			statement.setString(2,"%" + input + "%");
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Administrateur administrateur = new Administrateur(afficher.getInt("id_administrateur"), afficher.getString("nom"),
+						afficher.getString("email"), afficher.getString("mot_de_passe"), afficher.getString("privileges"));
+				ListAdministrateur.add(administrateur);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListAdministrateur;
+	}
 
 }
 

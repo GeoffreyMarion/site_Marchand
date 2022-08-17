@@ -200,9 +200,8 @@
 						class="menu-arrow"></span>
 				</a>
 					<ul class="nav-second-level" aria-expanded="false">
-						<li><a href="email-inbox.html">Inbox</a></li>
-						<li><a href="email-read.html">Read Email</a></li>
-						<li><a href="email-compose.html">Compose Email</a></li>
+						<li><a href="a_contact">Inbox</a></li>
+						<li><a href="a_contact">Read Email</a></li>
 					</ul></li>
 
 				<li><a href="javascript: void(0);"> <i
@@ -210,7 +209,7 @@
 						class="menu-arrow"></span>
 				</a>
 					<ul class="nav-second-level" aria-expanded="false">
-						<li><a href="tables-basic.html">Administrateurs</a></li>
+						<li><a href="a_administrateur">Administrateurs</a></li>
 						<li><a href="a_utilisateur">Utilisateurs</a></li>
 						<li><a href="a_adresse_livraison">Adresse de Livraison</a></li>
 						<li><a href="a_favori">Favoris</a></li>
@@ -224,8 +223,8 @@
 						<li><a href="a_commentaire">Commentaire</a></li>
 						<li><a href="a_entree_en_stock">Entrée en stock</a></li>
 						<li><a href="a_fournisseur">Fournisseurs</a></li>
-						<li><a href="tables-responsive.html">Slide</a></li>
-						<li><a href="tables-responsive.html">Coordonnées</a></li>
+						<li><a href="a_slide">Slide</a></li>
+						<li><a href="a_coordonnees">Coordonnées</a></li>
 					</ul></li>
 
 			</ul>
