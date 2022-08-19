@@ -8,7 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.CommandeDao;
+import dao.Details_commandeDao;
 import dao.ProduitDao;
+import dao.UtilisateurDao;
+import model.Commande;
+import model.Details_commande;
 import model.Details_panier;
 import model.Panier;
 import model.Produit;
@@ -21,6 +26,9 @@ public class Panier_S extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	ProduitDao produitDao = new ProduitDao();
+	UtilisateurDao uDao = new UtilisateurDao();
+	Details_commandeDao DcDao = new Details_commandeDao();
+	CommandeDao cDao = new CommandeDao();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,22 +57,32 @@ public class Panier_S extends HttpServlet {
 		
 		//AJOUTER AU PANIER
 		if(request.getParameter("quantity")!=null ) {	
-//			System.out.println("within pUpdate in Panier_S");
 			int newQuantity =Integer.valueOf(request.getParameter("quantity"));
-//			System.out.println("newQuantity: " + newQuantity);
-
 			int idProduit = Integer.valueOf(request.getParameter("idProduit"));
-//			System.out.println("idProduit: " + idProduit);
-
 			Produit prod_temp=produitDao.findById(idProduit);
-
-			Details_panier panierUpdated = new Details_panier(prod_temp,newQuantity);	
-						
+			Details_panier panierUpdated = new Details_panier(prod_temp,newQuantity);							
 			Panier panier3=(Panier) session.getAttribute("panier");
 			panier3.update(panierUpdated, newQuantity);
-
 			session.setAttribute( "panier", panier3 );
+			System.out.println(panier3);
 		}
+		
+		//Valier Panier
+//		if(request.getParameter("valider")!=null) {
+//			Panier panierv = (Panier)session.getAttribute("panier");
+//			Commande commande = new Commande();
+//			Float total= null;
+//			for (Details_panier details_panier : panierv) {
+//				Produit prod = details_panier.getProduit();
+//				int quant = details_panier.getQte();
+//				Details_commande detail = new Details_commande(commande,prod,quant,prod.getPrix());
+//				total+=prod.getPrix()*quant;
+//				DcDao.create(detail);
+//			}
+//			commande.setUtilisateur(uDao.findById((int)session.getAttribute("id_user")));
+//			commande.setTotal(total);
+//			cDao.create(commande);
+//		}
 		
 //		SUPPRIMER UN PRODUIT => PANIER
 		if(request.getParameter("idtodelete")!=null ) {

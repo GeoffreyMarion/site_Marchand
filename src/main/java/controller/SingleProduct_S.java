@@ -12,9 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import dao.CommentaireDao;
 import dao.FavoriDao;
+import dao.ImagesDao;
 import dao.ProduitDao;
 import dao.SlideDao;
 import dao.Sous_categorieDao;
+import dao.UtilisateurDao;
+import dao.VisiteDao;
 import model.Commentaire;
 import model.Details_panier;
 import model.Favori;
@@ -22,6 +25,7 @@ import model.Panier;
 import model.Produit;
 import model.Sous_categorie;
 import model.Utilisateur;
+import model.Visite;
 
 /**
  * Servlet implementation class SingleProduct_S
@@ -34,6 +38,9 @@ public class SingleProduct_S extends HttpServlet {
 	Sous_categorieDao sousCategorieDao = new Sous_categorieDao();
 	CommentaireDao commentaireDao = new CommentaireDao();
     FavoriDao fDao = new FavoriDao();
+    VisiteDao vDao = new VisiteDao();
+    UtilisateurDao uDao = new UtilisateurDao();
+    ImagesDao iDao = new ImagesDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -49,9 +56,16 @@ public class SingleProduct_S extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				
+		HttpSession session = request.getSession();
+		int id = Integer.parseInt(request.getParameter("id"));
+		Produit produ = produitDao.findById(id);
+		Utilisateur utilisateur = uDao.findById((int)session.getAttribute("iduser"));
+		Visite visite = new Visite(produ,utilisateur);
+		vDao.create(visite);
+		request.setAttribute("Listimages",iDao.findByProd(id));
+		
+		
 		if (request.getParameter("fav") != null) {
-			HttpSession session = request.getSession();
 
 			Utilisateur user = new Utilisateur();
 			user.setId_utilisateur((int)session.getAttribute("iduser"));
@@ -65,7 +79,6 @@ public class SingleProduct_S extends HttpServlet {
 		
 		if (request.getParameter("id") != null) {
 			int idAsInt = Integer.parseInt(request.getParameter("id"));
-//			System.out.println("idAsInt: " + idAsInt);
 
 			Produit produit = produitDao.findById(idAsInt);
 
@@ -94,11 +107,6 @@ public class SingleProduct_S extends HttpServlet {
 			if(request.getParameter("padd")!=null ) {	
 				int id_produit=Integer.valueOf(request.getParameter("padd"));
 				Produit prod_temp=produitDao.findById(id_produit);
-				
-//				System.out.println("within padd");
-
-				HttpSession session = request.getSession();
-//				System.out.println("session within padd" + session);
 
 				int qte=Integer.valueOf(request.getParameter("pqte"));
 				Details_panier panieradd=new Details_panier(prod_temp,qte);	
@@ -107,14 +115,11 @@ public class SingleProduct_S extends HttpServlet {
 				panier.ajouter(panieradd);
 				session.setAttribute( "panier", panier );
 		
-//				System.out.println((Panier) session.getAttribute("panier"));
-//				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
 			}
 			
 			//AJOUTER UN COMMENTAIRE 
 			if(request.getParameter("commentaire")!=null ) {
 				System.out.println("within commentaire");
-//				request.getRequestDispatcher("commentaire.jsp").forward(request, response);
 				response.sendRedirect("/Commentaire_S");
 			}
 		}

@@ -16,6 +16,12 @@ public class Images {
 		this.produit = produit;
 		this.url = url;
 	}
+	
+	public Images(Produit produit, String url) {
+		super();
+		this.produit = produit;
+		this.url = url;
+	}
 
 	public int getId_image() {
 		return id_image;

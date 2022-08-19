@@ -5,14 +5,21 @@ private int id_details_commande;
 private Commande commande;
 private Produit produit;
 private int quantite;
-private int prix;
+private Float prix;
 
 public Details_commande() {
 
 }
 
-public Details_commande(int id_details_commande, Commande commande, Produit produit, int quantite, int prix) {
+public Details_commande(int id_details_commande, Commande commande, Produit produit, int quantite, Float prix) {
 	this.id_details_commande = id_details_commande;
+	this.commande =commande;
+	this.produit = produit;
+	this.quantite = quantite;
+	this.prix = prix;
+}
+
+public Details_commande(Commande commande, Produit produit, int quantite, Float prix) {
 	this.commande =commande;
 	this.produit = produit;
 	this.quantite = quantite;
@@ -53,11 +60,11 @@ public void setQuantite(int quantite) {
 	this.quantite = quantite;
 }
 
-public int getPrix() {
+public Float getPrix() {
 	return prix;
 }
 
-public void setPrix(int prix) {
+public void setPrix(Float prix) {
 	this.prix = prix;
 }
 

@@ -26,7 +26,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 			statement.setInt(1, details_commande.getCommande().getId_commande());
 			statement.setInt(2, details_commande.getProduit().getId_produit());
 			statement.setInt(3, details_commande.getQuantite());
-			statement.setInt(4, details_commande.getPrix());
+			statement.setFloat(4, details_commande.getPrix());
 			statement.executeUpdate();
 			return true;
 		} catch (SQLException e) {
@@ -66,7 +66,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Details_commande details_commande = new Details_commande(afficher.getInt("id_details_commande"),
-						commande, produit, afficher.getInt("quantite"), afficher.getInt("prix"));
+						commande, produit, afficher.getInt("quantite"), afficher.getFloat("prix"));
 				ListDetails_commande.add(details_commande);
 			}
 		} catch (SQLException e) {
@@ -76,7 +76,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 		return ListDetails_commande;
 	}
 
-	public Details_commande update(Commande commande, Produit produit, int quantite, int prix,int id) {
+	public Details_commande update(Commande commande, Produit produit, int quantite, Float prix,int id) {
 		Details_commande details_commande = null;
 		if (findById(id) != null) {
 			details_commande = findById(id);
@@ -86,7 +86,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 				statement.setInt(1, commande.getId_commande());
 				statement.setInt(2, produit.getId_produit());
 				statement.setInt(3, quantite);
-				statement.setInt(4, prix);
+				statement.setFloat(4, prix);
 				statement.setInt(5, id);
 				statement.executeUpdate();
 			} catch (SQLException e) {
@@ -153,7 +153,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Details_commande details_commande = new Details_commande(id, commande, produit,
-						afficher.getInt("quantite"), afficher.getInt("prix"));
+						afficher.getInt("quantite"), afficher.getFloat("prix"));
 				return details_commande;
 			}
 		} catch (SQLException e) {
@@ -195,7 +195,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Details_commande details_commande = new Details_commande(afficher.getInt("id_details_commande"),
-						commande, produit, afficher.getInt("quantite"), afficher.getInt("prix"));
+						commande, produit, afficher.getInt("quantite"), afficher.getFloat("prix"));
 				return details_commande;
 			}
 		} catch (SQLException e) {
@@ -237,7 +237,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Details_commande details_commande = new Details_commande(afficher.getInt("id_details_commande"),
-						commande, produit, afficher.getInt("quantite"), afficher.getInt("prix"));
+						commande, produit, afficher.getInt("quantite"), afficher.getFloat("prix"));
 				return details_commande;
 			}
 		} catch (SQLException e) {
@@ -283,7 +283,7 @@ public class Details_commandeDao implements IDAO<Details_commande> {
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
 				Details_commande details_commande = new Details_commande(afficher.getInt("id_details_commande"),
-						commande, produit, afficher.getInt("quantite"), afficher.getInt("prix"));
+						commande, produit, afficher.getInt("quantite"), afficher.getFloat("prix"));
 				ListDetails_commande.add(details_commande);
 			}
 		} catch (SQLException e) {

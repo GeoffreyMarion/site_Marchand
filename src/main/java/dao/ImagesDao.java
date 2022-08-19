@@ -37,7 +37,7 @@ public class ImagesDao implements IDAO<Images> {
 		ArrayList<Images> ListImages = new ArrayList<>();
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"SELECT* FROM images INNER JOIN produit ON images.fk_id_produit=produit.id_produit"
+					"SELECT* FROM images INNER JOIN produit ON images.fk_id_produit=produit.id_produit "
 							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
 							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie");
 			afficher = statement.executeQuery();
@@ -48,7 +48,7 @@ public class ImagesDao implements IDAO<Images> {
 								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
 						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
 
-				Images images = new Images(afficher.getInt("id_visite"),
+				Images images = new Images(afficher.getInt("id_image"),
 						produit, afficher.getString("url"));
 				ListImages.add(images);
 			}
@@ -130,6 +130,35 @@ public class ImagesDao implements IDAO<Images> {
 			System.err.println(id + " ne se trouve pas dans la base de données\n----------------");
 		}
 		return null;
+	}
+	
+	public ArrayList<Images> findByProd(int idprod) {
+		ResultSet afficher;
+		ArrayList<Images> ListImages = new ArrayList<>();
+		try {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT* FROM images INNER JOIN produit ON images.fk_id_produit=produit.id_produit "
+							+ "INNER JOIN sous_categorie ON produit.fk_id_sous_categorie=sous_categorie.id_sous_categorie "
+							+ "INNER JOIN categorie ON sous_categorie.fk_id_categorie=categorie.id_categorie "
+							+ "WHERE id_produit = ?");
+			statement.setInt(1, idprod);
+			afficher = statement.executeQuery();
+			while (afficher.next()) {
+				Produit produit = new Produit(afficher.getInt("id_produit"), afficher.getString("titre_produit"),
+						afficher.getString("description"), afficher.getFloat("prix"), afficher.getString("image"),
+						new Sous_categorie(afficher.getInt("id_sous_categorie"), afficher.getString("titre"),
+								new Categorie(afficher.getInt("id_categorie"), afficher.getString("titre"))),
+						afficher.getInt("stock"), afficher.getInt("stock_minimum"));
+
+				Images images = new Images(afficher.getInt("id_image"),
+						produit, afficher.getString("url"));
+				ListImages.add(images);
+			}
+		} catch (SQLException e) {
+			System.out.println("Données non lues");
+			e.printStackTrace();
+		}
+		return ListImages;
 	}
 }
 

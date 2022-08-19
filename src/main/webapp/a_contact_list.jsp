@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Administrateur</title>
+<title>Contact</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta
 	content="A fully featured admin theme which can be used to build CRM, CMS, etc."
@@ -31,7 +31,7 @@
 
 </head>
 <body class="left-side-menu-dark">
-
+	
 	<!-- Begin page -->
 	<div id="wrapper" style="overflow: scroll">
 
@@ -54,16 +54,7 @@
 					<!-- start page title -->
 					<div class="row">
 						<div class="col-12">
-							<div class="page-title-box">
-<!-- 								<div class="page-title-right"> -->
-<!-- 									<ol class="breadcrumb m-0"> -->
-<!-- 										<li class="breadcrumb-item"><a -->
-<!-- 											href="javascript: void(0);">Greeva</a></li> -->
-<!-- 										<li class="breadcrumb-item"><a -->
-<!-- 											href="javascript: void(0);">Email</a></li> -->
-<!-- 										<li class="breadcrumb-item active">Inbox</li> -->
-<!-- 									</ol> -->
-<!-- 								</div> -->
+							<div class="page-title-box">							
 								<h4 class="page-title">Inbox</h4>
 							</div>
 						</div>
@@ -75,109 +66,17 @@
 						<!-- Right Sidebar -->
 						<div class="col-lg-12">
 							<div class="card-box">
-								<!-- Left sidebar -->
-<!-- 								<div class="inbox-leftbar"> -->
-
-<!-- <!-- 									<a href="email-compose.html" --> -->
-<!-- <!-- 										class="btn btn-danger btn-block waves-effect waves-light">Compose</a> --> -->
-
-<!-- 									<div class="mail-list mt-4"> -->
-<!-- 										<a href="#" class="list-group-item border-0 text-danger"><i -->
-<!-- 											class="mdi mdi-inbox font-18 align-middle mr-2"></i>Inbox<span -->
-<!-- 											class="badge badge-danger float-right ml-2 mt-1">8</span></a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><i -->
-<!-- 											class="mdi mdi-star font-18 align-middle mr-2"></i>Starred</a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><i -->
-<!-- 											class="mdi mdi-file-document-box font-18 align-middle mr-2"></i>Draft<span -->
-<!-- 											class="badge badge-info float-right ml-2 mt-1">32</span></a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><i -->
-<!-- 											class="mdi mdi-send font-18 align-middle mr-2"></i>Sent Mail</a> -->
-<!-- 										<a href="#" class="list-group-item border-0"><i -->
-<!-- 											class="mdi mdi-delete font-18 align-middle mr-2"></i>Trash</a> -->
-<!-- 									</div> -->
-
-<!-- 									<h6 class="mt-4">Labels</h6> -->
-
-<!-- 									<div class="list-group b-0 mail-list"> -->
-<!-- 										<a href="#" class="list-group-item border-0"><span -->
-<!-- 											class="mdi mdi-circle text-info mr-2"></span>Web App</a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><span -->
-<!-- 											class="mdi mdi-circle text-warning mr-2"></span>Recharge</a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><span -->
-<!-- 											class="mdi mdi-circle text-dark mr-2"></span>Wallet Balance</a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><span -->
-<!-- 											class="mdi mdi-circle text-primary mr-2"></span>Friends</a> <a -->
-<!-- 											href="#" class="list-group-item border-0"><span -->
-<!-- 											class="mdi mdi-circle text-success mr-2"></span>Family</a> -->
-<!-- 									</div> -->
-
-<!-- 								</div> -->
-								<!-- End Left sidebar -->
 
 								<div class="inbox-rightbar">
 
 									<div class="btn-group">
-<!-- 										<button type="button" -->
-<!-- 											class="btn btn-sm btn-light waves-effect"> -->
-<!-- 											<i class="mdi mdi-archive font-18 vertical-middle"></i> -->
-<!-- 										</button> -->
-<!-- 										<button type="button" -->
-<!-- 											class="btn btn-sm btn-light waves-effect"> -->
-<!-- 											<i class="mdi mdi-alert-octagon font-18 vertical-middle"></i> -->
-<!-- 										</button> -->
+										
 										<button type="button"
 											class="btn btn-sm btn-light waves-effect">
 											<i class="mdi mdi-delete-variant font-18 vertical-middle"></i>
 										</button>
 									</div>
-<!-- 									<div class="btn-group"> -->
-<!-- 										<button type="button" -->
-<!-- 											class="btn btn-sm btn-light dropdown-toggle waves-effect" -->
-<!-- 											data-toggle="dropdown" aria-expanded="false"> -->
-<!-- 											<i class="mdi mdi-folder font-18 vertical-middle"></i> <i -->
-<!-- 												class="mdi mdi-chevron-down font-14 ml-1"></i> -->
-<!-- 										</button> -->
-<!-- 										<div class="dropdown-menu"> -->
-<!-- 											<span class="dropdown-header">Move to</span> <a -->
-<!-- 												class="dropdown-item" href="javascript: void(0);">Social</a> -->
-<!-- 											<a class="dropdown-item" href="javascript: void(0);">Promotions</a> -->
-<!-- 											<a class="dropdown-item" href="javascript: void(0);">Updates</a> -->
-<!-- 											<a class="dropdown-item" href="javascript: void(0);">Forums</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 									<div class="btn-group"> -->
-<!-- 										<button type="button" -->
-<!-- 											class="btn btn-sm btn-light dropdown-toggle waves-effect" -->
-<!-- 											data-toggle="dropdown" aria-expanded="false"> -->
-<!-- 											<i class="mdi mdi-label font-18 vertical-middle"></i> <i -->
-<!-- 												class="mdi mdi-chevron-down font-14 ml-1"></i> -->
-<!-- 										</button> -->
-<!-- 										<div class="dropdown-menu"> -->
-<!-- 											<span class="dropdown-header">Label as:</span> <a -->
-<!-- 												class="dropdown-item" href="javascript: void(0);">Updates</a> -->
-<!-- 											<a class="dropdown-item" href="javascript: void(0);">Social</a> -->
-<!-- 											<a class="dropdown-item" href="javascript: void(0);">Promotions</a> -->
-<!-- 											<a class="dropdown-item" href="javascript: void(0);">Forums</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-
-<!-- 									<div class="btn-group"> -->
-<!-- 										<button type="button" -->
-<!-- 											class="btn btn-sm btn-light dropdown-toggle waves-effect" -->
-<!-- 											data-toggle="dropdown" aria-expanded="false"> -->
-<!-- 											<i class="mdi mdi-dots-horizontal font-18 vertical-middle"></i> -->
-<!-- 											More <i class="mdi mdi-chevron-down font-14 ml-1"></i> -->
-<!-- 										</button> -->
-<!-- 										<div class="dropdown-menu"> -->
-<!-- 											<span class="dropdown-header">More Option :</span> <a -->
-<!-- 												class="dropdown-item" href="javascript: void(0);">Mark -->
-<!-- 												as Unread</a> <a class="dropdown-item" -->
-<!-- 												href="javascript: void(0);">Add to Tasks</a> <a -->
-<!-- 												class="dropdown-item" href="javascript: void(0);">Add -->
-<!-- 												Star</a> <a class="dropdown-item" href="javascript: void(0);">Mute</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-
+								
 									<div class="mt-4">
 										<ul class="message-list">
 											<c:forEach items="${ListContact}" var="contact">
@@ -199,24 +98,6 @@
 											</c:forEach>
 										</ul>
 									</div>
-									<!-- end .mt-4 -->
-
-<!-- 									<div class="row"> -->
-<!-- 										<div class="col-7">Showing 1 - 20 of 289</div> -->
-<!-- 										end col -->
-<!-- 										<div class="col-5"> -->
-<!-- 											<div class="btn-group float-right"> -->
-<!-- 												<button type="button" class="btn btn-light btn-sm"> -->
-<!-- 													<i class="mdi mdi-chevron-left"></i> -->
-<!-- 												</button> -->
-<!-- 												<button type="button" class="btn btn-info btn-sm"> -->
-<!-- 													<i class="mdi mdi-chevron-right"></i> -->
-<!-- 												</button> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
-<!-- 										end col -->
-<!-- 									</div> -->
-									<!-- end row-->
 								</div>
 								<!-- end inbox-rightbar-->
 

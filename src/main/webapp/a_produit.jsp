@@ -128,10 +128,31 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image principale</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
 													value="Some text value..." name="image">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image 2</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="simpleinput"
+													value="Some text value..." name="image2">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image 3</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="simpleinput"
+													value="Some text value..." name="image3">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image 4</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="simpleinput"
+													value="Some text value..." name="image4">
 											</div>
 										</div>
 										 <div class="form-group row">
@@ -197,10 +218,32 @@
 											</div>
 										</div>
 										<div class="form-group row">
-											<label class="col-sm-3 col-form-label" for="simpleinput">Image</label>
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image principale</label>
 											<div class="col-sm-9">
 												<input type="text" class="form-control" id="simpleinput"
 													value="${prod.image}" name="e-image">
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image 2</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="simpleinput"
+													value="${ListImagesprod[0].url }" name="e-image2">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image 3</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="simpleinput"
+													value="${ListImagesprod[1].url }" name="e-image3">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-sm-3 col-form-label" for="simpleinput">Image 4</label>
+											<div class="col-sm-9">
+												<input type="text" class="form-control" id="simpleinput"
+													value="${ListImagesprod[2].url }" name="e-image4">
 											</div>
 										</div>
 										 <div class="form-group row">
@@ -256,7 +299,10 @@
 												<th>Titre</th>
 												<th>Description</th>
 												<th>Prix</th>
-												<th>Image</th>
+												<th>Image principale</th>
+												<th>Image 2</th>
+												<th>Image 3</th>
+												<th>Image 4</th>
 												<th>Sous categorie</th>
 												<th>Stock</th>
 												<th>Stock min</th>
@@ -271,6 +317,11 @@
 													<td>${produit.description}</td>
 													<td>${produit.prix}</td>
 													<td><img alt="${produit.titre_produit}" src="${produit.image}" style="height: 35"></td>
+													<c:forEach items="${ListImages}" var="images">
+													<c:if test="${images.produit.id_produit == produit.id_produit}">
+													<td><img alt="${produit.titre_produit}" src="${images.url}" style="height: 35"></td>
+													</c:if>
+													</c:forEach>
 													<td>${produit.sous_categorie.titre}</td>
 													<td>${produit.stock}</td>
 													<td>${produit.stock_minimum}</td>
