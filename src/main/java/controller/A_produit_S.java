@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ImagesDao;
 import dao.ProduitDao;
 import dao.RechercheDao;
 import dao.Sous_categorieDao;
 import dao.UtilisateurDao;
+import model.Images;
 import model.Produit;
 import model.Recherche;
 import model.Sous_categorie;
@@ -28,6 +31,7 @@ public class A_produit_S extends HttpServlet {
 	Sous_categorieDao sCatDao = new Sous_categorieDao();
 	RechercheDao rDao = new RechercheDao();
 	UtilisateurDao uDao = new UtilisateurDao();
+	ImagesDao iDao = new ImagesDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -44,6 +48,8 @@ public class A_produit_S extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		request.setAttribute("ListImages", iDao.read());
 		
 		if(request.getParameter("s-sscat") != null) {
 			int souscat = Integer.parseInt(request.getParameter("s-scat"));
@@ -71,6 +77,8 @@ public class A_produit_S extends HttpServlet {
 			Produit prod = pDao.findById(edit);
 			request.setAttribute("edit", edit);
 			request.setAttribute("prod", prod);
+			ArrayList<Images> Images = iDao.findByProd(edit);
+			request.setAttribute("ListImagesprod", Images);
 
 			if (request.getParameter("c-edit") != null) {
 				String titre = request.getParameter("e-image");
@@ -82,6 +90,12 @@ public class A_produit_S extends HttpServlet {
 				int stockmin = Integer.parseInt(request.getParameter("e-stockmin"));
 				Sous_categorie ssCat = sCatDao.findById(scat);
 				pDao.update(titre, description, prix, image, ssCat, stock, stockmin, edit);
+				String image2 = request.getParameter("e-image2");
+				iDao.update(prod,image2,Images.get(0).getId_image());
+				String image3 = request.getParameter("e-image3");
+				iDao.update(prod,image3,Images.get(1).getId_image());
+				String image4 = request.getParameter("e-image4");
+				iDao.update(prod,image4,Images.get(2).getId_image());
 				edition = true;
 				request.setAttribute("edition", edition);
 				response.sendRedirect("a_produit?edition=true");
@@ -103,6 +117,15 @@ public class A_produit_S extends HttpServlet {
 				Sous_categorie ssCat = sCatDao.findById(scat);
 				Produit prod = new Produit(titre, description, prix, image, ssCat, stock, stockmin);
 				pDao.create(prod);
+				String image2 = request.getParameter("image2");
+				Images images2 = new Images(prod,image2);
+				iDao.create(images2);
+				String image3 = request.getParameter("image3");
+				Images images3 = new Images(prod,image3);
+				iDao.create(images3);
+				String image4 = request.getParameter("image4");
+				Images images4 = new Images(prod,image4);
+				iDao.create(images4);
 				creation = true;
 				request.setAttribute("creation", creation);
 				response.sendRedirect("a_produit?creation=true");

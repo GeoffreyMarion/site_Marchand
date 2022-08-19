@@ -21,6 +21,11 @@ public Visite(int id_visite, Produit produit, Utilisateur utilisateur, Date date
 	this.date_visite = date_visite;
 }
 
+public Visite(Produit produit, Utilisateur utilisateur) {
+	super();
+	this.produit = produit;
+	this.utilisateur = utilisateur;
+}
 
 public int getId_visite() {
 	return id_visite;

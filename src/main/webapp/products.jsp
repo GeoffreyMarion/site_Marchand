@@ -133,8 +133,7 @@
 							<form method="POST">
 								<input type="hidden" name="pqte" value="1">
 								<button class="btn btn-dark btn-sm addtobag ml-2" id="products_btn_basket" type="submit"
-									name="padd" value=${produit.id_produit
-							}>
+									name="padd" value=${produit.id_produit }>
 									<img alt="favori" src="icones/icon_basket3.png"
 										style="height: 18">
 								</button>

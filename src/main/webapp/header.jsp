@@ -93,13 +93,13 @@
 						%>
 						<li>
 							<div class="tbr-info align-items-center">
-								<a href="#" style="font-size: 0.7rem"><span><b>Bonjour
-											${prenomuser} ${nomuser}</b></span></a>
+								<span style="font-size: 0.7rem"><b>Bonjour
+											${prenomuser} ${nomuser}</b></span>
 							</div>
 						</li>
 						<li>
 							<div class="tbr-info align-items-center">
-								<a href="#" style="font-size: 0.7rem"><span><b>Mon
+								<a href="compteutilisateur" style="font-size: 0.7rem"><span><b>Mon
 											compte</b></span></a>
 							</div>
 						</li>

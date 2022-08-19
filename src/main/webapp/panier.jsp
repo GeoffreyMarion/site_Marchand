@@ -135,7 +135,7 @@
 							<div class="col-6">
 								<div class="card-body">
 									<button type="button"
-										class="btn btn-secondary btn-block btn-lg">Paiement</button>
+										class="btn btn-secondary btn-block btn-lg" type="submit" value="valider">Paiement</button>
 								</div>
 							</div>
 						</div>

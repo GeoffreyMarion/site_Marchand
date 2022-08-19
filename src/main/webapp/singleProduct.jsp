@@ -1,20 +1,3 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="model.Produit"%>
-<%@page import="java.util.ArrayList"%>
-<%
-Produit produit = (Produit) request.getAttribute("produit");
-%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>fiche produit</title>
-</head>
-<body>
-	<c:import url="header" />
-<c:import url="header" /> --%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.Panier"%>
@@ -59,12 +42,10 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 					<img src="${produit.image }" class="img-fluid rounded-start m-2"
 						alt="${produit.titre_produit }"> <br>
 					<div class="d-flex flex-wrap">
-						<img src="${produit.image }" class="col-3 m-2"
-							alt="${produit.titre_produit }"><img
-							src="${produit.image }" class="col-3 m-2"
-							alt="${produit.titre_produit }"><img
-							src="${produit.image }" class="col-3 m-2"
+						<c:forEach items="${Listimages}" var="images">
+						<img src="${images.url }" class="col-3 m-2"
 							alt="${produit.titre_produit }">
+							</c:forEach>
 					</div>
 				</div>
 				<div class="col-6">
@@ -97,11 +78,6 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 						</button>
 					</c:if>
 
-					<%-- 			<button type="submit" class="btn btn-dark btn-sm"
-						style="margin: 0.2rem;">
-						<a href="product?pan=${produit.id_produit}"><img alt="favori"
-							src="icones/favori.png" style="height: 18"></a>
-					</button> --%>
 					<form method="POST" class="mt-3">
 						Quantit&eacute; : <input type="number" min="1"
 							max=${produit.stock
@@ -180,11 +156,6 @@ ArrayList<Commentaire> commentaires = (ArrayList<Commentaire>) request.getAttrib
 							</button>
 						</c:if>
 
-						<%-- <button type="submit" class="btn btn-dark btn-sm"
-							style="margin: 0.2rem;">
-							<a href="product?pan=${produitSimilaire.id_produit}"><img
-								alt="favori" src="icones/favori.png" style="height: 18"></a>
-						</button> --%>
 						<div class="col-sm-12">
 							<form method="POST" class="pt-3">
 								Quantit&eacute; : <input type="number" min="1"
