@@ -47,6 +47,7 @@ public class Panier_S extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Panier panier=(Panier) session.getAttribute("panier");
+		System.out.println(panier);
 		session.setAttribute( "panier", panier );
 		boolean emptyCart = true;
 		if(panier != null) {
@@ -64,25 +65,25 @@ public class Panier_S extends HttpServlet {
 			Panier panier3=(Panier) session.getAttribute("panier");
 			panier3.update(panierUpdated, newQuantity);
 			session.setAttribute( "panier", panier3 );
-			System.out.println(panier3);
 		}
 		
 		//Valier Panier
-//		if(request.getParameter("valider")!=null) {
-//			Panier panierv = (Panier)session.getAttribute("panier");
-//			Commande commande = new Commande();
-//			Float total= null;
-//			for (Details_panier details_panier : panierv) {
-//				Produit prod = details_panier.getProduit();
-//				int quant = details_panier.getQte();
-//				Details_commande detail = new Details_commande(commande,prod,quant,prod.getPrix());
-//				total+=prod.getPrix()*quant;
-//				DcDao.create(detail);
-//			}
-//			commande.setUtilisateur(uDao.findById((int)session.getAttribute("id_user")));
-//			commande.setTotal(total);
-//			cDao.create(commande);
-//		}
+		if(request.getParameter("valider")!=null) {
+			System.out.println("valider");
+			Panier panierv = (Panier)session.getAttribute("panier");
+			Commande commande = new Commande();
+			Float total= null;
+			for (Details_panier details_panier : panierv.produits) {
+				Produit prod = details_panier.getProduit();
+				int quant = details_panier.getQte();
+				Details_commande detail = new Details_commande(commande,prod,quant,prod.getPrix());
+				total+=prod.getPrix()*quant;
+				DcDao.create(detail);
+			}
+			commande.setUtilisateur(uDao.findById((int)session.getAttribute("id_user")));
+			commande.setTotal(total);
+			cDao.create(commande);
+		}
 		
 //		SUPPRIMER UN PRODUIT => PANIER
 		if(request.getParameter("idtodelete")!=null ) {
