@@ -47,7 +47,6 @@ public class Panier_S extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Panier panier=(Panier) session.getAttribute("panier");
-		System.out.println(panier);
 		session.setAttribute( "panier", panier );
 		boolean emptyCart = true;
 		if(panier != null) {

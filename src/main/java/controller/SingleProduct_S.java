@@ -119,7 +119,6 @@ public class SingleProduct_S extends HttpServlet {
 			
 			//AJOUTER UN COMMENTAIRE 
 			if(request.getParameter("commentaire")!=null ) {
-				System.out.println("within commentaire");
 				response.sendRedirect("/Commentaire_S");
 			}
 		}
