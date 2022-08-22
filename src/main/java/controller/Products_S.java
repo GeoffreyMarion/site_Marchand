@@ -104,18 +104,12 @@ public class Products_S extends HttpServlet {
 			if(request.getParameter("padd")!=null ) {	
 				int id_produit=Integer.valueOf(request.getParameter("padd"));
 				Produit prod_temp=pDao.findById(id_produit);
-				
-				System.out.println("within padd");
-
 				int qte=Integer.valueOf(request.getParameter("pqte"));
 				Details_panier panieradd=new Details_panier(prod_temp,qte);	
 				
 				Panier panier=(Panier) session.getAttribute("panier");
 				panier.ajouter(panieradd);
 				session.setAttribute( "panier", panier );
-		
-				System.out.println((Panier) session.getAttribute("panier"));
-				System.out.println(session.getAttribute("panier").getClass().getSimpleName());
 			}
 			request.setAttribute("ListProduit", pDao.read());
 		}

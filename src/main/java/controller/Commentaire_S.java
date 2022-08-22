@@ -48,10 +48,8 @@ public class Commentaire_S extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		int id_produit = Integer.valueOf(request.getParameter("id"));
-		System.out.println("id_produit:" + id_produit);
 
 		Produit currentProduct = produitDao.findById(id_produit);
-		System.out.println("produit:" + currentProduct);
 
 		request.setAttribute("produit", currentProduct);
 
@@ -60,8 +58,6 @@ public class Commentaire_S extends HttpServlet {
 		if (request.getParameter("send") != null) {
 			String contentCommentaire = request.getParameter("contentCommentaire");
 			int note = Integer.valueOf(request.getParameter("note"));
-			System.out.println("contentCommentaire:" + contentCommentaire);
-			System.out.println("note:" + note);
 
 			Commentaire newCommentaire = new Commentaire();
 			boolean contentCommentaireOK;
@@ -77,8 +73,6 @@ public class Commentaire_S extends HttpServlet {
 				newCommentaire.setUtilisateur(currentUser);
 				newCommentaire.setProduit(currentProduct);
 				newCommentaire.setNote(note);
-				
-				System.out.println("newCommentaire:" + newCommentaire);
 
 				commentaireDao.create(newCommentaire);
 				request.setAttribute("contentCommentaireOK",contentCommentaireOK );
