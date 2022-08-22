@@ -154,3 +154,15 @@ a:hover {
 	justify-content: space-between;
 	align-items: start;
 }
+
+#wrapper {
+	overflow: scroll !important;
+
+	}
+
+.overflow{
+	overflow: scroll !important;
+	background: red;
+
+	}
+}
