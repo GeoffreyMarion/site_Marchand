@@ -65,11 +65,11 @@ public class Panier_S extends HttpServlet {
 			Panier panier3=(Panier) session.getAttribute("panier");
 			panier3.update(panierUpdated, newQuantity);
 			session.setAttribute( "panier", panier3 );
-			System.out.println(panier3);
 		}
 		
 		//Valier Panier
 		if(request.getParameter("valider")!=null) {
+			System.out.println("valider");
 			Panier panierv = (Panier)session.getAttribute("panier");
 			Commande commande = new Commande();
 			Float total= null;

@@ -134,9 +134,10 @@
 
 							<div class="col-6">
 								<div class="card-body">
+								<form method="post">
 									<button type="button"
 										class="btn btn-secondary btn-block btn-lg" type="submit" value="valider">Paiement</button>
-								</div>
+								</form></div>
 							</div>
 						</div>
 					</div>
