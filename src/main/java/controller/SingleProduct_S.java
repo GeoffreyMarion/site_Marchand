@@ -14,7 +14,6 @@ import dao.CommentaireDao;
 import dao.FavoriDao;
 import dao.ImagesDao;
 import dao.ProduitDao;
-import dao.SlideDao;
 import dao.Sous_categorieDao;
 import dao.UtilisateurDao;
 import dao.VisiteDao;
@@ -59,8 +58,14 @@ public class SingleProduct_S extends HttpServlet {
 		HttpSession session = request.getSession();
 		int id = Integer.parseInt(request.getParameter("id"));
 		Produit produ = produitDao.findById(id);
-		Utilisateur utilisateur = uDao.findById((int)session.getAttribute("iduser"));
-		Visite visite = new Visite(produ,utilisateur);
+		Utilisateur u = new Utilisateur();
+		if(session.getAttribute("iduser") != null) {
+			u.setId_utilisateur((int) session.getAttribute("iduser"));
+		} else {
+			u.setId_utilisateur((1));
+
+		}	
+		Visite visite = new Visite(produ,u);
 		vDao.create(visite);
 		request.setAttribute("Listimages",iDao.findByProd(id));
 		

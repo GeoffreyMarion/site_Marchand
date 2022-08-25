@@ -19,7 +19,7 @@ public class ImagesDao implements IDAO<Images> {
 	public boolean create(Images images) {
 		try {
 			PreparedStatement statement = connection.prepareStatement(
-					"Insert INTO image(fk_id_produit,url) VALUES (?,?)");
+					"Insert INTO images(fk_id_produit,url) VALUES (?,?)");
 			statement.setInt(1, images.getProduit().getId_produit());
 			statement.setString(2, images.getUrl());
 			statement.executeUpdate();
